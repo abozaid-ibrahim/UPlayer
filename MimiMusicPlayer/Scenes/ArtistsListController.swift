@@ -7,11 +7,7 @@
 //
 
 import UIKit
-protocol ArtistsViewModelType {
-}
 
-class ArtistsViewModel: ArtistsViewModelType {
-}
 
 final class ArtistsListController: UIViewController {
     private let tableView = UITableView()
