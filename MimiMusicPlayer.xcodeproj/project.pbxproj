@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		6C0ADE07256D99B800522733 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0ADE06256D99B800522733 /* AppDelegate.swift */; };
 		6C0ADE09256D99B800522733 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0ADE08256D99B800522733 /* SceneDelegate.swift */; };
-		6C0ADE0B256D99B800522733 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0ADE0A256D99B800522733 /* ContentView.swift */; };
 		6C0ADE0D256D99BA00522733 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C0ADE0C256D99BA00522733 /* Assets.xcassets */; };
-		6C0ADE10256D99BA00522733 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C0ADE0F256D99BA00522733 /* Preview Assets.xcassets */; };
 		6C0ADE13256D99BA00522733 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C0ADE11256D99BA00522733 /* LaunchScreen.storyboard */; };
 		6C0ADE1E256D99BA00522733 /* MimiMusicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0ADE1D256D99BA00522733 /* MimiMusicPlayerTests.swift */; };
 		6C0ADE29256D99BA00522733 /* MimiMusicPlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0ADE28256D99BA00522733 /* MimiMusicPlayerUITests.swift */; };
+		6C0ADE39256D9A1C00522733 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0ADE37256D9A1C00522733 /* AppNavigator.swift */; };
+		6C0ADE3A256D9A1C00522733 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0ADE38256D9A1C00522733 /* Destination.swift */; };
+		6C0ADE3D256D9A9700522733 /* ArtistsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0ADE3C256D9A9700522733 /* ArtistsListController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,9 +39,7 @@
 		6C0ADE03256D99B800522733 /* MimiMusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimiMusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C0ADE06256D99B800522733 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C0ADE08256D99B800522733 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6C0ADE0A256D99B800522733 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6C0ADE0C256D99BA00522733 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6C0ADE0F256D99BA00522733 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6C0ADE12256D99BA00522733 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6C0ADE14256D99BA00522733 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C0ADE19256D99BA00522733 /* MimiMusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimiMusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +48,9 @@
 		6C0ADE24256D99BA00522733 /* MimiMusicPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimiMusicPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C0ADE28256D99BA00522733 /* MimiMusicPlayerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimiMusicPlayerUITests.swift; sourceTree = "<group>"; };
 		6C0ADE2A256D99BA00522733 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C0ADE37256D9A1C00522733 /* AppNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
+		6C0ADE38256D9A1C00522733 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		6C0ADE3C256D9A9700522733 /* ArtistsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsListController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,23 +101,11 @@
 		6C0ADE05256D99B800522733 /* MimiMusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				6C0ADE06256D99B800522733 /* AppDelegate.swift */,
-				6C0ADE08256D99B800522733 /* SceneDelegate.swift */,
-				6C0ADE0A256D99B800522733 /* ContentView.swift */,
-				6C0ADE0C256D99BA00522733 /* Assets.xcassets */,
-				6C0ADE11256D99BA00522733 /* LaunchScreen.storyboard */,
-				6C0ADE14256D99BA00522733 /* Info.plist */,
-				6C0ADE0E256D99BA00522733 /* Preview Content */,
+				6C0ADE3B256D9A7F00522733 /* Scenes */,
+				6C0ADE36256D9A1C00522733 /* Navigation */,
+				6C0ADE3E256D9AD500522733 /* SupportingFiles */,
 			);
 			path = MimiMusicPlayer;
-			sourceTree = "<group>";
-		};
-		6C0ADE0E256D99BA00522733 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				6C0ADE0F256D99BA00522733 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		6C0ADE1C256D99BA00522733 /* MimiMusicPlayerTests */ = {
@@ -134,6 +124,35 @@
 				6C0ADE2A256D99BA00522733 /* Info.plist */,
 			);
 			path = MimiMusicPlayerUITests;
+			sourceTree = "<group>";
+		};
+		6C0ADE36256D9A1C00522733 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				6C0ADE37256D9A1C00522733 /* AppNavigator.swift */,
+				6C0ADE38256D9A1C00522733 /* Destination.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		6C0ADE3B256D9A7F00522733 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				6C0ADE3C256D9A9700522733 /* ArtistsListController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		6C0ADE3E256D9AD500522733 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				6C0ADE06256D99B800522733 /* AppDelegate.swift */,
+				6C0ADE08256D99B800522733 /* SceneDelegate.swift */,
+				6C0ADE0C256D99BA00522733 /* Assets.xcassets */,
+				6C0ADE11256D99BA00522733 /* LaunchScreen.storyboard */,
+				6C0ADE14256D99BA00522733 /* Info.plist */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,7 +260,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C0ADE13256D99BA00522733 /* LaunchScreen.storyboard in Resources */,
-				6C0ADE10256D99BA00522733 /* Preview Assets.xcassets in Resources */,
 				6C0ADE0D256D99BA00522733 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,8 +286,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C0ADE07256D99B800522733 /* AppDelegate.swift in Sources */,
+				6C0ADE39256D9A1C00522733 /* AppNavigator.swift in Sources */,
+				6C0ADE3D256D9A9700522733 /* ArtistsListController.swift in Sources */,
+				6C0ADE3A256D9A1C00522733 /* Destination.swift in Sources */,
 				6C0ADE09256D99B800522733 /* SceneDelegate.swift in Sources */,
-				6C0ADE0B256D99B800522733 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,10 +455,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"MimiMusicPlayer/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 475YN7ANSF;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = MimiMusicPlayer/Info.plist;
+				INFOPLIST_FILE = MimiMusicPlayer/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,10 +475,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"MimiMusicPlayer/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 475YN7ANSF;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = MimiMusicPlayer/Info.plist;
+				INFOPLIST_FILE = MimiMusicPlayer/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
