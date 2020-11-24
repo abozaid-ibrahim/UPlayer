@@ -9,13 +9,12 @@
 import Foundation
 
 public protocol RequestBuilder {
-    var baseURL: URL { get }
 
     var path: String { get }
 
     var method: HttpMethod { get }
 
-    var request: URLRequest { get }
+    var request: URLRequest? { get }
 
     var parameters: [String: Any] { get }
 }

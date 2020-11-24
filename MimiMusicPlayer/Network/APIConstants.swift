@@ -8,5 +8,5 @@
 
 import Foundation
 struct APIConstants {
-    static let baseURL = "https://api-v2.hearthis.at/feed/" //?type=popular&page=1&count=1
+    static let baseURL = "https://api-v2.hearthis.at/feed/" 
 }
