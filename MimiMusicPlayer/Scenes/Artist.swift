@@ -1,5 +1,5 @@
 //
-//  Artist.swift
+//  Song.swift
 //  MimiMusicPlayer
 //
 //  Created by abuzeid on 24.11.20.
@@ -8,10 +8,12 @@
 
 import Foundation
 
-struct Artist: Codable {
-    let id, restaurantsResponsePrivate, createdAt, releaseDate: String?
+struct Song: Codable {
+    let id: String
+    let restaurantsResponsePrivate, releaseDate: String?
     let releaseTimestamp: Int?
-    let userID, duration, permalink, restaurantsResponseDescription: String?
+    let userID: String
+    let duration, permalink, restaurantsResponseDescription: String?
     let geo, tags, tagedArtists, bpm: String?
     let key, license, version, type: String?
     let genre, genreSlush, title: String?
@@ -19,17 +21,14 @@ struct Artist: Codable {
     let thumb, artworkURL, artworkURLRetina, backgroundURL: String?
     let waveformData: String?
     let waveformURL: String?
-    let user: User?
+    let user: Artist?
     let streamURL: String?
     let previewURL: String?
-    let downloadURL, downloadFilename, playbackCount, downloadCount: String?
-    let favoritingsCount, resharesCount, commentCount: String?
+    let downloadURL, downloadFilename: String?
     let played, favorited, liked, reshared: Bool?
-
     enum CodingKeys: String, CodingKey {
         case id
         case restaurantsResponsePrivate = "private"
-        case createdAt = "created_at"
         case releaseDate = "release_date"
         case releaseTimestamp = "release_timestamp"
         case userID = "user_id"
@@ -52,21 +51,18 @@ struct Artist: Codable {
         case previewURL = "preview_url"
         case downloadURL = "download_url"
         case downloadFilename = "download_filename"
-        case playbackCount = "playback_count"
-        case downloadCount = "download_count"
-        case favoritingsCount = "favoritings_count"
-        case resharesCount = "reshares_count"
-        case commentCount = "comment_count"
         case played, favorited, liked, reshared
     }
 }
 
 // MARK: - User
 
-struct User: Codable {
-    let id, permalink, username, caption: String?
+struct Artist: Codable {
+    let id: String
+    let permalink, username, caption: String?
     let uri, permalinkURL: String?
     let avatarURL: String?
+    var tracksCount: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case id, permalink, username, caption, uri

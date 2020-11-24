@@ -10,12 +10,25 @@ import UIKit
 
 final class ArtistTableCell: UITableViewCell {
     @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var avatarView: UIImageView!
+    @IBOutlet private var captionLabel: UILabel!
+    @IBOutlet private var tracksLabel: UILabel!
+    private var imageLoader: Disposable?
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     func setData(for artist: Artist) {
-        nameLabel.text = artist.title
+        nameLabel.text = artist.username
+        tracksLabel.text = String(artist.tracksCount)
+        captionLabel.text = artist.caption
+        imageLoader = avatarView.setImage(of: artist.avatarURL)
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageLoader?.dispose()
+        avatarView.image = nil
     }
 }

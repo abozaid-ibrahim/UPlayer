@@ -11,7 +11,7 @@ import UIKit
 
 enum Destination {
     case artistsList
-    case songsList
+    case songsList([Song])
     var controller: UIViewController {
         switch self {
         case .songsList:

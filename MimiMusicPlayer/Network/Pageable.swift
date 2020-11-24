@@ -10,7 +10,7 @@ import Foundation
 final class Page {
     var currentPage = 1
     var maxPages = 5
-    var countPerPage = 10
+    var countPerPage = 20
     var isFetchingData = false
     var fetchedItemsCount = 0
     var shouldLoadMore: Bool {

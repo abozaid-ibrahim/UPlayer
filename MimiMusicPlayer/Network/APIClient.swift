@@ -14,14 +14,11 @@ protocol ApiClient {
 
 final class HTTPClient: ApiClient {
     func getData(of request: RequestBuilder?, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-
         guard let request = request?.request else {
             completion(.failure(.badRequest))
             return
         }
-        print(request.url)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            print(String.init(data: data!, encoding: .utf8))
 
             if let error = error {
                 completion(.failure(.apiError(error.localizedDescription)))
