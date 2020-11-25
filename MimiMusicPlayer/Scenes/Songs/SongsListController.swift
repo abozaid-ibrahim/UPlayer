@@ -62,7 +62,13 @@ private extension SongsListController {
         tableView.rx.modelSelected(Song.self)
             .asDriver()
             .drive(onNext: { [unowned self] in
-                self.viewModel.playSong.accept($0)
+                // self.viewModel.playSong.accept($0)
+                self.play($0)
             }).disposed(by: disposeBag)
+    }
+
+    func play(_ song: Song) {
+        guard let url = URL(string: song.streamURL) else { return }
+        AudioPlayer.shared.playAudio(form: [url])
     }
 }

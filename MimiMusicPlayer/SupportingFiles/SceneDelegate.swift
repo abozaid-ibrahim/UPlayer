@@ -6,8 +6,8 @@
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 @available(iOS 13.0, *)
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -15,7 +15,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        AppNavigator.shared.set(window: window!)
+        window?.rootViewController = MainViewController()
+        window?.makeKeyAndVisible()
     }
 
     func application(_ application: UIApplication,

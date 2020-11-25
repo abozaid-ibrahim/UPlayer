@@ -20,10 +20,10 @@ struct Song: Codable {
     let genre, genreSlush, title: String?
     let uri, permalinkURL: String?
     let thumb, artworkURL, artworkURLRetina, backgroundURL: String?
-    let waveformData: String?
-    let waveformURL: String?
+    let waveformData: String
+    let waveformURL: String
     let user: Artist?
-    let streamURL: String?
+    let streamURL: String
     let previewURL: String?
     let downloadURL, downloadFilename: String?
     let played, favorited, liked, reshared: Bool?

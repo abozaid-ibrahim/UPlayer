@@ -69,7 +69,7 @@ private extension ArtistsListController {
             .asDriver()
             .drive(onNext: { [unowned self] in
                 let songs = self.viewModel.songsOf(user: $0)
-                AppNavigator.shared.push(.songsList(songs))
+                self.navigationController?.pushViewController(SongsListController(with: SongsViewModel(songs: songs)), animated: true)
             }).disposed(by: disposeBag)
 
         viewModel.observer.isLoading

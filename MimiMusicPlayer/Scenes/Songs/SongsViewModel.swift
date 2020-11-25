@@ -10,7 +10,6 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-typealias AudioPlayer = Void
 protocol SongsViewModelType {
     var playSong: PublishRelay<Song> { get }
     var songsList: BehaviorRelay<[Song]> { get }
@@ -21,13 +20,10 @@ final class SongsViewModel: SongsViewModelType {
     let songsList: BehaviorRelay<[Song]>
     private let disposeBag = DisposeBag()
     private let player: AudioPlayer
-    private let scheduler: SchedulerType
     private let allSongsListCache: [Song] = []
-    init(with player: AudioPlayer = AudioPlayer(),
-         songs: [Song],
-         scheduler: SchedulerType = ConcurrentDispatchQueueScheduler(qos: .default)) {
+    init(with player: AudioPlayer = AudioPlayer.shared,
+         songs: [Song]) {
         self.player = player
-        self.scheduler = scheduler
         songsList = BehaviorRelay<[Song]>(value: songs)
     }
 }
