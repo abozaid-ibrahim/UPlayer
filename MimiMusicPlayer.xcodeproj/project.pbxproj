@@ -37,8 +37,8 @@
 		6CCB15F3256DA065002C556F /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB15F2256DA065002C556F /* Artist.swift */; };
 		6CCB15F8256DA188002C556F /* ArtistAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB15F7256DA188002C556F /* ArtistAPI.swift */; };
 		6CCB15FD256DA2AA002C556F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB15FC256DA2AA002C556F /* ActivityIndicatorView.swift */; };
-		6CD4F156256E096B007CC6CD /* MiniPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C45F432256E077E00BA27A8 /* MiniPlayerViewController.xib */; };
-		6CD4F157256E096B007CC6CD /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C45F434256E077E00BA27A8 /* MiniPlayerViewController.swift */; };
+		6CD4F156256E096B007CC6CD /* PlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C45F432256E077E00BA27A8 /* PlayerView.xib */; };
+		6CD4F157256E096B007CC6CD /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C45F434256E077E00BA27A8 /* PlayerView.swift */; };
 		6CD4F159256EE8AB007CC6CD /* PlayerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD4F158256EE8AB007CC6CD /* PlayerContainer.swift */; };
 		78F3422C245C01B6471EECF6 /* Pods_MimiMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CC722A363479BD70FD7AA7 /* Pods_MimiMusicPlayer.framework */; };
 		975AF98BCF5A78293F40BFA2 /* Pods_MimiMusicPlayer_MimiMusicPlayerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC246FE3F4AEB0755FD8940 /* Pods_MimiMusicPlayer_MimiMusicPlayerUITests.framework */; };
@@ -101,8 +101,8 @@
 		6C0ADE71256DFBDD00522733 /* SongsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListController.swift; sourceTree = "<group>"; };
 		6C0ADE73256DFC6F00522733 /* SongsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsViewModel.swift; sourceTree = "<group>"; };
 		6C45F424256E04EC00BA27A8 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		6C45F432256E077E00BA27A8 /* MiniPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniPlayerViewController.xib; sourceTree = "<group>"; };
-		6C45F434256E077E00BA27A8 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
+		6C45F432256E077E00BA27A8 /* PlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerView.xib; sourceTree = "<group>"; };
+		6C45F434256E077E00BA27A8 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		6CCB15F2256DA065002C556F /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		6CCB15F7256DA188002C556F /* ArtistAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAPI.swift; sourceTree = "<group>"; };
 		6CCB15FC256DA2AA002C556F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 				6C0ADE75256E00E200522733 /* Common */,
 				6C0ADE6C256DFBA300522733 /* Songs */,
 				6C0ADE6B256DFB9500522733 /* Arists */,
-				6C45F430256E077E00BA27A8 /* MiniPlayer */,
+				6C45F430256E077E00BA27A8 /* PlayerView */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -300,14 +300,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		6C45F430256E077E00BA27A8 /* MiniPlayer */ = {
+		6C45F430256E077E00BA27A8 /* PlayerView */ = {
 			isa = PBXGroup;
 			children = (
-				6C45F432256E077E00BA27A8 /* MiniPlayerViewController.xib */,
-				6C45F434256E077E00BA27A8 /* MiniPlayerViewController.swift */,
+				6C45F432256E077E00BA27A8 /* PlayerView.xib */,
+				6C45F434256E077E00BA27A8 /* PlayerView.swift */,
 				6CD4F158256EE8AB007CC6CD /* PlayerContainer.swift */,
 			);
-			path = MiniPlayer;
+			path = PlayerView;
 			sourceTree = "<group>";
 		};
 		E86339B87679C2CB6C368809 /* Frameworks */ = {
@@ -431,7 +431,7 @@
 			files = (
 				6C0ADE68256D9F4200522733 /* ArtistTableCell.xib in Resources */,
 				6C0ADE13256D99BA00522733 /* LaunchScreen.storyboard in Resources */,
-				6CD4F156256E096B007CC6CD /* MiniPlayerViewController.xib in Resources */,
+				6CD4F156256E096B007CC6CD /* PlayerView.xib in Resources */,
 				6C0ADE0D256D99BA00522733 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,7 +562,7 @@
 			files = (
 				6C0ADE5D256D9D9500522733 /* RequestBuilder.swift in Sources */,
 				6C0ADE07256D99B800522733 /* AppDelegate.swift in Sources */,
-				6CD4F157256E096B007CC6CD /* MiniPlayerViewController.swift in Sources */,
+				6CD4F157256E096B007CC6CD /* PlayerView.swift in Sources */,
 				6C0ADE60256D9D9500522733 /* Reachiblity.swift in Sources */,
 				6C0ADE61256D9D9500522733 /* Data+Codable.swift in Sources */,
 				6C0ADE74256DFC6F00522733 /* SongsViewModel.swift in Sources */,

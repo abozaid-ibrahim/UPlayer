@@ -9,7 +9,6 @@
 import RxCocoa
 import RxSwift
 import UIKit
-
 final class SongsListController: UIViewController {
     private let tableView = UITableView()
     private let disposeBag = DisposeBag()
@@ -68,7 +67,6 @@ private extension SongsListController {
     }
 
     func play(_ song: Song) {
-        guard let url = URL(string: song.streamURL) else { return }
-        AudioPlayer.shared.playAudio(form: [url])
+        PlayerView.shared.play(song: song)
     }
 }
