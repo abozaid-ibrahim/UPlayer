@@ -17,6 +17,7 @@ final class ArtistTableCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
     }
 
     func setData(for artist: Artist) {
@@ -30,5 +31,14 @@ final class ArtistTableCell: UITableViewCell {
         super.prepareForReuse()
         imageLoader?.dispose()
         avatarView.image = nil
+    }
+}
+
+extension ArtistTableCell {
+    func setData(for song: Song) {
+        nameLabel.text = song.title
+        tracksLabel.text = String(song.duration)
+        captionLabel.text = song.genre
+        imageLoader = avatarView.setImage(of: song.thumb)
     }
 }

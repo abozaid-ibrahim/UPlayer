@@ -14,8 +14,8 @@ enum Destination {
     case songsList([Song])
     var controller: UIViewController {
         switch self {
-        case .songsList:
-            return UIViewController()
+        case let .songsList(songs):
+            return SongsListController(with: SongsViewModel(songs: songs))
         case .artistsList:
             return ArtistsListController()
         }

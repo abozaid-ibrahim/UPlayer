@@ -83,14 +83,12 @@ private extension ArtistsViewModel {
 
 extension Array where Element == Song {
     func sortSongsByArtist() -> [Artist] {
-        print("Songs count  \(count)")
         var users: [String: Artist] = [:]
         for song in self {
             guard var user = users[song.userID] ?? song.user else { continue }
             user.tracksCount += 1
             users[song.userID] = user
         }
-        print("A count  \(users.count)")
         return users.values.sorted { $0.tracksCount > $1.tracksCount }
     }
 }

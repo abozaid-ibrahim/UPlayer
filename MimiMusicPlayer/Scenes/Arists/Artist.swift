@@ -13,7 +13,8 @@ struct Song: Codable {
     let restaurantsResponsePrivate, releaseDate: String?
     let releaseTimestamp: Int?
     let userID: String
-    let duration, permalink, restaurantsResponseDescription: String?
+    let duration: String
+    let permalink, restaurantsResponseDescription: String?
     let geo, tags, tagedArtists, bpm: String?
     let key, license, version, type: String?
     let genre, genreSlush, title: String?
