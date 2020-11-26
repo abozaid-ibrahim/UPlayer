@@ -37,7 +37,7 @@ final class ArtistTableCell: UITableViewCell {
 extension ArtistTableCell {
     func setData(for song: Song) {
         nameLabel.text = song.title
-        tracksLabel.text = String(song.duration)
+        tracksLabel.text = song.formattedDuration
         captionLabel.text = song.genre
         imageLoader = avatarView.setImage(of: song.thumb)
     }

@@ -5,7 +5,6 @@
 //  Created by abuzeid on 24.11.20.
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
-
 import RxCocoa
 import RxSwift
 import UIKit
@@ -42,24 +41,23 @@ final class ArtistsListController: UIViewController {
 
 private extension ArtistsListController {
     func setupTableView() {
-        tableView.tableFooterView = UIView()
-        tableView.tableHeaderView = ActivityIndicatorView()
+        tableView.tableFooterView = ActivityIndicatorView()
         tableView.register(ArtistTableCell.self)
         tableView.showsVerticalScrollIndicator = true
         navigationController?.hidesBarsOnSwipe = false
     }
 
     func bindToViewModel() {
-        let data = viewModel.observer.dataSource.share()
-        data.bind(to: tableView.rx
-            .items(cellIdentifier: ArtistTableCell.identifier,
-                   cellType: ArtistTableCell.self)) { _, model, cell in
-            cell.setData(for: model)
-        }.disposed(by: disposeBag)
-
-        data.subscribe(onError: { [unowned self] in
-            self.show(error: $0.localizedDescription)
-        }).disposed(by: disposeBag)
+        viewModel.observer.dataSource
+            .bind(to: tableView.rx
+                .items(cellIdentifier: ArtistTableCell.identifier,
+                       cellType: ArtistTableCell.self)) { _, model, cell in
+                cell.setData(for: model)
+            }.disposed(by: disposeBag)
+        viewModel.observer.error
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { [unowned self] in self.show(error: $0) })
+            .disposed(by: disposeBag)
 
         tableView.rx.prefetchRows
             .bind(onNext: { [unowned self] in self.viewModel.observer.loadMoreCells.accept($0) })
@@ -69,7 +67,8 @@ private extension ArtistsListController {
             .asDriver()
             .drive(onNext: { [unowned self] in
                 let songs = self.viewModel.songsOf(user: $0)
-                self.navigationController?.pushViewController(SongsListController(with: SongsViewModel(songs: songs)), animated: true)
+                let songsController = SongsListController(with: SongsViewModel(songs: songs))
+                self.navigationController?.pushViewController(songsController, animated: true)
             }).disposed(by: disposeBag)
 
         viewModel.observer.isLoading

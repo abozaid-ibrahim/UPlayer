@@ -31,6 +31,10 @@ final class ArtistsViewModel: ArtistsViewModelType {
     }
 
     func loadData() {
+        guard !page.isFetchingData else {
+            return
+        }
+        page.isFetchingData = true
         observer.isLoading.accept(true)
         dataLoader.getData(of: ArtistAPI.populer(page: page)) { [unowned self] in
             switch $0 {
@@ -39,8 +43,8 @@ final class ArtistsViewModel: ArtistsViewModelType {
             case let .failure(error):
                 self.observer.error.accept(error.localizedDescription)
             }
-            self.page.isFetchingData = false
             self.observer.isLoading.accept(false)
+            self.page.isFetchingData = false
         }
     }
 
@@ -55,8 +59,9 @@ private extension ArtistsViewModel {
             let response: [Song] = try data.parse()
             allSongsListCache.append(contentsOf: response)
             observer.dataSource.accept(allSongsListCache.sortSongsByArtist())
-            page.newPage(fetched: response.count, total: allSongsListCache.count + 20)
+            page.newPageFetched()
         } catch {
+            print(error)
             observer.error.accept(NetworkError.failedToParseData.localizedDescription)
         }
     }
@@ -71,13 +76,9 @@ private extension ArtistsViewModel {
     }
 
     func loadMoreCells(prefetchRowsAt indexPaths: [IndexPath]) {
-        if indexPaths.contains(where: isLoadingCell) {
+        if indexPaths.contains(where: { $0.row + 1 >= observer.dataSource.value.count }) {
             loadData()
         }
-    }
-
-    func isLoadingCell(for indexPath: IndexPath) -> Bool {
-        return indexPath.row + 1 >= page.fetchedItemsCount
     }
 }
 
@@ -89,6 +90,6 @@ extension Array where Element == Song {
             user.tracksCount += 1
             users[song.userID] = user
         }
-        return users.values.sorted { $0.tracksCount > $1.tracksCount }
+        return users.values.map { $0 } // .sorted { $0.tracksCount > $1.tracksCount }
     }
 }

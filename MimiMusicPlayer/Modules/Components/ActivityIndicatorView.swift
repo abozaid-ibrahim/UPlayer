@@ -48,15 +48,15 @@ final class ActivityIndicatorView: UIView {
 
 extension UITableView {
     func isLoading(_ loading: Bool) {
-        (tableHeaderView as? ActivityIndicatorView)?.set(isLoading: loading)
-        sizeHeaderToFit(loading)
+        (tableFooterView as? ActivityIndicatorView)?.set(isLoading: loading)
+        sizeToFit(loading)
     }
 
-    func sizeHeaderToFit(_ loading: Bool) {
-        guard let headerView = tableHeaderView else { return }
+    func sizeToFit(_ loading: Bool) {
+        guard let headerView = tableFooterView else { return }
         var frame = headerView.frame
         frame.size.height = loading ? 80 : 0
         headerView.frame = frame
-        tableHeaderView = headerView
+        tableFooterView = headerView
     }
 }

@@ -54,6 +54,11 @@ struct Song: Codable {
         case downloadFilename = "download_filename"
         case played, favorited, liked, reshared
     }
+
+    var formattedDuration: String {
+        guard let seconds = Int(duration) else { return "" }
+        return String(format: "%02d:%02d:%02d", seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
 }
 
 // MARK: - User
