@@ -42,17 +42,3 @@ final class ActivityIndicatorView: UIView {
     }
 }
 
-extension UITableView {
-    func isLoading(_ loading: Bool) {
-        (tableFooterView as? ActivityIndicatorView)?.set(isLoading: loading)
-        sizeToFit(loading)
-    }
-
-    func sizeToFit(_ loading: Bool) {
-        guard let headerView = tableFooterView else { return }
-        var frame = headerView.frame
-        frame.size.height = loading ? 80 : 0
-        headerView.frame = frame
-        tableFooterView = headerView
-    }
-}

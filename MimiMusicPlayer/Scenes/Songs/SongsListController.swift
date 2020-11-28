@@ -16,7 +16,6 @@ final class SongsListController: UIViewController {
     init(with viewModel: SongsViewModelType) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        title = .discover
     }
 
     override func loadView() {
@@ -40,7 +39,10 @@ final class SongsListController: UIViewController {
 
 private extension SongsListController {
     func setupTableView() {
+        tableView.rowHeight = 60
         tableView.tableFooterView = UIView()
+        tableView.tableHeaderView = SongsViewHeader(with: viewModel.artist)
+        tableView.sizeHeaderToFit()
         tableView.register(ArtistTableCell.self)
         tableView.showsVerticalScrollIndicator = true
         navigationController?.hidesBarsOnSwipe = false
@@ -55,8 +57,7 @@ private extension SongsListController {
             }.disposed(by: disposeBag)
 
         tableView.rx.modelSelected(Song.self)
-            .asDriver()
-            .drive(onNext: { [unowned self] in
+            .subscribe(onNext: { [unowned self] in
                 self.play($0)
             }).disposed(by: disposeBag)
     }

@@ -80,7 +80,7 @@ extension ArtistsListController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let songs = viewModel.songsOf(user: artists[indexPath.row])
-        let songsController = SongsListController(with: SongsViewModel(with: songs))
+        let songsController = SongsListController(with: SongsViewModel(with: artists[indexPath.row], and: songs))
         navigationController?.pushViewController(songsController, animated: true)
     }
 }
