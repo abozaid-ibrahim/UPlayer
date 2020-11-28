@@ -11,9 +11,8 @@ final class Page {
     var currentPage = 1
     let maxPages = 22
     var countPerPage = 20
-    var isFetchingData = false
     var shouldLoadMore: Bool {
-        (currentPage <= maxPages) && (!isFetchingData)
+        currentPage <= maxPages
     }
 
     func newPageFetched() {

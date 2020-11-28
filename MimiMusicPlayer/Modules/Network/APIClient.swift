@@ -7,35 +7,30 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol ApiClient {
-    func getData(of request: RequestBuilder?, completion: @escaping (Result<Data, NetworkError>) -> Void)
+    func getData(of request: RequestBuilder?) -> Observable<Data>
 }
 
 final class HTTPClient: ApiClient {
-    func getData(of request: RequestBuilder?, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        guard let request = request?.request else {
-            completion(.failure(.badRequest))
-            return
-        }
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+    private let disposeBag = DisposeBag()
+    func getData(of request: RequestBuilder?) -> Observable<Data> {
+        return Observable.create { observer in
+            guard let request = request?.request else {
+                observer.onError(NetworkError.badRequest)
+                return Disposables.create()
+            }
+            return URLSession.shared.rx.response(request: request)
+                .subscribe(onNext: { response in
+                               observer.onNext(response.data)
+                               observer.onCompleted()
+                           },
+                           onError: { error in
+                               observer.onError(error)
+                           })
 
-            if let error = error {
-                completion(.failure(.apiError(error.localizedDescription)))
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200 ... 299).contains(httpResponse.statusCode) else {
-                completion(.failure(.outOfRange))
-                return
-            }
-            guard let data = data else {
-                completion(.failure(.dataIsNil))
-                return
-            }
-            completion(.success(data))
+//            return Disposables.create { }
         }
-
-        task.resume()
     }
 }

@@ -10,12 +10,8 @@ import Foundation
 
 enum NetworkError: LocalizedError {
     case badRequest
-    case noData
-    case failedToParseData
-    case dataIsNil
     case connectionFailed
-    case outOfRange
-    case apiError(String)
+    case failedToParseData
     var errorDescription: String? {
         switch self {
         case .failedToParseData:

@@ -17,24 +17,22 @@ protocol AudioPlayerType {
 final class AudioPlayer: NSObject, AudioPlayerType {
     private let disposeBag = DisposeBag()
     private var audioPlayer: AVPlayer?
-    private var items: [AVPlayerItem] = []
-    private var currentSongIndex = 0
     let state = BehaviorRelay<State>(value: .idle)
     static let shared = AudioPlayer()
     override private init() {
-        /// Singleton
+        // Singleton
     }
 
-    func playAudio(form list: [URL], startFrom: Int = 0) {
-        currentSongIndex = startFrom
-        items.removeAll()
-        items = list.compactMap { AVPlayerItem(url: $0) }
+    func playAudio(form url: URL) {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-            audioPlayer = AVPlayer(playerItem: items[startFrom])
+            try AVAudioSession.sharedInstance().setActive(true)
+
+            audioPlayer = AVPlayer(playerItem: AVPlayerItem(url: url))
             audioPlayer?.play()
             state.accept(.playing)
         } catch {
+            print(error)
             state.accept(.error(error.localizedDescription))
         }
     }
@@ -50,29 +48,6 @@ final class AudioPlayer: NSObject, AudioPlayerType {
     }
 
     func resume() {
-        guard items.count > 0 else {
-            return
-        }
-        audioPlayer?.play()
-        state.accept(.playing)
-    }
-
-    func playNext() {
-        guard (currentSongIndex + 1) < items.count else {
-            return
-        }
-        currentSongIndex += 1
-        audioPlayer?.replaceCurrentItem(with: items[currentSongIndex])
-        audioPlayer?.play()
-        state.accept(.playing)
-    }
-
-    func playPreviousTrack() {
-        guard (currentSongIndex - 1) >= 0 else {
-            return
-        }
-        currentSongIndex -= 1
-        audioPlayer?.replaceCurrentItem(with: items[currentSongIndex])
         audioPlayer?.play()
         state.accept(.playing)
     }

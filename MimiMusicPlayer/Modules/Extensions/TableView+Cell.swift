@@ -20,4 +20,11 @@ public extension UITableView {
         let nib = UINib(nibName: T.identifier, bundle: Bundle(for: T.self))
         register(nib, forCellReuseIdentifier: T.identifier)
     }
+    func dequeue<T: UITableViewCell>(cell: T.Type, for indexPath: IndexPath) -> T {
+        let tableView = dequeueReusableCell(withIdentifier: T.identifier, for: indexPath)
+        guard let cell = tableView as? T else {
+            fatalError("Failed to cast cell to \(T.identifier)")
+        }
+        return cell
+    }
 }

@@ -15,4 +15,3 @@ public extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
-

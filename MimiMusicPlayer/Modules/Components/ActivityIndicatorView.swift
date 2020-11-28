@@ -25,10 +25,6 @@ final class ActivityIndicatorView: UIView {
         fatalError("Unsupported")
     }
 
-    static var identifier: String {
-        return String(describing: self)
-    }
-
     func set(isLoading: Bool) {
         if isLoading {
             activityView.startAnimating()

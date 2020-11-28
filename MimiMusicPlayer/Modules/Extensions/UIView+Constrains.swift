@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 public extension UIView {
-    func setConstrainsEqualToParentEdges(top: Float = 0, bottom: Float = 0, leading: Float = 0, trailing: Float = 0, useSafeArea: Bool = false) {
+    func setConstrainsEqualToParentEdges(top: Float = 0,
+                                         bottom: Float = 0,
+                                         leading: Float = 0,
+                                         trailing: Float = 0,
+                                         useSafeArea: Bool = false) {
         guard let parent = superview else {
             fatalError("This view doesn't have a parent")
         }
@@ -19,7 +23,6 @@ public extension UIView {
             leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: CGFloat(leading)),
             trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -CGFloat(trailing)),
             topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: CGFloat(top)),
-            bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -CGFloat(bottom)),
-        ])
+            bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -CGFloat(bottom))])
     }
 }

@@ -9,7 +9,6 @@
 import Foundation
 
 public protocol RequestBuilder {
-
     var path: String { get }
 
     var method: HttpMethod { get }
@@ -21,4 +20,8 @@ public protocol RequestBuilder {
 
 public enum HttpMethod: String {
     case get, post
+}
+
+extension RequestBuilder {
+    var baseURL: String { "https://api-v2.hearthis.at/" }
 }
