@@ -40,6 +40,7 @@
 		6CCB15FD256DA2AA002C556F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB15FC256DA2AA002C556F /* ActivityIndicatorView.swift */; };
 		6CD1E4532572F47B0023C788 /* UITableView+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1E4522572F47B0023C788 /* UITableView+Header.swift */; };
 		6CD1E4582572FA760023C788 /* SwiftUIPreview+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1E4572572FA760023C788 /* SwiftUIPreview+UIKit.swift */; };
+		6CD1E45D25730DAD0023C788 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6CD1E45C25730DAD0023C788 /* README.md */; };
 		6CD4F156256E096B007CC6CD /* PlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C45F432256E077E00BA27A8 /* PlayerView.xib */; };
 		6CD4F157256E096B007CC6CD /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C45F434256E077E00BA27A8 /* PlayerView.swift */; };
 		6CD4F159256EE8AB007CC6CD /* PlayerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD4F158256EE8AB007CC6CD /* PlayerContainer.swift */; };
@@ -112,6 +113,7 @@
 		6CCB15FC256DA2AA002C556F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		6CD1E4522572F47B0023C788 /* UITableView+Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Header.swift"; sourceTree = "<group>"; };
 		6CD1E4572572FA760023C788 /* SwiftUIPreview+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUIPreview+UIKit.swift"; sourceTree = "<group>"; };
+		6CD1E45C25730DAD0023C788 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6CD4F158256EE8AB007CC6CD /* PlayerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContainer.swift; sourceTree = "<group>"; };
 		9D1AB8CD52890FC6D3D19E50 /* Pods-MimiMusicPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MimiMusicPlayer.release.xcconfig"; path = "Target Support Files/Pods-MimiMusicPlayer/Pods-MimiMusicPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		E9CC02DAF50658BD767A56CE /* Pods-MimiMusicPlayer-MimiMusicPlayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MimiMusicPlayer-MimiMusicPlayerUITests.release.xcconfig"; path = "Target Support Files/Pods-MimiMusicPlayer-MimiMusicPlayerUITests/Pods-MimiMusicPlayer-MimiMusicPlayerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		6C0ADDFA256D99B800522733 = {
 			isa = PBXGroup;
 			children = (
+				6CD1E45C25730DAD0023C788 /* README.md */,
 				6C0ADE05256D99B800522733 /* MimiMusicPlayer */,
 				6C0ADE1C256D99BA00522733 /* MimiMusicPlayerTests */,
 				6C0ADE27256D99BA00522733 /* MimiMusicPlayerUITests */,
@@ -444,6 +447,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CD1E45D25730DAD0023C788 /* README.md in Resources */,
 				6C0ADE68256D9F4200522733 /* ArtistTableCell.xib in Resources */,
 				6C0ADE13256D99BA00522733 /* LaunchScreen.storyboard in Resources */,
 				6C4DA6FE2571E0F7006FEB31 /* Moon.mp3 in Resources */,
