@@ -11,12 +11,10 @@ import RxCocoa
 import RxSwift
 
 protocol SongsViewModelType {
-    var playSong: PublishRelay<Song> { get }
     var songsList: BehaviorRelay<[Song]> { get }
 }
 
 final class SongsViewModel: SongsViewModelType {
-    let playSong = PublishRelay<Song>()
     let songsList: BehaviorRelay<[Song]>
     private let disposeBag = DisposeBag()
     init(with songs: [Song]) {

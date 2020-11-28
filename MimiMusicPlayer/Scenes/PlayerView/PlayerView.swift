@@ -58,7 +58,8 @@ extension PlayerView: PlayerViewType {
         AudioPlayer.shared.playAudio(form: song.streamURL)
         artistLabel.text = song.user?.username
         songLable.text = song.title
-        URLSession.shared.rx.data(request: .init(url: song.waveformData))
+        guard let url = song.waveformData else{return}
+        URLSession.shared.rx.data(request: .init(url: url))
             .map { try JSONDecoder().decode([Float].self, from: $0) }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {

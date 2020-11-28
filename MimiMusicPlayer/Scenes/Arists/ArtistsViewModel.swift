@@ -22,7 +22,7 @@ final class ArtistsViewModel: ArtistsViewModelType {
     private let disposeBag = DisposeBag()
     private let page = Page()
     private let dataLoader: ApiClient
-    private(set) var allSongsListCache: [Song] = []
+    private var allSongsListCache: [Song] = []
 
     init(with dataLoader: ApiClient = HTTPClient(),
          scheduler: SchedulerType = SerialDispatchQueueScheduler(qos: .default)) {

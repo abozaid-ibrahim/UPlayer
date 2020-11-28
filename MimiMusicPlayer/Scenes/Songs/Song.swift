@@ -12,18 +12,12 @@ struct Song {
     let id: String
     let userID: String
     let duration: String
+    let streamURL: URL
     let genre, title: String?
     let thumb: URL?
-    let waveformData: URL
-    let waveformURL: URL
+    let waveformData: URL?
+    let waveformURL: URL?
     let user: Artist?
-    let streamURL: URL
-}
-
-extension Song: Equatable {
-    static func == (lhs: Song, rhs: Song) -> Bool {
-        return lhs.id == rhs.id
-    }
 }
 
 extension Song: Codable {
