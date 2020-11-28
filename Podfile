@@ -5,11 +5,12 @@ target 'MimiMusicPlayer' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SwiftLint'
-
+  pod 'Kingfisher'
 
   target 'MimiMusicPlayerTests' do
     inherit! :search_paths
-    # Pods for testing
+    pod 'RxTest'
+
   end
 
   target 'MimiMusicPlayerUITests' do

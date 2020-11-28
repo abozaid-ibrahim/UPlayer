@@ -18,34 +18,32 @@ protocol ArtistsViewModelType {
 
 final class ArtistsViewModel: ArtistsViewModelType {
     let observer = Observer()
+    private var scheduler: SchedulerType
     private let disposeBag = DisposeBag()
     private let page = Page()
     private let dataLoader: ApiClient
-    private let scheduler: SchedulerType
     private(set) var allSongsListCache: [Song] = []
+
     init(with dataLoader: ApiClient = HTTPClient(),
-         scheduler: SchedulerType = ConcurrentDispatchQueueScheduler(qos: .default)) {
+         scheduler: SchedulerType = SerialDispatchQueueScheduler(qos: .default)) {
         self.dataLoader = dataLoader
         self.scheduler = scheduler
         subscribeForUIInputs()
     }
 
     func loadData() {
-        guard !page.isFetchingData else {
-            return
-        }
-        page.isFetchingData = true
         observer.isLoading.accept(true)
-        dataLoader.getData(of: ArtistAPI.populer(page: page)) { [unowned self] in
-            switch $0 {
-            case let .success(data):
-                self.parse(data)
-            case let .failure(error):
-                self.observer.error.accept(error.localizedDescription)
-            }
-            self.observer.isLoading.accept(false)
-            self.page.isFetchingData = false
-        }
+        dataLoader.getData(of: ArtistAPI.populer(page: page))
+            .subscribeOn(scheduler)
+            .map { try JSONDecoder().decode([Song].self, from: $0) }
+//            .debug(#function)
+            .subscribe(onNext: { [unowned self] in
+                self.updateUI($0)
+            }, onError: { [unowned self] in
+                self.observer.error.accept($0.localizedDescription)
+            }, onCompleted: { [unowned self] in
+                self.observer.isLoading.accept(false)
+            }).disposed(by: disposeBag)
     }
 
     func songsOf(user: Artist) -> [Song] {
@@ -54,42 +52,19 @@ final class ArtistsViewModel: ArtistsViewModelType {
 }
 
 private extension ArtistsViewModel {
-    func parse(_ data: Data) {
-        do {
-            let response: [Song] = try data.parse()
-            allSongsListCache.append(contentsOf: response)
-            observer.dataSource.accept(allSongsListCache.sortSongsByArtist())
-            page.newPageFetched()
-        } catch {
-            print(error)
-            observer.error.accept(NetworkError.failedToParseData.localizedDescription)
-        }
+    func updateUI(_ response: [Song]) {
+        allSongsListCache.append(contentsOf: response)
+        page.newPageFetched()
+        observer.artistsList.accept(response.compactMap { $0.user })
     }
 
     func subscribeForUIInputs() {
         observer.loadMoreCells
             .distinctUntilChanged()
-            .bind(onNext: { [unowned self] in
-                self.loadMoreCells(prefetchRowsAt: $0)
-            })
+            .subscribeOn(scheduler)
+            .filter { [unowned self] in $0.contains(where: { $0.row >= self.observer.artistsList.value.count - 1 }) }
+            .filter { [unowned self] _ in self.page.shouldLoadMore }
+            .bind(onNext: { [unowned self] _ in self.loadData() })
             .disposed(by: disposeBag)
-    }
-
-    func loadMoreCells(prefetchRowsAt indexPaths: [IndexPath]) {
-        if indexPaths.contains(where: { $0.row + 1 >= observer.dataSource.value.count }) {
-            loadData()
-        }
-    }
-}
-
-extension Array where Element == Song {
-    func sortSongsByArtist() -> [Artist] {
-        var users: [String: Artist] = [:]
-        for song in self {
-            guard var user = users[song.userID] ?? song.user else { continue }
-            user.tracksCount += 1
-            users[song.userID] = user
-        }
-        return users.values.map { $0 } // .sorted { $0.tracksCount > $1.tracksCount }
     }
 }

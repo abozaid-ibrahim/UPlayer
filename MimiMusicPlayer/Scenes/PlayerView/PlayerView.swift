@@ -6,15 +6,21 @@
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
 
+import Accelerate
+import AVFoundation
 import RxCocoa
 import RxSwift
 import UIKit
+
 protocol PlayerViewType {
     func play(song: Song)
 }
 
 final class PlayerView: UIViewController {
     private let disposeBag = DisposeBag()
+    @IBOutlet private var waveView: UIImageView!
+
+    @IBOutlet var waveform: UIView!
     @IBOutlet private var playPauseBtn: UIButton!
     @IBOutlet private var artistLabel: UILabel!
     @IBOutlet private var songLable: UILabel!
@@ -30,6 +36,7 @@ final class PlayerView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         AudioPlayer.shared.state
             .map { UIImage(named: $0 == .playing ? "pause" : "play") }
             .bind(to: playPauseBtn.rx.image(for: .normal))
@@ -48,9 +55,16 @@ final class PlayerView: UIViewController {
 
 extension PlayerView: PlayerViewType {
     func play(song: Song) {
-        guard let url = URL(string: song.streamURL) else { return }
-        AudioPlayer.shared.playAudio(form: [url])
+        AudioPlayer.shared.playAudio(form: song.streamURL)
         artistLabel.text = song.user?.username
         songLable.text = song.title
+        URLSession.shared.rx.data(request: .init(url: song.waveformData))
+            .map { try JSONDecoder().decode([Float].self, from: $0) }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                
+//                self.draw($0)
+//                self.waveformImageDrawerExample($0)
+            }).disposed(by: disposeBag)
     }
 }

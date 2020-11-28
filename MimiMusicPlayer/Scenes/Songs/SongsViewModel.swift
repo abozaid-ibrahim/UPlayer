@@ -19,11 +19,14 @@ final class SongsViewModel: SongsViewModelType {
     let playSong = PublishRelay<Song>()
     let songsList: BehaviorRelay<[Song]>
     private let disposeBag = DisposeBag()
-    private let player: AudioPlayer
-    private let allSongsListCache: [Song] = []
-    init(with player: AudioPlayer = AudioPlayer.shared,
-         songs: [Song]) {
-        self.player = player
+    init(with songs: [Song]) {
         songsList = BehaviorRelay<[Song]>(value: songs)
+    }
+}
+
+extension Song {
+    var formattedDuration: String {
+        guard let seconds = Int(duration) else { return "" }
+        return String(format: "%02d:%02d:%02d", seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
 }

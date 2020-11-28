@@ -6,6 +6,7 @@
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
 
+import Kingfisher
 import UIKit
 
 final class ArtistTableCell: UITableViewCell {
@@ -13,24 +14,18 @@ final class ArtistTableCell: UITableViewCell {
     @IBOutlet private var avatarView: UIImageView!
     @IBOutlet private var captionLabel: UILabel!
     @IBOutlet private var tracksLabel: UILabel!
-    private var imageLoader: Disposable?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        avatarView.layer.borderColor = UIColor.systemGray.cgColor
     }
 
     func setData(for artist: Artist) {
         nameLabel.text = artist.username
-        tracksLabel.text = String(artist.tracksCount)
+        tracksLabel.text = ""
         captionLabel.text = artist.caption
-        imageLoader = avatarView.setImage(of: artist.avatarURL)
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        imageLoader?.dispose()
-        avatarView.image = nil
+        avatarView.setImage(with: artist.avatarURL)
     }
 }
 
@@ -39,6 +34,6 @@ extension ArtistTableCell {
         nameLabel.text = song.title
         tracksLabel.text = song.formattedDuration
         captionLabel.text = song.genre
-        imageLoader = avatarView.setImage(of: song.thumb)
+        avatarView.setImage(with: song.thumb)
     }
 }

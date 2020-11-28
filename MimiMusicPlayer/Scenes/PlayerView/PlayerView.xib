@@ -17,7 +17,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8x9-mm-g62">
@@ -27,51 +27,57 @@
                         <constraint firstAttribute="height" constant="1" id="jiu-XI-hbu"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="jkB-aR-ouJ">
-                    <rect key="frame" x="12" y="8" width="390" height="68"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qbf-rI-hN3">
+                    <rect key="frame" x="12" y="8" width="394" height="77"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TXR-NW-vFz">
-                            <rect key="frame" x="0.0" y="0.0" width="318" height="68"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="jkB-aR-ouJ">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="77"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" text="Song" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEx-3z-vfl">
-                                    <rect key="frame" x="0.0" y="0.0" width="318" height="36"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRG-7m-lbi">
-                                    <rect key="frame" x="0.0" y="52" width="318" height="16"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TXR-NW-vFz">
+                                    <rect key="frame" x="0.0" y="0.0" width="322" height="77"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" text="Song" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEx-3z-vfl">
+                                            <rect key="frame" x="0.0" y="0.0" width="322" height="45"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRG-7m-lbi">
+                                            <rect key="frame" x="0.0" y="61" width="322" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ec-BD-M7P">
+                                    <rect key="frame" x="334" y="0.0" width="60" height="77"/>
+                                    <accessibility key="accessibilityConfiguration" identifier="play"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="LvK-Uc-UMe"/>
+                                    </constraints>
+                                    <state key="normal" image="play" catalog="system"/>
+                                    <connections>
+                                        <action selector="togglePlayAction:" destination="-1" eventType="touchUpInside" id="286-qg-Grz"/>
+                                    </connections>
+                                </button>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ec-BD-M7P">
-                            <rect key="frame" x="330" y="0.0" width="60" height="68"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="60" id="LvK-Uc-UMe"/>
-                            </constraints>
-                            <state key="normal" image="play" catalog="system"/>
-                            <connections>
-                                <action selector="togglePlayAction:" destination="-1" eventType="touchUpInside" id="286-qg-Grz"/>
-                            </connections>
-                        </button>
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <accessibility key="accessibilityConfiguration" identifier="PlayerView"/>
             <constraints>
+                <constraint firstItem="qbf-rI-hN3" firstAttribute="top" secondItem="8x9-mm-g62" secondAttribute="bottom" constant="7" id="2sy-4M-nNh"/>
                 <constraint firstItem="8x9-mm-g62" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5BN-G0-HmG"/>
                 <constraint firstItem="8x9-mm-g62" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="867-e1-gI3"/>
-                <constraint firstAttribute="trailing" secondItem="jkB-aR-ouJ" secondAttribute="trailing" constant="12" id="AWL-vE-Gff"/>
-                <constraint firstItem="jkB-aR-ouJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="PpP-w0-XVq"/>
+                <constraint firstAttribute="trailing" secondItem="qbf-rI-hN3" secondAttribute="trailing" constant="8" id="EIS-b3-Aog"/>
+                <constraint firstItem="qbf-rI-hN3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="W79-ni-Yz0"/>
                 <constraint firstItem="8x9-mm-g62" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cOT-IW-wbP"/>
-                <constraint firstAttribute="bottom" secondItem="jkB-aR-ouJ" secondAttribute="bottom" constant="8" id="n7o-xr-uRO"/>
-                <constraint firstItem="jkB-aR-ouJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="ySq-qv-7ga"/>
+                <constraint firstAttribute="bottom" secondItem="qbf-rI-hN3" secondAttribute="bottom" constant="8" id="zGB-yN-eoB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="137.68115942028987" y="-74.330357142857139"/>
+            <point key="canvasLocation" x="137.68115942028987" y="-71.316964285714278"/>
         </view>
     </objects>
     <resources>

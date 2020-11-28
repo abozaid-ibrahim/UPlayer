@@ -54,14 +54,9 @@ private extension SongsListController {
                 cell.setData(for: model)
             }.disposed(by: disposeBag)
 
-//        viewModel.subscribe(onError: { [unowned self] in
-//            self.show(error: $0.localizedDescription)
-//        }).disposed(by: disposeBag)
-
         tableView.rx.modelSelected(Song.self)
             .asDriver()
             .drive(onNext: { [unowned self] in
-                // self.viewModel.playSong.accept($0)
                 self.play($0)
             }).disposed(by: disposeBag)
     }

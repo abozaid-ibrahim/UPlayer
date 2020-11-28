@@ -15,7 +15,7 @@ extension ArtistAPI: RequestBuilder {
     var path: String {
         switch self {
         case .populer:
-            return ""
+            return "feed/"
         }
     }
 
@@ -33,7 +33,7 @@ extension ArtistAPI: RequestBuilder {
     }
 
     var request: URLRequest? {
-        guard let url = URL(string: APIConstants.baseURL) else {
+        guard let url = URL(string: baseURL + path) else {
             return nil
         }
         var items = [URLQueryItem]()
@@ -45,7 +45,9 @@ extension ArtistAPI: RequestBuilder {
         guard let queryUrl = urlComponents?.url else {
             return nil
         }
-        var request = URLRequest(url: queryUrl, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 30)
+        var request = URLRequest(url: queryUrl,
+                                 cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData,
+                                 timeoutInterval: 30)
         request.httpMethod = method.rawValue
         return request
     }
