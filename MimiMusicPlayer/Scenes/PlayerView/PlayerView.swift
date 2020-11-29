@@ -18,9 +18,10 @@ protocol PlayerViewType {
 
 final class PlayerView: UIViewController {
     private let disposeBag = DisposeBag()
-    @IBOutlet private var waveView: UIImageView!
 
-    @IBOutlet var waveform: UIView!
+    @IBOutlet var viewHeightConstrain: NSLayoutConstraint!
+    @IBOutlet private var fullPlayerContainer: UIView!
+    @IBOutlet private var miniPlayerContainer: UIStackView!
     @IBOutlet private var playPauseBtn: UIButton!
     @IBOutlet private var artistLabel: UILabel!
     @IBOutlet private var songLable: UILabel!
@@ -36,34 +37,61 @@ final class PlayerView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(enableFullScreenMode(sender:)))
+        miniPlayerContainer.addGestureRecognizer(tapRecognizer)
         AudioPlayer.shared.state
-            .map { UIImage(named: $0 == .playing ? "pause" : "play") }
+            .map { UIImage(named: $0 == .playing ? "pause_button" : "play_button") }
             .bind(to: playPauseBtn.rx.image(for: .normal))
-            .disposed(by: disposeBag)
-
-        AudioPlayer.shared.state
-            .map { $0 == .idle }
-            .bind(to: view.rx.isHidden)
             .disposed(by: disposeBag)
     }
 
     @IBAction func togglePlayAction(_ sender: Any) {
-        AudioPlayer.shared.togglePlayer()
+        AudioPlayer.shared.toggle()
     }
 }
 
 extension PlayerView: PlayerViewType {
     func play(song: Song) {
-        AudioPlayer.shared.playAudio(form: song.streamURL)
+        self.view.isHidden = false
+        AudioPlayer.shared.play(with: song.streamURL, duration: song.duration)
         artistLabel.text = song.user?.username
         songLable.text = song.title
+        loadPulses(song)
+    }
+
+    private func loadPulses(_ song: Song) {
+        song.loadPulses()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] in self.setupFullScreen(song, $0) })
+            .disposed(by: disposeBag)
+    }
+
+    private func setupFullScreen(_ song: Song, _ pulses: [Float]) {
+        var songWithPulses = song
+        songWithPulses.pulses = pulses
+        let fullScreen = FullScreenPlayerController(with: songWithPulses)
+        addChild(fullScreen)
+        fullPlayerContainer.addSubview(fullScreen.view)
+        fullScreen.view.setConstrainsEqualToParentEdges()
+        fullScreen.disappeared.subscribe(onNext: { _ in
+            self.enableMiniScreenMode()
+        }).disposed(by: fullScreen.disposeBag)
+        enableFullScreenMode()
+    }
+
+    @objc private func enableFullScreenMode(sender: Any? = nil) {
+        miniPlayerContainer.isHidden = true
+        fullPlayerContainer.isHidden = false
+        UIView.animate(withDuration: 1.2, animations: {
+            self.viewHeightConstrain.constant = UIScreen.main.bounds.height - 20
+        })
+    }
+
+    private func enableMiniScreenMode() {
+        miniPlayerContainer.isHidden = false
+        fullPlayerContainer.isHidden = true
+        UIView.animate(withDuration: 1.2, animations: {
+            self.viewHeightConstrain.constant = 90
+        })
     }
 }
-//guard let url = song.waveformData else{return}
-//URLSession.shared.rx.data(request: .init(url: url))
-//    .map { try JSONDecoder().decode([Float].self, from: $0) }
-//    .observeOn(MainScheduler.instance)
-//    .subscribe(onNext: {
-////                self.draw($0)
-//    }).disposed(by: disposeBag)
