@@ -61,10 +61,14 @@ This application uses the Model-View-ViewModel (refered to as MVVM) UI architect
 - [x] Set-up dependencies
 - [x] Add Swiftlint yml, gitignore.
 - [x] Implement Artists List, Songs List
+- [x] Paginate the artists API
 - [x] Implement Audio player
 - [x] Check different device size and different orientation
 - [x] Check dark mode
 - [x] Add unittests
 - [x] Add UITests
-- [ ] Add waveform to audio player
+- [ ] Render waveform to audio player
+- [ ] Cach the audio and json response
+- [ ] Enable audio player full screen page by swipe up.
+- [ ] Reach 100% code coverage. (current is: 88%)
 
