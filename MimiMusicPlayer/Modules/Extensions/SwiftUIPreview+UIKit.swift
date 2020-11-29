@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 import UIKit
-
+@available(iOS 13.0, *)
 struct UIKitViewPreview: UIViewRepresentable {
     let view: UIView
     init(view: UIView) {

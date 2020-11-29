@@ -81,14 +81,18 @@ final class SongsViewHeader: UIView {
         usernameLabel.text = artist.username
     }
 }
-
-struct Test_Preview: PreviewProvider {
-    @available(iOS 13.0.0, *)
-    static var previews: some View {
-        return Group {
-            UIKitViewPreview(view: SongsViewHeader(with: Artist(id: "1", username: "A", caption: "caption 2", avatarURL: nil)))
-                .previewLayout(.device)
-                .previewDevice("iPhone 8")
-        }
-    }
-}
+//
+// @available(iOS 13.0, *)
+// struct Test_Preview: PreviewProvider {
+//    @available(iOS 13.0.0, *)
+//    static var previews: some View {
+//        return Group {
+//            UIKitViewPreview(view: SongsViewHeader(with: Artist(id: "1",
+//                                                                username: "A",
+//                                                                caption: "caption 2",
+//                                                                avatarURL: nil)))
+//                .previewLayout(.device)
+//                .previewDevice("iPhone 8")
+//        }
+//    }
+// }

@@ -52,7 +52,7 @@ final class PlayerView: UIViewController {
 
 extension PlayerView: PlayerViewType {
     func play(song: Song) {
-        self.view.isHidden = false
+        view.isHidden = false
         AudioPlayer.shared.play(with: song.streamURL, duration: song.duration)
         artistLabel.text = song.user?.username
         songLable.text = song.title

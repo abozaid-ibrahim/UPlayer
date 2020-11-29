@@ -36,7 +36,6 @@ final class ArtistsViewModel: ArtistsViewModelType {
         dataLoader.getData(of: ArtistAPI.populer(page: page))
             .subscribeOn(scheduler)
             .map { try JSONDecoder().decode([Song].self, from: $0) }
-//            .debug(#function)
             .subscribe(onNext: { [unowned self] in
                 self.updateUI($0)
             }, onError: { [unowned self] in

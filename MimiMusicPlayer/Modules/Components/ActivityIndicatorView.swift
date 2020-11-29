@@ -41,4 +41,3 @@ final class ActivityIndicatorView: UIView {
             activityView.centerXAnchor.constraint(equalTo: centerXAnchor)])
     }
 }
-

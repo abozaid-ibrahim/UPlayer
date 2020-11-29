@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import RxCocoa
+import UIKit
 
 extension FullScreenPlayerController {
     public var minimumVelocityToHide: CGFloat { 1500 }
@@ -16,6 +16,7 @@ extension FullScreenPlayerController {
     public var animationDuration: TimeInterval { 0.2 }
 
     func enableSwipeToHide() {
+        view.isUserInteractionEnabled = true
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
         view.addGestureRecognizer(panGesture)
     }

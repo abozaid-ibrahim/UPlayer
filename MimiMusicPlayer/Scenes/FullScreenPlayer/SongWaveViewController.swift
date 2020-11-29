@@ -103,7 +103,9 @@ extension SongWaveViewController: UIScrollViewDelegate {
         delegate?.songWaveView(willBeginDragging: true, percentage: offsetPercentage)
     }
 
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         waveScrollView.contentOffset = scrollView.contentOffset
         let offsetPercentage = (scrollView.contentOffset.x + scrollView.contentInset.left) / scrollView.contentSize.width
         delegate?.songWaveView(didEndDragging: true, percentage: offsetPercentage)

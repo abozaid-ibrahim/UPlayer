@@ -15,7 +15,7 @@ extension UITableView {
         sizeToFit(loading)
     }
 
-    func sizeToFit(_ loading: Bool) {
+    private func sizeToFit(_ loading: Bool) {
         guard let view = tableFooterView else { return }
         var frame = view.frame
         frame.size.height = loading ? 80 : 0

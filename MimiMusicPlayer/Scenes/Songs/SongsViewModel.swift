@@ -24,4 +24,3 @@ final class SongsViewModel: SongsViewModelType {
         self.artist = artist
     }
 }
-

@@ -1,4 +1,4 @@
-platform :ios, '13.0'
+platform :ios, '12.0'
 
 target 'MimiMusicPlayer' do
   use_frameworks!

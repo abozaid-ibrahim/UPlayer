@@ -23,7 +23,7 @@ protocol AudioPlayerType {
 }
 
 final class AudioPlayer: NSObject, AudioPlayerType {
-    let audioProgress =  PublishRelay<Double>()
+    let audioProgress = PublishRelay<Double>()
     private let disposeBag = DisposeBag()
     private var player: AVPlayer!
     let state = BehaviorRelay<State>(value: .idle)
@@ -51,15 +51,8 @@ final class AudioPlayer: NSObject, AudioPlayerType {
                 if self.state.value == .playing {
                     self.audioProgress.accept(cprogress)
                 }
-
-//                if time.seconds >= duration {
-//                    self.state.accept(.paused)
-//                } else {
-//                    self.state.accept(.paused)
-//                }
             }
         } catch {
-            print(error)
             state.accept(.error(error.localizedDescription))
         }
     }
@@ -94,7 +87,7 @@ final class AudioPlayer: NSObject, AudioPlayerType {
         let duration = player.currentItem?.duration.seconds ?? 0
         let timeScale = CMTimeScale(NSEC_PER_SEC)
         let time = CMTime(seconds: duration * percentage, preferredTimescale: timeScale)
-        self.audioProgress.accept(percentage)
+        audioProgress.accept(percentage)
         player.seek(to: time)
     }
 

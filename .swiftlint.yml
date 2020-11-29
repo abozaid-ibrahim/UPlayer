@@ -7,12 +7,8 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Source/*/ExcludedFile.swift # Exclude files with a wildcard
 analyzer_rules: # Rules run by `swiftlint analyze` (experimental)
   - explicit_self
-
-# configurable rules can be customized from this configuration file
-# binary rules can set their severity level
-# rules that have both warning and error levels, can set just the warning level
-# implicitly
-# they can set both implicitly with an array
+line_length:
+  warning: 140
 type_body_length:
   - 300 # warning
   - 400 # error
@@ -34,5 +30,7 @@ identifier_name:
     error: 3 # only error
   excluded: # excluded via string array
     - id
+    - x
+    - y
     - URL
     - GlobalAPIKey

@@ -12,17 +12,31 @@ public extension UIView {
     func setConstrainsEqualToParentEdges(top: Float = 0,
                                          bottom: Float = 0,
                                          leading: Float = 0,
-                                         trailing: Float = 0,
-                                         useSafeArea: Bool = false) {
+                                         trailing: Float = 0) {
         guard let parent = superview else {
             fatalError("This view doesn't have a parent")
         }
-        let layoutGuide = useSafeArea ? parent.safeAreaLayoutGuide : parent.layoutMarginsGuide
+
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: CGFloat(leading)),
-            trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -CGFloat(trailing)),
-            topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: CGFloat(top)),
-            bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -CGFloat(bottom))])
+            leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: CGFloat(leading)),
+            trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -CGFloat(trailing)),
+            topAnchor.constraint(equalTo: parent.topAnchor, constant: CGFloat(top)),
+            bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -CGFloat(bottom))])
+    }
+
+    func setConstrainsEqualToSafeArea(top: Float = 0,
+                                      bottom: Float = 0,
+                                      leading: Float = 0,
+                                      trailing: Float = 0) {
+        guard let parent = superview?.safeAreaLayoutGuide else {
+            fatalError("This view doesn't have a parent or safe area")
+        }
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: CGFloat(leading)),
+            trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -CGFloat(trailing)),
+            topAnchor.constraint(equalTo: parent.topAnchor, constant: CGFloat(top)),
+            bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -CGFloat(bottom))])
     }
 }

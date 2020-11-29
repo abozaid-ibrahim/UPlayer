@@ -20,7 +20,7 @@ final class PlayerContainerController: UIViewController {
         stack.distribution = .fill
         stack.spacing = 1
         self.view.addSubview(stack)
-        stack.setConstrainsEqualToParentEdges(useSafeArea: true)
+        stack.setConstrainsEqualToSafeArea()
         return stack
     }()
 

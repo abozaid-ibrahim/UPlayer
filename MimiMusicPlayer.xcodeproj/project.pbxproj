@@ -325,6 +325,7 @@
 			children = (
 				6CCB0A34257432E50012EA73 /* AudioPlayer */,
 				6CCB15FC256DA2AA002C556F /* ActivityIndicatorView.swift */,
+				6CD1E46F25732E790023C788 /* DurationLabel.swift */,
 				6CCB0A0D257420340012EA73 /* SwipeTodismiss.swift */,
 			);
 			path = Components;
@@ -346,7 +347,6 @@
 				6CD1E47725732E790023C788 /* SongPlusesGenerator.swift */,
 				6C6697B525740BFA00182C04 /* AudioPlayer.swift */,
 				6CD1E46B25732E790023C788 /* SongWave.swift */,
-				6CD1E46F25732E790023C788 /* DurationLabel.swift */,
 			);
 			path = AudioPlayer;
 			sourceTree = "<group>";
@@ -594,7 +594,7 @@
 		};
 		6C8E3A28256FF3C500BEA7C4 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -606,7 +606,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};

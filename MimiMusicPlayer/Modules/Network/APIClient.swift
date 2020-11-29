@@ -29,8 +29,6 @@ final class HTTPClient: ApiClient {
                            onError: { error in
                                observer.onError(error)
                            })
-
-//            return Disposables.create { }
         }
     }
 }

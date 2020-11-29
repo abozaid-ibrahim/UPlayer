@@ -18,7 +18,8 @@ final class FullScreenPlayerController: UIViewController {
     @IBOutlet private var songNameLabel: UILabel!
     @IBOutlet private var playButton: UIButton!
     @IBOutlet var waveContainer: UIView!
-    var disappeared = PublishRelay<Bool>()
+    let disposeBag = DisposeBag()
+    let disappeared = PublishRelay<Bool>()
     let song: Song
     fileprivate var isScrolling = false
     fileprivate var songWaveViewController: SongWaveViewController!
@@ -41,7 +42,6 @@ final class FullScreenPlayerController: UIViewController {
         return blurView
     }()
 
-    let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
         enableSwipeToHide()
