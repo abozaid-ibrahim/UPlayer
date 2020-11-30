@@ -68,12 +68,15 @@ This application uses the Model-View-ViewModel (refered to as MVVM) UI architect
 - [x] Add unittests
 - [x] Add UITests
 - [x] Render waveform to audio player
+- [x] Enable audio player full screen page by swipe up.
 - [ ] Cach the audio and json response
-- [x ] Enable audio player full screen page by swipe up.
+- [ ] Auto play next audio file in the list.
 - [ ] Reach 100% code coverage. (current is: 88%)
 - [ ] Test the waveform drawer.
+
+
 ### UX
-- swipe the audio player full screen down to show up the mini player bar
-- click on mini player view to show the full screen player
+- Swipe the audio player full screen down to show up the mini player bar
+- Click on mini player view to show the full screen player
 
 
