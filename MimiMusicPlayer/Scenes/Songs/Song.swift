@@ -26,6 +26,7 @@ extension Song {
     var uiUserModel: Artist? {
         var user = self.user
         user?.trackTitle = title
+        user?.trackDuration = self.durationString
         return user
     }
 }
@@ -51,5 +52,6 @@ extension Song {
         guard let url = waveformData else { return Observable.empty() }
         return URLSession.shared.rx.data(request: .init(url: url))
             .map { try JSONDecoder().decode([Float].self, from: $0) }
+            .compactMap { $0.map { $0 / 400 }}
     }
 }

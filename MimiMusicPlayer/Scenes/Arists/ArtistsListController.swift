@@ -36,7 +36,7 @@ private extension ArtistsListController {
         tableView.rowHeight = 70
         tableView.accessibilityIdentifier = "ArtistsTable"
         tableView.tableFooterView = ActivityIndicatorView()
-        tableView.register(ArtistTableCell.self)
+        tableView.register(SongTableCell.self)
         tableView.showsVerticalScrollIndicator = true
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -73,7 +73,7 @@ extension ArtistsListController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(cell: ArtistTableCell.self, for: indexPath)
+        let cell = tableView.dequeue(cell: SongTableCell.self, for: indexPath)
         cell.setData(for: artists[indexPath.row])
         return cell
     }

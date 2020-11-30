@@ -22,9 +22,7 @@ final class SongWaveViewController: UIViewController {
     private let disposeBag = DisposeBag()
     weak var delegate: SongWaveViewDelegate?
     private var songWave: SongWave!
-    var song: Song! {
-        didSet { createWaveView() }
-    }
+    let song: Song
 
     init(with song: Song) {
         self.song = song
@@ -38,9 +36,7 @@ final class SongWaveViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        createWaveView()
-        setupWaveScrollView()
-        setWaveBackgroundColorPattern()
+        setup()
     }
 
     func toggleWave() {
@@ -56,13 +52,15 @@ final class SongWaveViewController: UIViewController {
 }
 
 private extension SongWaveViewController {
+    func setup() {
+        createWaveView()
+        setupWaveScrollView()
+        setWaveBackgroundColorPattern()
+    }
+
     func createWaveView() {
-        guard let song = song, self.isViewLoaded else {
-            return
-        }
         let size = CGSize(width: view.frame.width * 2, height: waveScrollView.frame.height)
         let frame = CGRect(origin: view.frame.origin, size: size)
-
         songWave = SongWave(frame: frame)
         songWave.pulses = song.pulses
         songWave.setNeedsDisplay()

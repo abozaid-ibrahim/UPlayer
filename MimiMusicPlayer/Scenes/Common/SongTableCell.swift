@@ -1,5 +1,5 @@
 //
-//  ArtistTableCell.swift
+//  SongTableCell.swift
 //  MimiMusicPlayer
 //
 //  Created by abuzeid on 24.11.20.
@@ -9,11 +9,11 @@
 import Kingfisher
 import UIKit
 
-final class ArtistTableCell: UITableViewCell {
+final class SongTableCell: UITableViewCell {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var avatarView: UIImageView!
-    @IBOutlet private var captionLabel: UILabel!
-    @IBOutlet private var tracksLabel: UILabel!
+    @IBOutlet private var genreLabel: UILabel!
+    @IBOutlet private var durationLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,17 +23,17 @@ final class ArtistTableCell: UITableViewCell {
 
     func setData(for artist: Artist) {
         nameLabel.text = artist.username
-        tracksLabel.text = ""
-        captionLabel.text = artist.trackTitle
+        durationLabel.text = artist.trackDuration
+        genreLabel.text = artist.trackTitle
         avatarView.setImage(with: artist.avatarURL)
     }
 }
 
-extension ArtistTableCell {
+extension SongTableCell {
     func setData(for song: Song) {
         nameLabel.text = song.title
-        tracksLabel.text = song.duration.durationDisplay
-        captionLabel.text = song.genre
+        durationLabel.text = song.duration.durationDisplay
+        genreLabel.text = song.genre
         avatarView.setImage(with: song.thumb)
     }
 }

@@ -43,7 +43,7 @@ private extension SongsListController {
         tableView.tableFooterView = UIView()
         tableView.tableHeaderView = SongsViewHeader(with: viewModel.artist)
         tableView.sizeHeaderToFit()
-        tableView.register(ArtistTableCell.self)
+        tableView.register(SongTableCell.self)
         tableView.showsVerticalScrollIndicator = true
         navigationController?.hidesBarsOnSwipe = false
     }
@@ -51,8 +51,8 @@ private extension SongsListController {
     func bindToViewModel() {
         viewModel.songsList
             .bind(to: tableView.rx
-                .items(cellIdentifier: ArtistTableCell.identifier,
-                       cellType: ArtistTableCell.self)) { _, model, cell in
+                .items(cellIdentifier: SongTableCell.identifier,
+                       cellType: SongTableCell.self)) { _, model, cell in
                 cell.setData(for: model)
             }.disposed(by: disposeBag)
 
