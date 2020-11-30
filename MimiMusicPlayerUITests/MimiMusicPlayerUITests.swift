@@ -17,30 +17,30 @@ final class MimiMusicPlayerUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments.append("--uitesting")
         app.launch()
-        func assertArtistsListExistsThenSelectFirstArtist() {
+        func assertPopulerTracksExistsThenSelectFirstTrack() {
             let artistsTable = app.tables["ArtistsTable"]
             XCTAssertTrue(artistsTable.exists)
             artistsTable.cells.firstMatch.tap()
         }
-        func assertSongsListExistsThenPlayFirstSong() {
+        func assertArtistTracksListExistsThenPlayTrack() {
             XCTAssertTrue(app.tables["SongsTable"].exists)
             app.tables["SongsTable"].cells.firstMatch.tap()
         }
 
-        func assertFullScreenPlayerViewExist() {
+        func assertFullScreenPlayerViewExistThenSwipeDown() {
             XCTAssertTrue(app.otherElements["FullScreenPlayer"].exists)
             app.swipeDown(velocity: 2000)
         }
-        func assertPlayerViewExistAfterNavigationBack() {
+        func assertMiniPlayerViewExistAfterNavigationBack() {
             XCTAssertTrue(app.otherElements["PlayerView"].waitForExistence(timeout: 0.01))
             XCTAssertTrue(app.buttons["play"].exists)
             app.buttons["play"].tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
             XCTAssertTrue(app.otherElements["PlayerView"].exists)
         }
-        assertArtistsListExistsThenSelectFirstArtist()
-        assertSongsListExistsThenPlayFirstSong()
-        assertFullScreenPlayerViewExist()
-        assertPlayerViewExistAfterNavigationBack()
+        assertPopulerTracksExistsThenSelectFirstTrack()
+        assertArtistTracksListExistsThenPlayTrack()
+        assertFullScreenPlayerViewExistThenSwipeDown()
+        assertMiniPlayerViewExistAfterNavigationBack()
     }
 }
