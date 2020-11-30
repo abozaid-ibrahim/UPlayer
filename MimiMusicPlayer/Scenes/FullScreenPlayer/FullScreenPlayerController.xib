@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -30,7 +31,7 @@
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cLm-ai-h3w" userLabel="cover">
                             <rect key="frame" x="0.0" y="0.0" width="896" height="896"/>
-                            <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="cLm-ai-h3w" secondAttribute="height" id="cXY-ZY-JFL"/>
                             </constraints>
@@ -55,9 +56,9 @@
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTg-b5-MOU">
                     <rect key="frame" x="24" y="104" width="42" height="21"/>
-                    <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="backgroundColor" systemColor="labelColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2G-ZH-fff">
@@ -71,18 +72,18 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJk-8I-1Hh">
                     <rect key="frame" x="24" y="133" width="39.5" height="19.5"/>
-                    <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="backgroundColor" systemColor="labelColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UaR-qW-yHI" customClass="DurationLabel" customModule="MimiMusicPlayer" customModuleProvider="target">
-                    <rect key="frame" x="168" y="655.5" width="78" height="21"/>
+                    <rect key="frame" x="168" y="689.5" width="78" height="21"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fk-Kv-B0T">
                             <rect key="frame" x="4" y="2" width="30.5" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="systemGroupedBackgroundColor"/>
                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Jg-Pw-f7x">
@@ -95,11 +96,11 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEg-lF-ELn">
                             <rect key="frame" x="43.5" y="2" width="30.5" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="systemGroupedBackgroundColor"/>
                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="backgroundColor" systemColor="labelColor"/>
                     <constraints>
                         <constraint firstItem="3Jg-Pw-f7x" firstAttribute="centerX" secondItem="UaR-qW-yHI" secondAttribute="centerX" id="5yM-ee-8gf"/>
                         <constraint firstAttribute="bottom" secondItem="2Fk-Kv-B0T" secondAttribute="bottom" constant="2" id="Dwp-9z-liP"/>
@@ -119,6 +120,7 @@
                     </connections>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="Fsr-zL-lhb"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="lA8-lM-6Vz" firstAttribute="trailing" secondItem="umm-Ca-qcK" secondAttribute="trailing" id="1FN-Wg-hFm"/>
@@ -133,17 +135,28 @@
                 <constraint firstItem="C2G-ZH-fff" firstAttribute="centerY" secondItem="umm-Ca-qcK" secondAttribute="centerY" id="WbL-2G-Yh9"/>
                 <constraint firstItem="nJk-8I-1Hh" firstAttribute="leading" secondItem="vTg-b5-MOU" secondAttribute="leading" id="Ymd-dl-AaF"/>
                 <constraint firstItem="KFu-ia-2L0" firstAttribute="trailing" secondItem="umm-Ca-qcK" secondAttribute="trailing" id="e4d-v4-gh8"/>
-                <constraint firstItem="lA8-lM-6Vz" firstAttribute="centerY" secondItem="UaR-qW-yHI" secondAttribute="centerY" constant="10" id="lfh-mt-CjF"/>
+                <constraint firstItem="lA8-lM-6Vz" firstAttribute="centerY" secondItem="UaR-qW-yHI" secondAttribute="centerY" constant="-24" id="lfh-mt-CjF"/>
                 <constraint firstItem="nJk-8I-1Hh" firstAttribute="top" secondItem="vTg-b5-MOU" secondAttribute="bottom" constant="8" id="pGK-xq-WR4"/>
                 <constraint firstItem="KFu-ia-2L0" firstAttribute="leading" secondItem="umm-Ca-qcK" secondAttribute="leading" id="rNU-LI-ODb"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vTg-b5-MOU" secondAttribute="trailing" constant="20" symbolic="YES" id="s31-rR-PI2"/>
                 <constraint firstItem="KFu-ia-2L0" firstAttribute="bottom" secondItem="umm-Ca-qcK" secondAttribute="bottom" id="xqU-07-PaR"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Fsr-zL-lhb"/>
             <point key="canvasLocation" x="140.57971014492756" y="134.59821428571428"/>
         </view>
     </objects>
     <resources>
         <image name="play_button" width="512" height="512"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

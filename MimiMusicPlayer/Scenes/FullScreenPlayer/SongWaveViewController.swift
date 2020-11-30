@@ -22,7 +22,7 @@ final class SongWaveViewController: UIViewController {
     private let disposeBag = DisposeBag()
     weak var delegate: SongWaveViewDelegate?
     private var songWave: SongWave!
-    let song: Song
+    private let song: Song
 
     init(with song: Song) {
         self.song = song

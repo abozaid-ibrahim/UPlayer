@@ -11,7 +11,7 @@ import UIKit
 final class ArtistsListController: UITableViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: ArtistsViewModelType
-    var artists: [Artist] = []
+    private var artists: [Artist] = []
     init(with viewModel: ArtistsViewModelType = ArtistsViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

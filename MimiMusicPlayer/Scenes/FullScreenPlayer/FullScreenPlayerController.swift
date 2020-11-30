@@ -19,17 +19,11 @@ final class FullScreenPlayerController: UIViewController {
     @IBOutlet private var playButton: UIButton!
     @IBOutlet private var waveContainer: UIView!
     let disposeBag = DisposeBag()
-    var song: Song! {
-        didSet {
-            guard song != nil else { return }
-            addWaveScrollController()
-            setupUI()
-        }
-    }
+    private let song: Song
 
     fileprivate var isScrolling = false
     fileprivate var songWaveViewController: SongWaveViewController!
-    init(with song: Song?) {
+    init(with song: Song) {
         self.song = song
         super.init(nibName: "FullScreenPlayerController", bundle: nil)
     }
@@ -61,20 +55,14 @@ final class FullScreenPlayerController: UIViewController {
     }
 
     func addWaveScrollController() {
-        guard let songValue = song, self.isViewLoaded else { return }
-        guard let waveController = songWaveViewController else {
-            songWaveViewController = SongWaveViewController(with: songValue)
-            songWaveViewController.delegate = self
-            addChild(songWaveViewController)
-            waveContainer.addSubview(songWaveViewController.view)
-            songWaveViewController.view.setConstrainsEqualToParentEdges()
-            return
-        }
-        waveController.song = song
+        songWaveViewController = SongWaveViewController(with: song)
+        songWaveViewController.delegate = self
+        addChild(songWaveViewController)
+        waveContainer.addSubview(songWaveViewController.view)
+        songWaveViewController.view.setConstrainsEqualToParentEdges()
     }
 
     private func setupUI() {
-        guard let song = song, self.isViewLoaded else { return }
         coverImageView.setImage(with: song.backgroundURL)
         durationView.setDuration(for: song)
         ownerNameLabel.text = song.user?.username

@@ -18,10 +18,11 @@ protocol PlayerViewType {
 
 final class PlayerView: UIViewController {
     private let disposeBag = DisposeBag()
-    private let fullScreenView = FullScreenPlayerController(with: nil)
     @IBOutlet private var playPauseBtn: UIButton!
     @IBOutlet private var artistLabel: UILabel!
     @IBOutlet private var songLable: UILabel!
+    private var fullScreenView: FullScreenPlayerController?
+
     static let shared = PlayerView()
     private init() {
         super.init(nibName: "PlayerView", bundle: nil)
@@ -35,7 +36,7 @@ final class PlayerView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(enableFullScreenMode(sender:)))
-        self.view.addGestureRecognizer(tapRecognizer)
+        view.addGestureRecognizer(tapRecognizer)
         AudioPlayer.shared.state
             .map { UIImage(named: $0 == .playing ? "pause_button" : "play_button") }
             .bind(to: playPauseBtn.rx.image(for: .normal))
@@ -65,13 +66,19 @@ extension PlayerView: PlayerViewType {
     private func setupFullScreen(_ song: Song, _ pulses: [Float]) {
         var songWithPulses = song
         songWithPulses.pulses = pulses
-        fullScreenView.song = songWithPulses
-        present(fullScreenView, animated: true, completion: {
+        fullScreenView = FullScreenPlayerController(with: songWithPulses)
+        guard let controller = fullScreenView else {
+            return
+        }
+        present(controller, animated: true, completion: {
             self.view.isHidden = false
         })
     }
 
     @objc private func enableFullScreenMode(sender: Any? = nil) {
-        present(fullScreenView, animated: true, completion: nil)
+        guard let controller = fullScreenView else {
+            return
+        }
+        present(controller, animated: true, completion: nil)
     }
 }

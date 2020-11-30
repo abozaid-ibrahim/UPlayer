@@ -41,10 +41,8 @@ final class AudioPlayer: NSObject, AudioPlayerType {
             player = AVPlayer(playerItem: AVPlayerItem(url: url))
             player?.play()
             state.accept(.playing)
-
             let timeScale = CMTimeScale(NSEC_PER_SEC)
             let time = CMTime(seconds: 0.2, preferredTimescale: timeScale)
-
             timeObserverToken = player.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] time in
                 guard let self = self else { return }
                 let cprogress = time.seconds / duration
@@ -55,11 +53,6 @@ final class AudioPlayer: NSObject, AudioPlayerType {
         } catch {
             state.accept(.error(error.localizedDescription))
         }
-    }
-
-    func stop() {
-        player?.pause()
-        state.accept(.idle)
     }
 
     func pause() {
@@ -95,10 +88,6 @@ final class AudioPlayer: NSObject, AudioPlayerType {
         state.accept(.playing)
         seek(to: percentage)
         player.play()
-    }
-
-    deinit {
-        self.timeObserverToken = nil
     }
 }
 
