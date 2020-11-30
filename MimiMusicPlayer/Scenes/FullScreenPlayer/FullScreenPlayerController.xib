@@ -122,6 +122,7 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="Fsr-zL-lhb"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <accessibility key="accessibilityConfiguration" identifier="FullScreenPlayer"/>
             <constraints>
                 <constraint firstItem="lA8-lM-6Vz" firstAttribute="trailing" secondItem="umm-Ca-qcK" secondAttribute="trailing" id="1FN-Wg-hFm"/>
                 <constraint firstItem="KFu-ia-2L0" firstAttribute="top" secondItem="umm-Ca-qcK" secondAttribute="top" id="1Jv-oO-tzd"/>

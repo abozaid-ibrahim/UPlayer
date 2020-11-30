@@ -28,7 +28,7 @@ final class ArtistsViewModelTests: XCTestCase {
         // When
         testScheduler.scheduleAt(5, action: { viewModel.loadData() })
         testScheduler.scheduleAt(10, action: { viewModel.observer.loadMoreCells.accept([.row(1)]) })
-        testScheduler.scheduleAt(15, action: { viewModel.observer.loadMoreCells.accept([.row(2)]) })
+        testScheduler.scheduleAt(15, action: { viewModel.observer.loadMoreCells.accept([.row(4)]) })
         testScheduler.start()
         // Then
         XCTAssertEqual(uiDataListObserver.events, [.next(0, []),
