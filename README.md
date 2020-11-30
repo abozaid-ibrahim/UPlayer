@@ -1,4 +1,6 @@
 # MimiMusicPlayer
+ MVP music player consumes HearThisAt API shows the populer tracks
+ <img src="https://github.com/abuzeid-ibrahim/MimiMusicPlayer/blob/master/demo.gif" width="50%">
 
 ## Building And Running The Project (Requirements)
 * Swift 5.0+
@@ -28,7 +30,7 @@ PRODUCT_BUNDLE_IDENTIFIER = abozaid.MimiMusicPlayer
 
 ```
 
-# Build and or run application by doing:
+# Build:
 * Select the build scheme which can be found right after the stop button on the top left of the IDE
 * [Command(cmd)] + B - Build app
 * [Command(cmd)] + R - Run app

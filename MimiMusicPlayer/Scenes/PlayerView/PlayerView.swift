@@ -70,6 +70,7 @@ extension PlayerView: PlayerViewType {
         guard let controller = fullScreenView else {
             return
         }
+        controller.modalPresentationStyle = .overCurrentContext
         present(controller, animated: true, completion: {
             self.view.isHidden = false
         })

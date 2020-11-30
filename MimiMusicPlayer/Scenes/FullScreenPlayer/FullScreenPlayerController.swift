@@ -48,7 +48,9 @@ final class FullScreenPlayerController: UIViewController {
         setupUI()
         addWaveScrollController()
         setupDidTapGesture()
-        AudioPlayer.shared.audioProgress.subscribe(onNext: { [unowned self] in
+        AudioPlayer.shared.audioProgress
+            .distinctUntilChanged()
+            .subscribe(onNext: { [unowned self] in
             self.setPlayer(progress: $0)
         }).disposed(by: disposeBag)
         view.insertSubview(blurEffectView, aboveSubview: coverScrollView)

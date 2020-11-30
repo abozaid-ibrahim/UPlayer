@@ -25,7 +25,7 @@ protocol AudioPlayerType {
 final class AudioPlayer: NSObject, AudioPlayerType {
     let audioProgress = PublishRelay<Double>()
     private let disposeBag = DisposeBag()
-    private var player: AVPlayer!
+    private var player: AVPlayer?
     let state = BehaviorRelay<State>(value: .idle)
     static let shared = AudioPlayer()
     private var timeObserverToken: Any?
@@ -36,6 +36,9 @@ final class AudioPlayer: NSObject, AudioPlayerType {
 
     func play(with url: URL, duration: Double) {
         do {
+            if let observer = timeObserverToken {
+                player?.removeTimeObserver(observer)
+            }
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
             player = AVPlayer(playerItem: AVPlayerItem(url: url))
@@ -43,7 +46,7 @@ final class AudioPlayer: NSObject, AudioPlayerType {
             state.accept(.playing)
             let timeScale = CMTimeScale(NSEC_PER_SEC)
             let time = CMTime(seconds: 0.2, preferredTimescale: timeScale)
-            timeObserverToken = player.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] time in
+            timeObserverToken = player?.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] time in
                 guard let self = self else { return }
                 let cprogress = time.seconds / duration
                 if self.state.value == .playing {
@@ -77,6 +80,7 @@ final class AudioPlayer: NSObject, AudioPlayerType {
     }
 
     func seek(to percentage: Double) {
+        guard let player = player else { return }
         let duration = player.currentItem?.duration.seconds ?? 0
         let timeScale = CMTimeScale(NSEC_PER_SEC)
         let time = CMTime(seconds: duration * percentage, preferredTimescale: timeScale)
@@ -85,6 +89,7 @@ final class AudioPlayer: NSObject, AudioPlayerType {
     }
 
     func resume(to percentage: Double) {
+        guard let player = player else { return }
         state.accept(.playing)
         seek(to: percentage)
         player.play()

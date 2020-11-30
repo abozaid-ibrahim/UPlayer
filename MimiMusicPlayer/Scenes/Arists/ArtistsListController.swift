@@ -37,8 +37,8 @@ private extension ArtistsListController {
         tableView.accessibilityIdentifier = "ArtistsTable"
         tableView.tableFooterView = ActivityIndicatorView()
         tableView.register(SongTableCell.self)
-        tableView.showsVerticalScrollIndicator = true
-        navigationController?.hidesBarsOnSwipe = false
+        tableView.showsVerticalScrollIndicator = false
+        navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 

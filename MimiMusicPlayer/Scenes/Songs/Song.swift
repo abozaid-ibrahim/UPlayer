@@ -26,7 +26,7 @@ extension Song {
     var uiUserModel: Artist? {
         var user = self.user
         user?.trackTitle = title
-        user?.trackDuration = durationString
+        user?.trackDuration = duration.durationDisplay
         return user
     }
 }
