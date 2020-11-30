@@ -19,11 +19,17 @@ final class FullScreenPlayerController: UIViewController {
     @IBOutlet private var playButton: UIButton!
     @IBOutlet var waveContainer: UIView!
     let disposeBag = DisposeBag()
-    let disappeared = PublishRelay<Bool>()
-    let song: Song
+    var song: Song! {
+        didSet {
+            guard song != nil else { return }
+            addWaveScrollController()
+            setupUI()
+        }
+    }
+
     fileprivate var isScrolling = false
     fileprivate var songWaveViewController: SongWaveViewController!
-    init(with song: Song) {
+    init(with song: Song?) {
         self.song = song
         super.init(nibName: "FullScreenPlayerController", bundle: nil)
     }
@@ -45,29 +51,35 @@ final class FullScreenPlayerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         enableSwipeToHide()
-        coverImageView.setImage(with: song.backgroundURL)
         setupUI()
         addWaveScrollController()
         setupDidTapGesture()
         AudioPlayer.shared.audioProgress.subscribe(onNext: {
             self.setPlayer(progress: $0)
         }).disposed(by: disposeBag)
+        view.insertSubview(blurEffectView, aboveSubview: coverScrollView)
     }
 
     func addWaveScrollController() {
-        songWaveViewController = SongWaveViewController(with: song)
-        songWaveViewController.delegate = self
-        addChild(songWaveViewController)
-        waveContainer.addSubview(songWaveViewController.view)
-        songWaveViewController.view.setConstrainsEqualToParentEdges()
+        guard let songValue = song, self.isViewLoaded else { return }
+        guard let old = songWaveViewController else {
+            songWaveViewController = SongWaveViewController(with: songValue)
+            songWaveViewController.delegate = self
+            addChild(songWaveViewController)
+            waveContainer.addSubview(songWaveViewController.view)
+            songWaveViewController.view.setConstrainsEqualToParentEdges()
+            return
+        }
+        old.song = song
     }
 
     private func setupUI() {
+        guard let song = song, self.isViewLoaded else { return }
+        coverImageView.setImage(with: song.backgroundURL)
         durationView.setDuration(for: song)
         ownerNameLabel.text = song.user?.username
         songNameLabel.text = song.title
         playButton.isHidden = true
-        view.insertSubview(blurEffectView, aboveSubview: coverScrollView)
     }
 
     private func setupDidTapGesture() {

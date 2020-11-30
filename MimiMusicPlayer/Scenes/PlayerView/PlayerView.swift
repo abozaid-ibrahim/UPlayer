@@ -18,10 +18,7 @@ protocol PlayerViewType {
 
 final class PlayerView: UIViewController {
     private let disposeBag = DisposeBag()
-
-    @IBOutlet var viewHeightConstrain: NSLayoutConstraint!
-    @IBOutlet private var fullPlayerContainer: UIView!
-    @IBOutlet private var miniPlayerContainer: UIStackView!
+    private let fullScreenView = FullScreenPlayerController(with: nil)
     @IBOutlet private var playPauseBtn: UIButton!
     @IBOutlet private var artistLabel: UILabel!
     @IBOutlet private var songLable: UILabel!
@@ -38,7 +35,7 @@ final class PlayerView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(enableFullScreenMode(sender:)))
-        miniPlayerContainer.addGestureRecognizer(tapRecognizer)
+        self.view.addGestureRecognizer(tapRecognizer)
         AudioPlayer.shared.state
             .map { UIImage(named: $0 == .playing ? "pause_button" : "play_button") }
             .bind(to: playPauseBtn.rx.image(for: .normal))
@@ -52,7 +49,6 @@ final class PlayerView: UIViewController {
 
 extension PlayerView: PlayerViewType {
     func play(song: Song) {
-        view.isHidden = false
         AudioPlayer.shared.play(with: song.streamURL, duration: song.duration)
         artistLabel.text = song.user?.username
         songLable.text = song.title
@@ -69,29 +65,13 @@ extension PlayerView: PlayerViewType {
     private func setupFullScreen(_ song: Song, _ pulses: [Float]) {
         var songWithPulses = song
         songWithPulses.pulses = pulses
-        let fullScreen = FullScreenPlayerController(with: songWithPulses)
-        addChild(fullScreen)
-        fullPlayerContainer.addSubview(fullScreen.view)
-        fullScreen.view.setConstrainsEqualToParentEdges()
-        fullScreen.disappeared.subscribe(onNext: { _ in
-            self.enableMiniScreenMode()
-        }).disposed(by: fullScreen.disposeBag)
-        enableFullScreenMode()
+        fullScreenView.song = songWithPulses
+        present(fullScreenView, animated: true, completion: {
+            self.view.isHidden = false
+        })
     }
 
     @objc private func enableFullScreenMode(sender: Any? = nil) {
-        miniPlayerContainer.isHidden = true
-        fullPlayerContainer.isHidden = false
-        UIView.animate(withDuration: 1.2, animations: {
-            self.viewHeightConstrain.constant = UIScreen.main.bounds.height - 20
-        })
-    }
-
-    private func enableMiniScreenMode() {
-        miniPlayerContainer.isHidden = false
-        fullPlayerContainer.isHidden = true
-        UIView.animate(withDuration: 1.2, animations: {
-            self.viewHeightConstrain.constant = 90
-        })
+        present(fullScreenView, animated: true, completion: nil)
     }
 }

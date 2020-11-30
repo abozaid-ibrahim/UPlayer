@@ -86,5 +86,5 @@ extension ArtistsListController {
 }
 
 extension String {
-    static var discover: String { "Popular Artists".localizedCapitalized }
+    static var discover: String { "Popular Tracks".localizedCapitalized }
 }

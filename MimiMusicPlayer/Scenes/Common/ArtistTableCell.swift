@@ -24,7 +24,7 @@ final class ArtistTableCell: UITableViewCell {
     func setData(for artist: Artist) {
         nameLabel.text = artist.username
         tracksLabel.text = ""
-        captionLabel.text = artist.caption
+        captionLabel.text = artist.trackTitle
         avatarView.setImage(with: artist.avatarURL)
     }
 }

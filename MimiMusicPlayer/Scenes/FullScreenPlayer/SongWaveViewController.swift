@@ -20,7 +20,10 @@ final class SongWaveViewController: UIViewController {
     @IBOutlet private var waveScrollView: UIScrollView!
     @IBOutlet private var waveContainerView: UIView!
     private var songWave: SongWave!
-    private let song: Song
+    var song: Song! {
+        didSet { createWaveView() }
+    }
+
     init(with song: Song) {
         self.song = song
         super.init(nibName: "SongWaveViewController", bundle: nil)
@@ -35,7 +38,6 @@ final class SongWaveViewController: UIViewController {
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
-
         createWaveView()
         setupWaveScrollView()
         setWaveBackgroundColorPattern()
@@ -53,6 +55,9 @@ final class SongWaveViewController: UIViewController {
     }
 
     private func createWaveView() {
+        guard let song = song, self.isViewLoaded else {
+            return
+        }
         let size = CGSize(width: view.frame.width * 2, height: waveScrollView.frame.height)
         let frame = CGRect(origin: view.frame.origin, size: size)
 

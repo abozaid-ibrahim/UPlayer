@@ -15,6 +15,7 @@ final class PlayerContainerController: UIViewController {
     private let disposeBag = DisposeBag()
     lazy var stack: UIStackView = {
         let stack = UIStackView()
+        stack.isUserInteractionEnabled = true
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fill

@@ -24,20 +24,12 @@ struct Song {
 import AVFoundation
 
 extension Song {
-    init(id: String, uid: String, duration: String, stream: URL, waveform: URL) {
-        self.id = id
-        userID = uid
-        durationString = duration
-        streamURL = stream
-        waveformData = waveform
-        user = nil
-        thumb = nil
-        genre = nil
-        title = nil
-        backgroundURL = nil
-    }
-
     var duration: Double { Double(durationString) ?? 0 }
+    var uiUserModel: Artist? {
+        var user = self.user
+        user?.trackTitle = title
+        return user
+    }
 }
 
 extension Song: Codable {

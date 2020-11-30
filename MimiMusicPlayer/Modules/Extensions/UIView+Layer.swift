@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-// MARK: - Properties
-
 public extension UIView {
     @IBInspectable var cornerRadius: CGFloat {
         get {

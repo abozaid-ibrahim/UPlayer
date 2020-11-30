@@ -54,7 +54,7 @@ private extension ArtistsViewModel {
     func updateUI(_ response: [Song]) {
         allSongsListCache.append(contentsOf: response)
         page.newPageFetched()
-        observer.artistsList.accept(response.compactMap { $0.user })
+        observer.artistsList.accept(response.compactMap { $0.uiUserModel })
     }
 
     func subscribeForUIInputs() {

@@ -10,10 +10,10 @@ import Foundation
 import RxCocoa
 import UIKit
 
-extension FullScreenPlayerController {
-    public var minimumVelocityToHide: CGFloat { 1500 }
-    public var minimumScreenRatioToHide: CGFloat { 0.5 }
-    public var animationDuration: TimeInterval { 0.2 }
+extension UIViewController {
+    var minimumVelocityToHide: CGFloat { 1500 }
+    var minimumScreenRatioToHide: CGFloat { 0.5 }
+    var animationDuration: TimeInterval { 0.2 }
 
     func enableSwipeToHide() {
         view.isUserInteractionEnabled = true
@@ -49,7 +49,7 @@ extension FullScreenPlayerController {
                 }, completion: { isCompleted in
                     if isCompleted {
                         // Dismiss the view when it dissapeared
-                        self.disappeared.accept(true)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 })
             } else {
