@@ -37,7 +37,7 @@ PRODUCT_BUNDLE_IDENTIFIER = abozaid.MimiMusicPlayer
 This application uses the Model-View-ViewModel (refered to as MVVM) UI architecture,
 
 
-## Structure
+## Folders Structure
 
 ### SupportingFiles
 - Group app shared fils, like app delegate, assets, info.plist, ...etc
@@ -79,5 +79,4 @@ This application uses the Model-View-ViewModel (refered to as MVVM) UI architect
 ### UX
 - Swipe the audio player full screen down to show up the mini player bar
 - Click on mini player view to show the full screen player
-
 
