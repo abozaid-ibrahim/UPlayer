@@ -36,20 +36,15 @@ PRODUCT_BUNDLE_IDENTIFIER = abozaid.MimiMusicPlayer
 ## Architecture
 This application uses the Model-View-ViewModel (refered to as MVVM) UI architecture,
 
-
 ## Folders Structure
-
 ### SupportingFiles
 - Group app shared fils, like app delegate, assets, info.plist, ...etc
-
 ### Modules
 - Include seperate modules, components, extensions, ...etc.
-
 ### Scenes
 - Group of app scenes.
 
 ### Dependencies
-
 * RxSwift
 * RxCocoa
 * SwiftLint
@@ -57,7 +52,6 @@ This application uses the Model-View-ViewModel (refered to as MVVM) UI architect
 
 
 ### TODOs
-
 - [x] Set-up dependencies
 - [x] Add Swiftlint yml, gitignore.
 - [x] Implement Artists List, Songs List
@@ -72,8 +66,8 @@ This application uses the Model-View-ViewModel (refered to as MVVM) UI architect
 - [ ] Cach the audio and json response
 - [ ] Auto play next audio file in the list.
 - [ ] Reach 100% code coverage.
-- [ ] Test the waveform drawer.
 - [ ] Add split controller for iPad
+- [ ] Play music in bg.
 
 
 ### UX
