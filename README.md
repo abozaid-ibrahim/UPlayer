@@ -71,8 +71,9 @@ This application uses the Model-View-ViewModel (refered to as MVVM) UI architect
 - [x] Enable audio player full screen page by swipe up.
 - [ ] Cach the audio and json response
 - [ ] Auto play next audio file in the list.
-- [ ] Reach 100% code coverage. (current is: 88%)
+- [ ] Reach 100% code coverage.
 - [ ] Test the waveform drawer.
+- [ ] Add split controller for iPad
 
 
 ### UX
