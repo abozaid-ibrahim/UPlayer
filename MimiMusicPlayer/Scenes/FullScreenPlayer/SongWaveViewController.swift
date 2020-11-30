@@ -19,6 +19,8 @@ final class SongWaveViewController: UIViewController {
     @IBOutlet private var rightWaveView: UIView!
     @IBOutlet private var waveScrollView: UIScrollView!
     @IBOutlet private var waveContainerView: UIView!
+    private let disposeBag = DisposeBag()
+    weak var delegate: SongWaveViewDelegate?
     private var songWave: SongWave!
     var song: Song! {
         didSet { createWaveView() }
@@ -34,8 +36,6 @@ final class SongWaveViewController: UIViewController {
         fatalError("Unsupported")
     }
 
-    weak var delegate: SongWaveViewDelegate?
-    private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
         createWaveView()
@@ -53,8 +53,10 @@ final class SongWaveViewController: UIViewController {
         newXpoint -= waveScrollView.contentInset.left
         waveScrollView.contentOffset = CGPoint(x: newXpoint, y: 0.0)
     }
+}
 
-    private func createWaveView() {
+private extension SongWaveViewController {
+    func createWaveView() {
         guard let song = song, self.isViewLoaded else {
             return
         }
@@ -67,7 +69,7 @@ final class SongWaveViewController: UIViewController {
         songWave.backgroundColor = .clear
     }
 
-    private func setupWaveScrollView() {
+    func setupWaveScrollView() {
         waveScrollView.decelerationRate = UIScrollView.DecelerationRate.fast
 
         waveScrollView.addSubview(songWave)
@@ -82,7 +84,7 @@ final class SongWaveViewController: UIViewController {
         waveScrollView.delegate = self
     }
 
-    private func setWaveBackgroundColorPattern() {
+    func setWaveBackgroundColorPattern() {
         leftWaveView.backgroundColor = UIColor(patternImage: UIImage(named: "leftWave_gradient")!)
         rightWaveView.backgroundColor = UIColor(patternImage: UIImage(named: "rightWave_gradient")!)
         waveContainerView.mask = waveScrollView

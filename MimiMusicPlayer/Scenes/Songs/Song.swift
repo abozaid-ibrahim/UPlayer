@@ -21,8 +21,6 @@ struct Song {
     var pulses: [Float] = []
 }
 
-import AVFoundation
-
 extension Song {
     var duration: Double { Double(durationString) ?? 0 }
     var uiUserModel: Artist? {

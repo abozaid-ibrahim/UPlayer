@@ -44,11 +44,9 @@ extension UIViewController {
 
             if closing {
                 UIView.animate(withDuration: animationDuration, animations: {
-                    // If closing, animate to the bottom of the view
                     slideViewVerticallyTo(self.view.frame.size.height)
                 }, completion: { isCompleted in
                     if isCompleted {
-                        // Dismiss the view when it dissapeared
                         self.dismiss(animated: true, completion: nil)
                     }
                 })

@@ -17,7 +17,7 @@ final class FullScreenPlayerController: UIViewController {
     @IBOutlet private var ownerNameLabel: UILabel!
     @IBOutlet private var songNameLabel: UILabel!
     @IBOutlet private var playButton: UIButton!
-    @IBOutlet var waveContainer: UIView!
+    @IBOutlet private var waveContainer: UIView!
     let disposeBag = DisposeBag()
     var song: Song! {
         didSet {
@@ -54,7 +54,7 @@ final class FullScreenPlayerController: UIViewController {
         setupUI()
         addWaveScrollController()
         setupDidTapGesture()
-        AudioPlayer.shared.audioProgress.subscribe(onNext: {
+        AudioPlayer.shared.audioProgress.subscribe(onNext: { [unowned self] in
             self.setPlayer(progress: $0)
         }).disposed(by: disposeBag)
         view.insertSubview(blurEffectView, aboveSubview: coverScrollView)
@@ -62,7 +62,7 @@ final class FullScreenPlayerController: UIViewController {
 
     func addWaveScrollController() {
         guard let songValue = song, self.isViewLoaded else { return }
-        guard let old = songWaveViewController else {
+        guard let waveController = songWaveViewController else {
             songWaveViewController = SongWaveViewController(with: songValue)
             songWaveViewController.delegate = self
             addChild(songWaveViewController)
@@ -70,7 +70,7 @@ final class FullScreenPlayerController: UIViewController {
             songWaveViewController.view.setConstrainsEqualToParentEdges()
             return
         }
-        old.song = song
+        waveController.song = song
     }
 
     private func setupUI() {
@@ -145,11 +145,10 @@ extension FullScreenPlayerController: SongWaveViewDelegate {
 
 extension FullScreenPlayerController {
     func setPlayer(progress: Double) {
-        if !isScrolling {
-            isScrolling = false
-            updateCoverScrollView(CGFloat(progress))
-            updateWave(CGFloat(progress * 2))
-            durationView.updateTime(with: CGFloat(progress), for: song)
-        }
+        guard !isScrolling else { return }
+        isScrolling = false
+        updateCoverScrollView(CGFloat(progress))
+        updateWave(CGFloat(progress * 2))
+        durationView.updateTime(with: CGFloat(progress), for: song)
     }
 }
