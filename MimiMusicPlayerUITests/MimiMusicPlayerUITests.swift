@@ -28,7 +28,7 @@ final class MimiMusicPlayerUITests: XCTestCase {
         }
 
         func assertFullScreenPlayerViewExistThenSwipeDown() {
-            XCTAssertTrue(app.otherElements["FullScreenPlayer"].exists)
+            XCTAssertTrue(app.otherElements["FullScreenPlayer"].waitForExistence(timeout: 0.1))
             app.swipeDown(velocity: 2000)
         }
         func assertMiniPlayerViewExistAfterNavigationBack() {
