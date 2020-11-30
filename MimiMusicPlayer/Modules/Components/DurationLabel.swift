@@ -33,7 +33,7 @@ final class DurationLabel: UIView {
                                let yTransform = CGAffineTransform(translationX: 0.0, y: yTransform)
                                let scaleTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
                                self.transform = yTransform.concatenating(scaleTransform)
-                               self.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+                               self.backgroundColor = UIColor.blackColor.withAlphaComponent(0.5)
                            }, completion: nil)
         } else {
             UIView.animate(withDuration: animationDuration,
@@ -42,7 +42,7 @@ final class DurationLabel: UIView {
                                let yTransform = CGAffineTransform(translationX: 0.0, y: 0.0)
                                let scaleTransform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                                self.transform = yTransform.concatenating(scaleTransform)
-                               self.backgroundColor = UIColor.black
+                               self.backgroundColor = .blackColor
                            }, completion: nil)
         }
     }

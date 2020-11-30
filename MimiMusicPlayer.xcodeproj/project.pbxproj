@@ -44,7 +44,6 @@
 		6CCB15F8256DA188002C556F /* ArtistAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB15F7256DA188002C556F /* ArtistAPI.swift */; };
 		6CCB15FD256DA2AA002C556F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB15FC256DA2AA002C556F /* ActivityIndicatorView.swift */; };
 		6CD1E4532572F47B0023C788 /* UITableView+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1E4522572F47B0023C788 /* UITableView+Header.swift */; };
-		6CD1E4582572FA760023C788 /* SwiftUIPreview+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1E4572572FA760023C788 /* SwiftUIPreview+UIKit.swift */; };
 		6CD1E45D25730DAD0023C788 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6CD1E45C25730DAD0023C788 /* README.md */; };
 		6CD1E487257331D00023C788 /* SongWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1E46B25732E790023C788 /* SongWave.swift */; };
 		6CD1E48D257331D40023C788 /* DurationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1E46F25732E790023C788 /* DurationLabel.swift */; };
@@ -125,7 +124,6 @@
 		6CCB15F7256DA188002C556F /* ArtistAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAPI.swift; sourceTree = "<group>"; };
 		6CCB15FC256DA2AA002C556F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		6CD1E4522572F47B0023C788 /* UITableView+Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Header.swift"; sourceTree = "<group>"; };
-		6CD1E4572572FA760023C788 /* SwiftUIPreview+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftUIPreview+UIKit.swift"; sourceTree = "<group>"; };
 		6CD1E45C25730DAD0023C788 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6CD1E46B25732E790023C788 /* SongWave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongWave.swift; sourceTree = "<group>"; };
 		6CD1E46F25732E790023C788 /* DurationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationLabel.swift; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 				6C0ADE57256D9D9500522733 /* ImageDownloader.swift */,
 				6C4DA7582572BEBB006FEB31 /* UIColor+DarkMode.swift */,
 				6CD1E4522572F47B0023C788 /* UITableView+Header.swift */,
-				6CD1E4572572FA760023C788 /* SwiftUIPreview+UIKit.swift */,
 				6CCB0A1225742CF70012EA73 /* Double+Format.swift */,
 			);
 			path = Extensions;
@@ -663,7 +660,6 @@
 				6C0ADE4C256D9CBE00522733 /* UIViewController+Error.swift in Sources */,
 				6C0ADE51256D9CBE00522733 /* UIView+Constrains.swift in Sources */,
 				6C0ADE3D256D9A9700522733 /* ArtistsListController.swift in Sources */,
-				6CD1E4582572FA760023C788 /* SwiftUIPreview+UIKit.swift in Sources */,
 				6C8E3A21256FEF7800BEA7C4 /* Song.swift in Sources */,
 				6C0ADE62256D9D9500522733 /* NetworkError.swift in Sources */,
 				6CCB0A0E257420340012EA73 /* SwipeTodismiss.swift in Sources */,
@@ -787,7 +783,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -841,7 +837,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -868,7 +864,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = abozaid.MimiMusicPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -889,7 +885,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = abozaid.MimiMusicPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

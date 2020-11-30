@@ -33,7 +33,7 @@ final class ArtistsListController: UITableViewController {
 
 private extension ArtistsListController {
     func setupTableView() {
-        tableView.rowHeight = 60
+        tableView.rowHeight = 70
         tableView.accessibilityIdentifier = "ArtistsTable"
         tableView.tableFooterView = ActivityIndicatorView()
         tableView.register(ArtistTableCell.self)

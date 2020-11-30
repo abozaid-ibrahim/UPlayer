@@ -39,7 +39,7 @@ final class SongsListController: UIViewController {
 
 private extension SongsListController {
     func setupTableView() {
-        tableView.rowHeight = 60
+        tableView.rowHeight = 65
         tableView.tableFooterView = UIView()
         tableView.tableHeaderView = SongsViewHeader(with: viewModel.artist)
         tableView.sizeHeaderToFit()

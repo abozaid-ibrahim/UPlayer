@@ -19,4 +19,14 @@ public extension UIColor {
             return UIColor.white
         }
     }
+
+    static var blackColor: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                UITraitCollection.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
+            }
+        } else {
+            return UIColor.black
+        }
+    }
 }

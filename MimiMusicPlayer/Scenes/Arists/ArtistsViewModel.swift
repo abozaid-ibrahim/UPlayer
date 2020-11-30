@@ -61,7 +61,7 @@ private extension ArtistsViewModel {
         observer.loadMoreCells
             .distinctUntilChanged()
             .subscribeOn(scheduler)
-            .filter { [unowned self] in $0.contains(where: { $0.row >= self.observer.artistsList.value.count - 1 }) }
+            .filter { [unowned self] in $0.contains(where: { $0.row >= self.allSongsListCache.count - 1 }) }
             .filter { [unowned self] _ in self.page.shouldLoadMore }
             .bind(onNext: { [unowned self] _ in self.loadData() })
             .disposed(by: disposeBag)
