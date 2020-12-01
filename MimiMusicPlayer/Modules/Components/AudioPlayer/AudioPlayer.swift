@@ -25,12 +25,8 @@ protocol AudioPlayerType {
 final class AudioPlayer: NSObject, AudioPlayerType {
     let audioProgress = PublishRelay<Double>()
     let state = BehaviorRelay<State>(value: .idle)
-    static let shared = AudioPlayer()
     private let disposeBag = DisposeBag()
     private var player: AVPlayer?
-    override private init() {
-        // Singleton
-    }
 
     func play(with url: URL, duration: Double) {
         let item = AVPlayerItem(url: url)
@@ -46,29 +42,6 @@ final class AudioPlayer: NSObject, AudioPlayerType {
         setPlaybackActive()
         playCurrent(item: item)
         updateProgress(with: duration)
-    }
-
-    private func playCurrent(item: AVPlayerItem) {
-        player?.replaceCurrentItem(with: item)
-        player?.play()
-        state.accept(.playing)
-    }
-
-    private func setPlaybackActive() {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            state.accept(.error(error.localizedDescription))
-        }
-    }
-
-    private func updateProgress(with duration: Double) {
-        player?.rx.periodicTimeObserver(interval: CMTime(seconds: 0.2, preferredTimescale: CMTimeScale(NSEC_PER_SEC)))
-            .distinctUntilChanged()
-            .map { $0.seconds / duration }
-            .bind(to: audioProgress)
-            .disposed(by: disposeBag)
     }
 
     func pause() {
@@ -104,17 +77,27 @@ final class AudioPlayer: NSObject, AudioPlayerType {
     }
 }
 
-extension Reactive where Base: AVPlayer {
-    var error: Observable<Error?> {
-        return observe(Error.self, #keyPath(AVPlayer.error))
+private extension AudioPlayer {
+    func playCurrent(item: AVPlayerItem) {
+        player?.replaceCurrentItem(with: item)
+        player?.play()
+        state.accept(.playing)
     }
 
-    func periodicTimeObserver(interval: CMTime) -> Observable<CMTime> {
-        return Observable.create { observer in
-            let timeObserver = self.base.addPeriodicTimeObserver(forInterval: interval, queue: nil) { time in
-                observer.onNext(time)
-            }
-            return Disposables.create { self.base.removeTimeObserver(timeObserver) }
+    func setPlaybackActive() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            state.accept(.error(error.localizedDescription))
         }
+    }
+
+    func updateProgress(with duration: Double) {
+        player?.rx.periodicTimeObserver(interval: CMTime(seconds: 0.2, preferredTimescale: CMTimeScale(NSEC_PER_SEC)))
+            .distinctUntilChanged()
+            .map { $0.seconds / duration }
+            .bind(to: audioProgress)
+            .disposed(by: disposeBag)
     }
 }
