@@ -11,11 +11,11 @@ import Foundation
 import MobileCoreServices
 import RxCocoa
 import RxSwift
-
+typealias PlayerItem = (url: URL, duration: Double)
 protocol AudioPlayerType {
     var state: BehaviorRelay<State> { get }
+    var play: PublishRelay<PlayerItem> { get }
     var audioProgress: PublishRelay<Double> { get }
-    func play(with url: URL, duration: Double)
     func pause()
     func toggle()
     func seek(to percentage: Double)
@@ -23,25 +23,17 @@ protocol AudioPlayerType {
 }
 
 final class AudioPlayer: NSObject, AudioPlayerType {
+    let play = PublishRelay<PlayerItem>()
     let audioProgress = PublishRelay<Double>()
     let state = BehaviorRelay<State>(value: .idle)
     private let disposeBag = DisposeBag()
     private var player: AVPlayer?
-
-    func play(with url: URL, duration: Double) {
-        let item = AVPlayerItem(url: url)
-        guard player == nil else {
-            playCurrent(item: item)
-            return
-        }
-        player = AVPlayer(playerItem: item)
-        player?.rx.error
-            .filter { $0 != nil }
-            .bind(onNext: { [unowned self] in self.state.accept(.error($0?.localizedDescription ?? "")) })
+    static let shared = AudioPlayer()
+    override private init() {
+        super.init()
+        play.observeOn(SerialDispatchQueueScheduler(qos: .default))
+            .bind(onNext: { [unowned self] in self.play(with: $0.url, duration: $0.duration) })
             .disposed(by: disposeBag)
-        setPlaybackActive()
-        playCurrent(item: item)
-        updateProgress(with: duration)
     }
 
     func pause() {
@@ -78,6 +70,22 @@ final class AudioPlayer: NSObject, AudioPlayerType {
 }
 
 private extension AudioPlayer {
+    func play(with url: URL, duration: Double) {
+        let item = AVPlayerItem(url: url)
+        setPlaybackActive()
+        guard player == nil else {
+            playCurrent(item: item)
+            return
+        }
+        player = AVPlayer(playerItem: item)
+        player?.rx.error
+            .filter { $0 != nil }
+            .bind(onNext: { [unowned self] in self.state.accept(.error($0?.localizedDescription ?? "")) })
+            .disposed(by: disposeBag)
+        playCurrent(item: item)
+        updateProgress(with: duration)
+    }
+
     func playCurrent(item: AVPlayerItem) {
         player?.replaceCurrentItem(with: item)
         player?.play()

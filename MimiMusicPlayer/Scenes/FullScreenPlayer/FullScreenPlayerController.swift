@@ -20,10 +20,10 @@ final class FullScreenPlayerController: UIViewController {
     @IBOutlet private var waveContainer: UIView!
     private let disposeBag = DisposeBag()
     private let song: Song
-
-    fileprivate var isScrolling = false
-    fileprivate var songWaveViewController: SongWaveViewController!
     private let player: AudioPlayerType
+    private var isScrolling = false
+    private var songWaveViewController: SongWaveViewController!
+
     init(with song: Song, player: AudioPlayerType) {
         self.song = song
         self.player = player
@@ -63,8 +63,10 @@ final class FullScreenPlayerController: UIViewController {
         waveContainer.addSubview(songWaveViewController.view)
         songWaveViewController.view.setConstrainsEqualToParentEdges()
     }
+}
 
-    private func setupUI() {
+private extension FullScreenPlayerController {
+    func setupUI() {
         coverImageView.setImage(with: song.backgroundURL)
         durationView.setDuration(for: song)
         ownerNameLabel.text = song.user?.username
@@ -72,7 +74,7 @@ final class FullScreenPlayerController: UIViewController {
         playButton.isHidden = true
     }
 
-    private func setupDidTapGesture() {
+    func setupDidTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         view.addGestureRecognizer(tapGesture)
     }
@@ -82,6 +84,14 @@ final class FullScreenPlayerController: UIViewController {
         blurEffectView.isHidden.toggle()
         songWaveViewController.toggleWave()
         player.toggle()
+    }
+
+    func setPlayer(progress: Double) {
+        guard !isScrolling else { return }
+        isScrolling = false
+        updateCoverScrollView(CGFloat(progress))
+        updateWave(CGFloat(progress * 2))
+        durationView.updateTime(with: CGFloat(progress), for: song)
     }
 }
 
@@ -135,15 +145,5 @@ extension FullScreenPlayerController: SongWaveViewDelegate {
             return
         }
         playButton.isHidden.toggle()
-    }
-}
-
-extension FullScreenPlayerController {
-    func setPlayer(progress: Double) {
-        guard !isScrolling else { return }
-        isScrolling = false
-        updateCoverScrollView(CGFloat(progress))
-        updateWave(CGFloat(progress * 2))
-        durationView.updateTime(with: CGFloat(progress), for: song)
     }
 }

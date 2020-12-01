@@ -39,6 +39,7 @@ private extension PlayerContainerController {
         addChild(navigationController)
         stack.addArrangedSubview(navigationController.view)
         navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.shadowImage = UIImage()
     }
 
     func addMiniPlayer() {

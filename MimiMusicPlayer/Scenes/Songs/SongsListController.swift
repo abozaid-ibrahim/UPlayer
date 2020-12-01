@@ -42,7 +42,7 @@ final class SongsListController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.prefersLargeTitles = true
 
     }
 }

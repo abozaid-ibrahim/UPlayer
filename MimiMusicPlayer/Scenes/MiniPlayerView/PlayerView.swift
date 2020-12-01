@@ -22,11 +22,9 @@ final class PlayerView: UIViewController {
     @IBOutlet private var artistLabel: UILabel!
     @IBOutlet private var songLable: UILabel!
     private var fullScreenView: FullScreenPlayerController?
-    private let player: AudioPlayerType
-
+    private let player: AudioPlayerType = AudioPlayer.shared
     static let shared = PlayerView()
     private init() {
-        player = AudioPlayer()
         super.init(nibName: "PlayerView", bundle: nil)
     }
 
@@ -44,28 +42,21 @@ final class PlayerView: UIViewController {
             .bind(to: playPauseBtn.rx.image(for: .normal))
             .disposed(by: disposeBag)
     }
-
-    @IBAction func togglePlayAction(_ sender: Any) {
-        player.toggle()
-    }
 }
 
-extension PlayerView: PlayerViewType {
-    func play(song: Song) {
-        player.play(with: song.streamURL, duration: song.duration)
-        artistLabel.text = song.user?.username
-        songLable.text = song.title
-        loadPulses(song)
+private extension PlayerView {
+    @IBAction private func togglePlayAction(_ sender: Any) {
+        player.toggle()
     }
 
-    private func loadPulses(_ song: Song) {
+    func loadPulses(_ song: Song) {
         song.loadPulses()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] in self.setupFullScreen(song, $0) })
             .disposed(by: disposeBag)
     }
 
-    private func setupFullScreen(_ song: Song, _ pulses: [Float]) {
+    func setupFullScreen(_ song: Song, _ pulses: [Float]) {
         var songWithPulses = song
         songWithPulses.pulses = pulses
         fullScreenView = FullScreenPlayerController(with: songWithPulses, player: player)
@@ -78,10 +69,19 @@ extension PlayerView: PlayerViewType {
         })
     }
 
-    @objc private func enableFullScreenMode(sender: Any? = nil) {
+    @objc func enableFullScreenMode(sender: Any? = nil) {
         guard let controller = fullScreenView else {
             return
         }
         present(controller, animated: true, completion: nil)
+    }
+}
+
+extension PlayerView: PlayerViewType {
+    func play(song: Song) {
+        player.play.accept((url: song.streamURL, duration: song.duration))
+        artistLabel.text = song.user?.username
+        songLable.text = song.title
+        loadPulses(song)
     }
 }

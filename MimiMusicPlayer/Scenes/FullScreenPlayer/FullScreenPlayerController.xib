@@ -78,7 +78,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UaR-qW-yHI" customClass="DurationLabel" customModule="MimiMusicPlayer" customModuleProvider="target">
-                    <rect key="frame" x="168" y="689.5" width="78" height="21"/>
+                    <rect key="frame" x="168" y="655.5" width="78" height="21"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fk-Kv-B0T">
                             <rect key="frame" x="4" y="2" width="30.5" height="17"/>
@@ -136,7 +136,7 @@
                 <constraint firstItem="C2G-ZH-fff" firstAttribute="centerY" secondItem="umm-Ca-qcK" secondAttribute="centerY" id="WbL-2G-Yh9"/>
                 <constraint firstItem="nJk-8I-1Hh" firstAttribute="leading" secondItem="vTg-b5-MOU" secondAttribute="leading" id="Ymd-dl-AaF"/>
                 <constraint firstItem="KFu-ia-2L0" firstAttribute="trailing" secondItem="umm-Ca-qcK" secondAttribute="trailing" id="e4d-v4-gh8"/>
-                <constraint firstItem="lA8-lM-6Vz" firstAttribute="centerY" secondItem="UaR-qW-yHI" secondAttribute="centerY" constant="-24" id="lfh-mt-CjF"/>
+                <constraint firstItem="lA8-lM-6Vz" firstAttribute="centerY" secondItem="UaR-qW-yHI" secondAttribute="centerY" constant="10" id="lfh-mt-CjF"/>
                 <constraint firstItem="nJk-8I-1Hh" firstAttribute="top" secondItem="vTg-b5-MOU" secondAttribute="bottom" constant="8" id="pGK-xq-WR4"/>
                 <constraint firstItem="KFu-ia-2L0" firstAttribute="leading" secondItem="umm-Ca-qcK" secondAttribute="leading" id="rNU-LI-ODb"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vTg-b5-MOU" secondAttribute="trailing" constant="20" symbolic="YES" id="s31-rR-PI2"/>
