@@ -60,7 +60,7 @@ private extension SongWaveViewController {
     }
 
     func createWaveView() {
-        let size = CGSize(width: view.frame.width * 2, height: waveScrollView.frame.height)
+        let size = CGSize(width: view.frame.width * 2, height: 200)
         let frame = CGRect(origin: view.frame.origin, size: size)
         songWave = SongWave(frame: frame)
         songWave.pulses = song.pulses
