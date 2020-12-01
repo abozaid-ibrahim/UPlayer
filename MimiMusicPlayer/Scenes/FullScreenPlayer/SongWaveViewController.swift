@@ -11,6 +11,7 @@ import UIKit
 protocol SongWaveViewDelegate: class {
     func songWaveView(didScroll percentage: CGFloat)
     func songWaveView(willBeginDragging: Bool, percentage: CGFloat)
+    func songWaveView(percentage: CGFloat)
     func songWaveView(didEndDragging: Bool, percentage: CGFloat)
 }
 
@@ -105,7 +106,7 @@ extension SongWaveViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         waveScrollView.contentOffset = scrollView.contentOffset
         let offsetPercentage = (scrollView.contentOffset.x + scrollView.contentInset.left) / scrollView.contentSize.width
-        delegate?.songWaveView(willBeginDragging: true, percentage: offsetPercentage)
+        delegate?.songWaveView(percentage: offsetPercentage)
     }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView,

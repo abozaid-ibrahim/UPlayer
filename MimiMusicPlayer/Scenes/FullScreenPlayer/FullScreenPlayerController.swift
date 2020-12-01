@@ -18,7 +18,7 @@ final class FullScreenPlayerController: UIViewController {
     @IBOutlet private var songNameLabel: UILabel!
     @IBOutlet private var playButton: UIButton!
     @IBOutlet private var waveContainer: UIView!
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     private let song: Song
 
     fileprivate var isScrolling = false
@@ -49,10 +49,8 @@ final class FullScreenPlayerController: UIViewController {
         addWaveScrollController()
         setupDidTapGesture()
         AudioPlayer.shared.audioProgress
-            .distinctUntilChanged()
-            .subscribe(onNext: { [unowned self] in
-            self.setPlayer(progress: $0)
-        }).disposed(by: disposeBag)
+            .subscribe(onNext: { [unowned self] in self.setPlayer(progress: $0) })
+            .disposed(by: disposeBag)
         view.insertSubview(blurEffectView, aboveSubview: coverScrollView)
     }
 
@@ -98,6 +96,11 @@ extension FullScreenPlayerController: SongWaveViewDelegate {
     func songWaveView(willBeginDragging: Bool, percentage: CGFloat) {
         guard willBeginDragging else { return }
         isScrolling = true
+        durationView.animate(scale: true)
+        updatePlayButtonVisibility(hide: true)
+    }
+
+    func songWaveView(percentage: CGFloat) {
         durationView.animate(scale: true)
         updatePlayButtonVisibility(hide: true)
     }
