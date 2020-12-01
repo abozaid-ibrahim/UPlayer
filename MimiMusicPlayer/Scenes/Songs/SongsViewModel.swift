@@ -17,10 +17,9 @@ protocol SongsViewModelType {
 
 final class SongsViewModel: SongsViewModelType {
     let songsList: BehaviorRelay<[Song]>
-    private let disposeBag = DisposeBag()
     let artist: Artist
     init(with artist: Artist, and songs: [Song]) {
-        songsList = BehaviorRelay<[Song]>(value: songs)
+        self.songsList = BehaviorRelay<[Song]>(value: songs)
         self.artist = artist
     }
 }

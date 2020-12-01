@@ -18,13 +18,15 @@ final class FullScreenPlayerController: UIViewController {
     @IBOutlet private var songNameLabel: UILabel!
     @IBOutlet private var playButton: UIButton!
     @IBOutlet private var waveContainer: UIView!
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     private let song: Song
 
     fileprivate var isScrolling = false
     fileprivate var songWaveViewController: SongWaveViewController!
-    init(with song: Song) {
+    private let player: AudioPlayerType
+    init(with song: Song, player: AudioPlayerType) {
         self.song = song
+        self.player = player
         super.init(nibName: "FullScreenPlayerController", bundle: nil)
     }
 
@@ -48,11 +50,9 @@ final class FullScreenPlayerController: UIViewController {
         setupUI()
         addWaveScrollController()
         setupDidTapGesture()
-        AudioPlayer.shared.audioProgress
-            .distinctUntilChanged()
-            .subscribe(onNext: { [unowned self] in
-            self.setPlayer(progress: $0)
-        }).disposed(by: disposeBag)
+        player.audioProgress
+            .subscribe(onNext: { [unowned self] in self.setPlayer(progress: $0) })
+            .disposed(by: disposeBag)
         view.insertSubview(blurEffectView, aboveSubview: coverScrollView)
     }
 
@@ -81,7 +81,7 @@ final class FullScreenPlayerController: UIViewController {
         playButton.isHidden.toggle()
         blurEffectView.isHidden.toggle()
         songWaveViewController.toggleWave()
-        AudioPlayer.shared.toggle()
+        player.toggle()
     }
 }
 
@@ -90,14 +90,19 @@ extension FullScreenPlayerController: SongWaveViewDelegate {
         durationView.updateTime(with: percentage, for: song)
         updateCoverScrollView(CGFloat(percentage))
 
-        if AudioPlayer.shared.state.value == .paused && blurEffectView.isHidden {
-            AudioPlayer.shared.resume(to: Double(percentage))
+        if player.state.value == .paused && blurEffectView.isHidden {
+            player.resume(to: Double(percentage))
         }
     }
 
     func songWaveView(willBeginDragging: Bool, percentage: CGFloat) {
         guard willBeginDragging else { return }
         isScrolling = true
+        durationView.animate(scale: true)
+        updatePlayButtonVisibility(hide: true)
+    }
+
+    func songWaveView(percentage: CGFloat) {
         durationView.animate(scale: true)
         updatePlayButtonVisibility(hide: true)
     }
@@ -122,7 +127,7 @@ extension FullScreenPlayerController: SongWaveViewDelegate {
     }
 
     private func updateAudioPlayer(_ percentage: CGFloat) {
-        AudioPlayer.shared.seek(to: Double(percentage))
+        player.seek(to: Double(percentage))
     }
 
     private func updatePlayButtonVisibility(hide: Bool) {

@@ -22,9 +22,11 @@ final class PlayerView: UIViewController {
     @IBOutlet private var artistLabel: UILabel!
     @IBOutlet private var songLable: UILabel!
     private var fullScreenView: FullScreenPlayerController?
+    private let player: AudioPlayerType
 
     static let shared = PlayerView()
     private init() {
+        player = AudioPlayer()
         super.init(nibName: "PlayerView", bundle: nil)
     }
 
@@ -37,20 +39,20 @@ final class PlayerView: UIViewController {
         super.viewDidLoad()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(enableFullScreenMode(sender:)))
         view.addGestureRecognizer(tapRecognizer)
-        AudioPlayer.shared.state
+        player.state
             .map { UIImage(named: $0 == .playing ? "pause_button" : "play_button") }
             .bind(to: playPauseBtn.rx.image(for: .normal))
             .disposed(by: disposeBag)
     }
 
     @IBAction func togglePlayAction(_ sender: Any) {
-        AudioPlayer.shared.toggle()
+        player.toggle()
     }
 }
 
 extension PlayerView: PlayerViewType {
     func play(song: Song) {
-        AudioPlayer.shared.play(with: song.streamURL, duration: song.duration)
+        player.play(with: song.streamURL, duration: song.duration)
         artistLabel.text = song.user?.username
         songLable.text = song.title
         loadPulses(song)
@@ -66,7 +68,7 @@ extension PlayerView: PlayerViewType {
     private func setupFullScreen(_ song: Song, _ pulses: [Float]) {
         var songWithPulses = song
         songWithPulses.pulses = pulses
-        fullScreenView = FullScreenPlayerController(with: songWithPulses)
+        fullScreenView = FullScreenPlayerController(with: songWithPulses, player: player)
         guard let controller = fullScreenView else {
             return
         }
