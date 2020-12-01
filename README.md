@@ -54,21 +54,23 @@ This application uses the Model-View-ViewModel (refered to as MVVM) UI architect
 
 ## TODOs
 - [x] Set-up dependencies
-- [x] Add Swiftlint yml, gitignore.
-- [x] Implement Artists List, Songs List
+- [x] Add swiftlint yml, gitignore.
+- [x] Implement artists list, songs list
 - [x] Paginate the artists API
-- [x] Implement Audio player
+- [x] Implement audio player
 - [x] Check different device size and different orientation
 - [x] Check dark mode
 - [x] Add unittests
-- [x] Add UITests
+- [x] Add ui-tests
 - [x] Render waveform to audio player
 - [x] Enable audio player full screen page by swipe up.
 - [ ] Cach the audio and json response
 - [ ] Auto play next audio file in the list.
 - [ ] Reach 100% code coverage.
 - [ ] Add split controller for iPad
-- [ ] Play music in bg.
+- [ ] Play music in background
+- [ ] Add xcconfig
+- [ ] Move modules into framework.
 
 ## UX
 - Swipe the audio player full screen down to show up the mini player bar
