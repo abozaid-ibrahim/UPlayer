@@ -31,28 +31,4 @@ extension ArtistAPI: RequestBuilder {
                     "page": page.currentPage]
         }
     }
-
-    var request: URLRequest? {
-        guard let url = URL(string: baseURL + path) else {
-            return nil
-        }
-        var items = [URLQueryItem]()
-        var urlComponents = URLComponents(string: url.absoluteString)
-        for (key, value) in parameters {
-            items.append(URLQueryItem(name: key, value: "\(value)"))
-        }
-        urlComponents?.queryItems = items
-        guard let queryUrl = urlComponents?.url else {
-            return nil
-        }
-        var request = URLRequest(url: queryUrl,
-                                 cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData,
-                                 timeoutInterval: 30)
-        request.httpMethod = method.rawValue
-        return request
-    }
-
-    var headers: [String: String]? {
-        return ["Content-Type": "application/x-www-form-urlencoded"]
-    }
 }

@@ -13,7 +13,8 @@ struct Song {
     let userID: String
     private let durationString: String
     let streamURL: URL
-    let genre, title: String?
+    let genre: String?
+    let title: String?
     let thumb: URL?
     let waveformData: URL?
     let backgroundURL: URL?
@@ -43,15 +44,5 @@ extension Song: Codable {
         case user
         case streamURL = "stream_url"
         case backgroundURL = "background_url"
-    }
-}
-
-import RxSwift
-extension Song {
-    func loadPulses() -> Observable<[Float]> {
-        guard let url = waveformData else { return Observable.empty() }
-        return URLSession.shared.rx.data(request: .init(url: url))
-            .map { try JSONDecoder().decode([Float].self, from: $0) }
-            .compactMap { $0.map { $0 / 500 }}
     }
 }
