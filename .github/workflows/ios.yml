@@ -21,8 +21,9 @@ jobs:
           echo $default | cat >default
           echo Using default scheme: $default
           
-    - name: Dependencies
-      run: bundle exec pod install
+      - name: Setup Cocoapods
+        run: bundle exec pod install
+
 
       - name: Build
         env:
