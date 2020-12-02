@@ -1,10 +1,14 @@
 # MimiMusicPlayer
+</p>
+  <p align="center">
+<img src="https://img.shields.io/github/workflow/status/abuzeid-ibrahim/MimiMusicPlayer/iOS%20starter%20workflow/master">
 <a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift"/></a>
-<img src="https://img.shields.io/badge/Platform-iOS%2012.4+-lightgrey.svg" alt="Platform: iOS">
+<img src="https://img.shields.io/badge/Platform-iOS%2011.0+-lightgrey.svg" alt="Platform: iOS">
 <img src="https://img.shields.io/badge/XCode-11.5%2B-lightgrey">
-<img src="https://img.shields.io/badge/Code%20Coverage-69%25-brightgreen">
+<img src="https://img.shields.io/badge/Code%20Coverage-71%25-brightgreen">
+</p>
 
-MVP music player consumes HearThisAt API shows the populer tracks
+MVP music player consumes HearThisAt API to show the populer tracks
  
  <p align="center">
  <img src="https://github.com/abuzeid-ibrahim/MimiMusicPlayer/blob/master/demo.gif" width="50%">
@@ -64,6 +68,7 @@ This application uses the Model-View-ViewModel (refered to as MVVM) UI architect
 - [x] Add ui-tests
 - [x] Render waveform to audio player
 - [x] Enable audio player full screen page by swipe up.
+- [x] Add CD pipeline lik github action.
 - [ ] Cach the audio and json response
 - [ ] Auto play next audio file in the list.
 - [ ] Reach 100% code coverage.
