@@ -59,7 +59,7 @@ final class ArtistsViewModelTests: XCTestCase {
         testScheduler.scheduleAt(0, action: { viewModel.loadData() })
         testScheduler.start()
         // Then
-        XCTAssertEqual(uiErrorObserver.events, [.next(1, NetworkError.connectionFailed.localizedDescription)])
+        XCTAssertEqual(uiErrorObserver.events, [.next(1, NetworkError.failedToParseData.localizedDescription)])
     }
 }
 
@@ -79,7 +79,7 @@ final class APISuccessMocking: ApiClient {
 final class APIFailureMocking: ApiClient {
     func getData(of request: RequestBuilder?) -> Observable<Data> {
         return Observable<Data>.create { observer in
-            observer.onError(NetworkError.connectionFailed)
+            observer.onError(NetworkError.failedToParseData)
             return Disposables.create()
         }
     }

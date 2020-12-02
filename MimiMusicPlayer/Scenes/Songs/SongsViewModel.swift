@@ -19,7 +19,16 @@ final class SongsViewModel: SongsViewModelType {
     let songsList: BehaviorRelay<[Song]>
     let artist: Artist
     init(with artist: Artist, and songs: [Song]) {
-        self.songsList = BehaviorRelay<[Song]>(value: songs)
+        songsList = BehaviorRelay<[Song]>(value: songs)
         self.artist = artist
+    }
+}
+
+extension Song {
+    func loadPulses() -> Observable<[Float]> {
+        guard let url = waveformData else { return Observable.empty() }
+        return URLSession.shared.rx.data(request: .init(url: url))
+            .map { try JSONDecoder().decode([Float].self, from: $0) }
+            .compactMap { $0.map { $0 / 500 }}
     }
 }
