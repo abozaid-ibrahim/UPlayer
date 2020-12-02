@@ -22,7 +22,7 @@ jobs:
           echo Using default scheme: $default
           
       - name: Setup Cocoapods
-        run: bundle exec pod install
+        run: pod install
 
 
       - name: Build
