@@ -23,7 +23,7 @@ final class MimiMusicPlayerUITests: XCTestCase {
             artistsTable.cells.firstMatch.tap()
         }
         func assertArtistTracksListExistsThenPlayTrack() {
-            XCTAssertTrue(app.tables["SongsTable"].waitForExistence(timeout: 0.2))
+            XCTAssertTrue(app.tables["SongsTable"].waitForExistence(timeout: 0.02))
             app.tables["SongsTable"].cells.firstMatch.tap()
         }
 
@@ -32,7 +32,7 @@ final class MimiMusicPlayerUITests: XCTestCase {
             app.swipeDown(velocity: 2000)
         }
         func assertMiniPlayerViewExistAfterNavigationBack() {
-            XCTAssertTrue(app.otherElements["PlayerView"].waitForExistence(timeout: 0.1))
+            XCTAssertTrue(app.otherElements["PlayerView"].waitForExistence(timeout: 0.02))
             XCTAssertTrue(app.buttons["play"].exists)
             app.buttons["play"].tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
