@@ -1,6 +1,6 @@
 # MimiMusicPlayer
 </p>
-  <p align="center">
+ <p align="center">
 <img src="https://img.shields.io/github/workflow/status/abuzeid-ibrahim/MimiMusicPlayer/iOS%20starter%20workflow/master">
 <a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift"/></a>
 <img src="https://img.shields.io/badge/Platform-iOS%2011.0+-lightgrey.svg" alt="Platform: iOS">
@@ -8,21 +8,21 @@
 <img src="https://img.shields.io/badge/Code%20Coverage-71%25-brightgreen">
 </p>
 
-MVP music player consumes HearThisAt API to show the populer tracks
+MVP music player consumes HearThisAt API to show the popular tracks
  
  <p align="center">
  <img src="https://github.com/abuzeid-ibrahim/MimiMusicPlayer/blob/master/demo.gif" width="50%">
  </p>
 
 ## Getting Started
-- If this is your first time encountering swift/ios development, please follow [the instructions](https://developer.apple.com/support/xcode/) to setup Xcode and Swift on your Mac.
-- To setup cocoapods for dependency management, make use of [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started)
+- If this is your first time encountering swift/ios development, please follow [the instructions](https://developer.apple.com/support/xcode/) to set up Xcode and Swift on your Mac.
+- To set up cocoa pods for dependency management, make use of [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started)
 
 ## Setup Configs
-- Checkout master branch to run latest version
+- Checkout master branch to run the latest version
 - Open the terminal and navigate to the project root directory.
-- Make sure you have cocoapods setup, then run: pod install
-- Open the project by double clicking the `MimiMusicPlayer.xcworkspace` file
+- Make sure you have cocoa pods set up, then run: pod install
+- Open the project by double-clicking the `MimiMusicPlayer.xcworkspace` file
 - Select the build scheme which can be found right after the stop button on the top left of the IDE
 - [Command(cmd)] + R - Run app
 ```
@@ -43,11 +43,11 @@ PRODUCT_BUNDLE_IDENTIFIER = abozaid.MimiMusicPlayer
 * [Command(cmd)] + R - Run app
 
 ## Architecture
-This application uses the Model-View-ViewModel (refered to as MVVM) UI architecture,
+This application uses the Model-View-ViewModel (referred to as MVVM) UI architecture,
 
 ## Folders Structure
-* SupportingFiles: Group app shared fils, like app delegate, assets, info.plist, ...etc
-* Modules: Include seperate modules, components, extensions, ...etc.
+* SupportingFiles: Group app shared files, like app delegate, assets, info.plist, ...etc
+* Modules: Include separate modules, components, extensions, ...etc.
 * Scenes: Group of app scenes.
 
 ## Dependencies
@@ -79,5 +79,5 @@ This application uses the Model-View-ViewModel (refered to as MVVM) UI architect
 
 ## UX
 - Swipe the audio player full screen down to show up the mini player bar
-- Click on mini player view to show the full screen player
+- Click on mini player view to show the full-screen player
 
