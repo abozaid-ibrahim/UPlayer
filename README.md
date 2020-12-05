@@ -68,7 +68,8 @@ This application uses the Model-View-ViewModel (referred to as MVVM) UI architec
 - [x] Add ui-tests
 - [x] Render waveform to audio player
 - [x] Enable audio player full screen page by swipe up.
-- [x] Add CD pipeline lik github action.
+- [x] Add CD pipelines using github actions.
+- [x] Create app test plan
 - [ ] Cach the audio and json response
 - [ ] Auto play next audio file in the list.
 - [ ] Reach 100% code coverage.

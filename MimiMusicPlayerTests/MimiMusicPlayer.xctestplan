@@ -2,18 +2,40 @@
   "configurations" : [
     {
       "id" : "BA6A93FD-7B4C-44D0-BBE2-AFD6B4503FBC",
-      "name" : "Configuration 1",
+      "name" : "ConcurrencyConfig",
       "options" : {
-
+        "addressSanitizer" : {
+          "enabled" : false
+        },
+        "undefinedBehaviorSanitizerEnabled" : true
+      }
+    },
+    {
+      "id" : "E2177217-9C25-483C-A250-EC358DC9B940",
+      "name" : "MemoryCheckingConfig",
+      "options" : {
+        "addressSanitizer" : {
+          "enabled" : true
+        },
+        "mainThreadCheckerEnabled" : false,
+        "mallocScribbleEnabled" : true,
+        "nsZombieEnabled" : true,
+        "testExecutionOrdering" : "alphabetical",
+        "threadSanitizerEnabled" : false
       }
     }
   ],
   "defaultOptions" : {
+    "addressSanitizer" : {
+      "enabled" : true
+    },
     "targetForVariableExpansion" : {
       "containerPath" : "container:MimiMusicPlayer.xcodeproj",
       "identifier" : "6C0ADE02256D99B800522733",
       "name" : "MimiMusicPlayer"
-    }
+    },
+    "testExecutionOrdering" : "random",
+    "threadSanitizerEnabled" : true
   },
   "testTargets" : [
     {
