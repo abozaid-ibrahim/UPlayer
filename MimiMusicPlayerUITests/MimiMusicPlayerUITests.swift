@@ -9,14 +9,15 @@
 import XCTest
 
 final class MimiMusicPlayerUITests: XCTestCase {
+    let app = XCUIApplication()
+
     override func setUpWithError() throws {
         continueAfterFailure = false
+        app.launchArguments.append("--uitesting")
+        app.launch()
     }
 
     func testNavigationBetweenAppScreensForTheHappyPathScenario() throws {
-        let app = XCUIApplication()
-        app.launchArguments.append("--uitesting")
-        app.launch()
         func assertPopulerTracksExistsThenSelectFirstTrack() {
             let artistsTable = app.tables["ArtistsTable"]
             XCTAssertTrue(artistsTable.waitForExistence(timeout: 0.2))

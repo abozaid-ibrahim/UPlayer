@@ -118,6 +118,7 @@
 		6C6697B525740BFA00182C04 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		6C8E3A20256FEF7800BEA7C4 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		6CB8915B2572EF6A004B7989 /* SongsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsHeaderView.swift; sourceTree = "<group>"; };
+		6CBDF72A257BD0DA009FC04B /* MimiMusicPlayer.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MimiMusicPlayer.xctestplan; sourceTree = "<group>"; };
 		6CCB0A0D257420340012EA73 /* UIViewController+Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Swipe.swift"; sourceTree = "<group>"; };
 		6CCB0A1225742CF70012EA73 /* Double+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Format.swift"; sourceTree = "<group>"; };
 		6CCB0A1A25742DB10012EA73 /* FullScreenPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenPlayerController.swift; sourceTree = "<group>"; };
@@ -215,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				6C0ADE1D256D99BA00522733 /* ArtistsViewModelTests.swift */,
+				6CBDF72A257BD0DA009FC04B /* MimiMusicPlayer.xctestplan */,
 				6C0ADE1F256D99BA00522733 /* Info.plist */,
 			);
 			path = MimiMusicPlayerTests;

@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "BA6A93FD-7B4C-44D0-BBE2-AFD6B4503FBC",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MimiMusicPlayer.xcodeproj",
+      "identifier" : "6C0ADE02256D99B800522733",
+      "name" : "MimiMusicPlayer"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MimiMusicPlayer.xcodeproj",
+        "identifier" : "6C0ADE18256D99BA00522733",
+        "name" : "MimiMusicPlayerTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:MimiMusicPlayer.xcodeproj",
+        "identifier" : "6C0ADE23256D99BA00522733",
+        "name" : "MimiMusicPlayerUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
