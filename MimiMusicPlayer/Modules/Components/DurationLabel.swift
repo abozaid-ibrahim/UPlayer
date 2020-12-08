@@ -1,23 +1,21 @@
 //
 //  DurationLabel.swift
-//  SoundCloudHomePage
 //
-//  Created by Deda on 25.11.20.
 //
 
 import UIKit.UIView
 
 final class DurationLabel: UIView {
-    @IBOutlet var elapsedTimeLabel: UILabel!
-    @IBOutlet var totalTimeLabel: UILabel!
-
-    func setDuration(for song: Song) {
-        totalTimeLabel.text = song.duration.durationDisplay
+    @IBOutlet private var elapsedTimeLabel: UILabel!
+    @IBOutlet private var totalTimeLabel: UILabel!
+    private let formatter = DurationFromatter()
+    func setDuration(for duration: String) {
+        totalTimeLabel.text = duration
     }
 
-    func updateTime(with percentage: CGFloat, for song: Song) {
+    func updateTime(with percentage: CGFloat, for duration: Double) {
         let percentage = min(1, max(0, percentage))
-        elapsedTimeLabel.text = (song.duration * Double(percentage)).durationDisplay
+        elapsedTimeLabel.text = formatter.display(duration: duration * Double(percentage))
     }
 
     func animate(scale: Bool) {

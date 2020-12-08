@@ -11,7 +11,7 @@ import UIKit
 final class ArtistsListController: UITableViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: ArtistsViewModelType
-    private var artists: [Artist] = []
+    private var artists: [PopulerTrack] = []
     init(with viewModel: ArtistsViewModelType = ArtistsViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -80,7 +80,8 @@ extension ArtistsListController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let songs = viewModel.songsOf(user: artists[indexPath.row])
-        let songsController = SongsListController(with: SongsViewModel(with: artists[indexPath.row], and: songs))
+        guard let artist = viewModel.user(of: artists[indexPath.row].userId) else { return }
+        let songsController = SongsListController(with: SongsViewModel(with: artist, and: songs))
         navigationController?.pushViewController(songsController, animated: true)
     }
 }

@@ -24,11 +24,15 @@ struct Song {
 
 extension Song {
     var duration: Double { Double(durationString) ?? 0 }
-    var uiUserModel: Artist? {
-        var user = self.user
-        user?.trackTitle = title
-        user?.trackDuration = duration.durationDisplay
-        return user
+    var durationDisplay: String {
+        DurationFromatter().display(duration: duration)
+    }
+
+    var uiUserModel: PopulerTrack? {
+        return PopulerTrack(userId: userID, title: title,
+                            duration: durationDisplay,
+                            username: user?.username,
+                            avatar: thumb)
     }
 }
 

@@ -13,10 +13,17 @@ import RxSwift
 protocol ArtistsViewModelType {
     var observer: Observer { get }
     func loadData()
-    func songsOf(user: Artist) -> [Song]
+    func songsOf(user: PopulerTrack) -> [Song]
+    func user(of trackId: String) -> Artist?
 }
 
 final class ArtistsViewModel: ArtistsViewModelType {
+    func user(of trackId: String) -> Artist? {
+        return allSongsListCache
+            .filter { $0.userID == trackId }
+            .first?.user
+    }
+
     let observer = Observer()
     private var scheduler: SchedulerType
     private let disposeBag = DisposeBag()
@@ -45,8 +52,8 @@ final class ArtistsViewModel: ArtistsViewModelType {
             }).disposed(by: disposeBag)
     }
 
-    func songsOf(user: Artist) -> [Song] {
-        return allSongsListCache.filter { $0.userID == user.id }
+    func songsOf(user: PopulerTrack) -> [Song] {
+        return allSongsListCache.filter { $0.userID == user.userId }
     }
 }
 

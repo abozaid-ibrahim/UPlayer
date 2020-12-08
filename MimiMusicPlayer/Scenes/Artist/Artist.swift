@@ -13,8 +13,6 @@ struct Artist {
     let username: String
     let caption: String?
     let avatarURL: URL?
-    var trackTitle: String? = .none
-    var trackDuration: String? = .none
 }
 
 extension Artist: Codable {

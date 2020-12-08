@@ -21,18 +21,18 @@ final class SongTableCell: UITableViewCell {
         avatarView.layer.borderColor = UIColor.systemGray.cgColor
     }
 
-    func setData(for artist: Artist) {
+    func setData(for artist: PopulerTrack) {
         nameLabel.text = artist.username
-        durationLabel.text = artist.trackDuration
-        genreLabel.text = artist.trackTitle
-        avatarView.setImage(with: artist.avatarURL)
+        durationLabel.text = artist.duration
+        genreLabel.text = artist.title
+        avatarView.setImage(with: artist.avatar)
     }
 }
 
 extension SongTableCell {
     func setData(for song: Song) {
         nameLabel.text = song.title
-        durationLabel.text = song.duration.durationDisplay
+        durationLabel.text = song.durationDisplay
         genreLabel.text = song.genre
         avatarView.setImage(with: song.thumb)
     }

@@ -13,5 +13,5 @@ struct Observer {
     let error = PublishRelay<String>()
     let loadMoreCells = PublishRelay<[IndexPath]>()
     let isLoading = PublishRelay<Bool>()
-    let artistsList = BehaviorRelay<[Artist]>(value: [])
+    let artistsList = BehaviorRelay<[PopulerTrack]>(value: [])
 }
