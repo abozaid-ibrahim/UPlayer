@@ -81,4 +81,5 @@ This application uses the Model-View-ViewModel (referred to as MVVM) UI architec
 ## UX
 - Swipe the audio player full screen down to show up the mini player bar
 - Click on mini player view to show the full-screen player
-
+## Useful links
+- https://deda9.medium.com/lets-learn-how-to-play-a-song-on-ios-like-soundcloud-do-77643a90d449
