@@ -44,9 +44,9 @@ final class PopulerTracksViewModelTests: XCTestCase {
         testScheduler.scheduleAt(1, action: { viewModel.loadData() })
         testScheduler.start()
         // Then
-        XCTAssertEqual(viewModel.songsOf(user: PopulerTrack.with(id: 1, uid: "10")).count, 1)
-        XCTAssertEqual(viewModel.songsOf(user: PopulerTrack.with(id: 2, uid: "20")).count, 1)
-        XCTAssertEqual(viewModel.songsOf(user: PopulerTrack.with(id: 10, uid: "1")).count, 0)
+        XCTAssertEqual(viewModel.songsOf(user: PopulerTrack.with(id: 1, uid: 10)).count, 1)
+        XCTAssertEqual(viewModel.songsOf(user: PopulerTrack.with(id: 2, uid: 20)).count, 1)
+        XCTAssertEqual(viewModel.songsOf(user: PopulerTrack.with(id: 10, uid: 1)).count, 0)
     }
 
     func testUnexpectedJsonResponse() throws {
@@ -91,8 +91,8 @@ extension Artist {
 }
 
 extension PopulerTrack {
-    static func with(id: Int, uid: String = "") -> PopulerTrack {
-        return PopulerTrack(id: "\(id)", userId: uid, title: nil, duration: "0", username: nil, avatar: nil)
+    static func with(id: Int, uid: Int = 0) -> PopulerTrack {
+        return PopulerTrack(id: "\(id)", userId: String(uid), title: nil, duration: "0", username: nil, avatar: nil)
     }
 }
 
