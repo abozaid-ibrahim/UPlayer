@@ -19,7 +19,7 @@ final class MimiMusicPlayerUITests: XCTestCase {
 
     func testNavigationBetweenAppScreensForTheHappyPathScenario() throws {
         func assertPopulerTracksExistsThenSelectFirstTrack() {
-            let artistsTable = app.tables["ArtistsTable"]
+            let artistsTable = app.tables["PopulerTracksTable"]
             XCTAssertTrue(artistsTable.waitForExistence(timeout: 0.2))
             artistsTable.cells.firstMatch.tap()
         }

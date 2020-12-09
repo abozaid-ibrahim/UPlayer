@@ -1,5 +1,5 @@
 //
-//  ArtistsListController.swift
+//  PopulerTracksController.swift
 //  MimiMusicPlayer
 //
 //  Created by abuzeid on 24.11.20.
@@ -8,11 +8,11 @@
 import RxCocoa
 import RxSwift
 import UIKit
-final class ArtistsListController: UITableViewController {
+final class PopulerTracksController: UITableViewController {
     private let disposeBag = DisposeBag()
-    private let viewModel: ArtistsViewModelType
-    private var artists: [PopulerTrack] = []
-    init(with viewModel: ArtistsViewModelType = ArtistsViewModel()) {
+    private let viewModel: PopulerTracksViewModelType
+    private var tracks: [PopulerTrack] = []
+    init(with viewModel: PopulerTracksViewModelType = PopulerTracksViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         title = .discover
@@ -31,10 +31,10 @@ final class ArtistsListController: UITableViewController {
     }
 }
 
-private extension ArtistsListController {
+private extension PopulerTracksController {
     func setupTableView() {
         tableView.rowHeight = 70
-        tableView.accessibilityIdentifier = "ArtistsTable"
+        tableView.accessibilityIdentifier = "PopulerTracksTable"
         tableView.tableFooterView = ActivityIndicatorView()
         tableView.register(SongTableCell.self)
         tableView.showsVerticalScrollIndicator = false
@@ -46,7 +46,7 @@ private extension ArtistsListController {
         viewModel.observer.artistsList
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [unowned self] in
-                self.artists.append(contentsOf: $0)
+                self.tracks.append(contentsOf: $0)
                 self.tableView.reloadData()
             })
             .disposed(by: disposeBag)
@@ -67,20 +67,20 @@ private extension ArtistsListController {
     }
 }
 
-extension ArtistsListController {
+extension PopulerTracksController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return artists.count
+        return tracks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cell: SongTableCell.self, for: indexPath)
-        cell.setData(for: artists[indexPath.row])
+        cell.setData(for: tracks[indexPath.row])
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let songs = viewModel.songsOf(user: artists[indexPath.row])
-        guard let artist = viewModel.user(of: artists[indexPath.row].userId) else { return }
+        let songs = viewModel.songsOf(user: tracks[indexPath.row])
+        guard let artist = viewModel.user(of: tracks[indexPath.row].userId) else { return }
         let songsController = SongsListController(with: SongsViewModel(with: artist, and: songs))
         navigationController?.pushViewController(songsController, animated: true)
     }

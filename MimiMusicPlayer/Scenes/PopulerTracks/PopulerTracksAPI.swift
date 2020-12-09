@@ -1,5 +1,5 @@
 //
-//  ArtistAPI.swift
+//  PopulerTracksAPI.swift
 //  MimiMusicPlayer
 //
 //  Created by abuzeid on 24.11.20.
@@ -7,11 +7,11 @@
 //
 
 import Foundation
-enum ArtistAPI {
+enum PopulerTracksAPI {
     case populer(page: Page)
 }
 
-extension ArtistAPI: RequestBuilder {
+extension PopulerTracksAPI: RequestBuilder {
     var path: String {
         switch self {
         case .populer:

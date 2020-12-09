@@ -28,14 +28,14 @@ final class PlayerContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .whiteColor
-        addArtistsController()
+        addPopulerTracksController()
         addMiniPlayer()
     }
 }
 
 private extension PlayerContainerController {
-    func addArtistsController() {
-        let navigationController = UINavigationController(rootViewController: ArtistsListController())
+    func addPopulerTracksController() {
+        let navigationController = UINavigationController(rootViewController: PopulerTracksController())
         addChild(navigationController)
         stack.addArrangedSubview(navigationController.view)
         navigationController.navigationBar.isTranslucent = false

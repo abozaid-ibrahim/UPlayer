@@ -11,7 +11,7 @@ import RxSwift
 import RxTest
 import XCTest
 
-final class ArtistsViewModelTests: XCTestCase {
+final class PopulerTracksViewModelTests: XCTestCase {
     private var disposeBag: DisposeBag!
     var testScheduler: TestScheduler!
 
@@ -22,8 +22,8 @@ final class ArtistsViewModelTests: XCTestCase {
 
     func testPagination() throws {
         // Given
-        let viewModel = ArtistsViewModel(with: APISuccessMocking(), scheduler: testScheduler)
-        let uiDataListObserver = testScheduler.createObserver([Artist].self)
+        let viewModel = PopulerTracksViewModel(with: APISuccessMocking(), scheduler: testScheduler)
+        let uiDataListObserver = testScheduler.createObserver([PopulerTrack].self)
         viewModel.observer.artistsList.bind(to: uiDataListObserver).disposed(by: disposeBag)
         // When
         testScheduler.scheduleAt(5, action: { viewModel.loadData() })
@@ -32,27 +32,26 @@ final class ArtistsViewModelTests: XCTestCase {
         testScheduler.start()
         // Then
         XCTAssertEqual(uiDataListObserver.events, [.next(0, []),
-                                                   .next(6, [Artist.with(id: 10), Artist.with(id: 20)]),
-                                                   .next(11, [Artist.with(id: 10), Artist.with(id: 20)]),
-                                                   .next(16, [Artist.with(id: 10), Artist.with(id: 20)])])
+                                                   .next(6, [PopulerTrack.with(id: 1), PopulerTrack.with(id: 2)]),
+                                                   .next(11, [PopulerTrack.with(id: 1), PopulerTrack.with(id: 2)]),
+                                                   .next(16, [PopulerTrack.with(id: 1), PopulerTrack.with(id: 2)])])
     }
 
     func testFilteringArtistSongs() throws {
         // Given
-        let viewModel = ArtistsViewModel(with: APISuccessMocking(), scheduler: testScheduler)
+        let viewModel = PopulerTracksViewModel(with: APISuccessMocking(), scheduler: testScheduler)
         // When
         testScheduler.scheduleAt(1, action: { viewModel.loadData() })
         testScheduler.start()
         // Then
-        XCTAssertEqual(viewModel.songsOf(user: Artist.with(id: 10)).count, 1)
-        XCTAssertEqual(viewModel.songsOf(user: Artist.with(id: 20)).count, 1)
-        XCTAssertEqual(viewModel.songsOf(user: Artist.with(id: 1)).count, 0)
-
+        XCTAssertEqual(viewModel.songsOf(user: PopulerTrack.with(id: 1, uid: "10")).count, 1)
+        XCTAssertEqual(viewModel.songsOf(user: PopulerTrack.with(id: 2, uid: "20")).count, 1)
+        XCTAssertEqual(viewModel.songsOf(user: PopulerTrack.with(id: 10, uid: "1")).count, 0)
     }
 
     func testUnexpectedJsonResponse() throws {
         // Given
-        let viewModel = ArtistsViewModel(with: APIFailureMocking(), scheduler: testScheduler)
+        let viewModel = PopulerTracksViewModel(with: APIFailureMocking(), scheduler: testScheduler)
         let uiErrorObserver = testScheduler.createObserver(String.self)
         viewModel.observer.error.bind(to: uiErrorObserver).disposed(by: disposeBag)
         // When
@@ -88,6 +87,12 @@ final class APIFailureMocking: ApiClient {
 extension Artist {
     static func with(id: Int) -> Artist {
         return Artist(id: "\(id)", username: "Marten", caption: nil, avatarURL: nil)
+    }
+}
+
+extension PopulerTrack {
+    static func with(id: Int, uid: String = "") -> PopulerTrack {
+        return PopulerTrack(id: "\(id)", userId: uid, title: nil, duration: "0", username: nil, avatar: nil)
     }
 }
 

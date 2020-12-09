@@ -9,9 +9,16 @@
 import Foundation
 
 struct PopulerTrack {
+    let id: String
     let userId: String
     let title: String?
     let duration: String
     let username: String?
     let avatar: URL?
+}
+
+extension PopulerTrack: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

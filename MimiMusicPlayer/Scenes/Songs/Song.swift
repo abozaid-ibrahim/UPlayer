@@ -29,7 +29,9 @@ extension Song {
     }
 
     var uiUserModel: PopulerTrack? {
-        return PopulerTrack(userId: userID, title: title,
+        return PopulerTrack(id: id,
+                            userId: userID,
+                            title: title,
                             duration: durationDisplay,
                             username: user?.username,
                             avatar: thumb)

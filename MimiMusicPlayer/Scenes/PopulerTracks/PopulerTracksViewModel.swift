@@ -10,14 +10,14 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-protocol ArtistsViewModelType {
+protocol PopulerTracksViewModelType {
     var observer: Observer { get }
     func loadData()
     func songsOf(user: PopulerTrack) -> [Song]
     func user(of trackId: String) -> Artist?
 }
 
-final class ArtistsViewModel: ArtistsViewModelType {
+final class PopulerTracksViewModel: PopulerTracksViewModelType {
     func user(of trackId: String) -> Artist? {
         return allSongsListCache
             .filter { $0.userID == trackId }
@@ -40,7 +40,7 @@ final class ArtistsViewModel: ArtistsViewModelType {
 
     func loadData() {
         observer.isLoading.accept(true)
-        dataLoader.getData(of: ArtistAPI.populer(page: page))
+        dataLoader.getData(of: PopulerTracksAPI.populer(page: page))
             .subscribeOn(scheduler)
             .map { try JSONDecoder().decode([Song].self, from: $0) }
             .subscribe(onNext: { [unowned self] in
@@ -57,7 +57,7 @@ final class ArtistsViewModel: ArtistsViewModelType {
     }
 }
 
-private extension ArtistsViewModel {
+private extension PopulerTracksViewModel {
     func updateUI(_ response: [Song]) {
         allSongsListCache.append(contentsOf: response)
         page.newPageFetched()
