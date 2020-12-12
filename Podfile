@@ -3,7 +3,7 @@ platform :ios, '11.0'
 
 target 'MimiMusicPlayer' do
   use_frameworks!
-  all_binary!
+  all_binary! or print "All pods unavailable."
 
   pod 'RxSwift'
   pod 'RxCocoa'

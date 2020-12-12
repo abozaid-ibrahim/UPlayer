@@ -320,9 +320,9 @@
 		6C45F422256E048200BA27A8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6C0ADE3F256D9CBD00522733 /* Extensions */,
 				6C45F423256E04A200BA27A8 /* Components */,
 				6C0ADE52256D9D9500522733 /* Network */,
-				6C0ADE3F256D9CBD00522733 /* Extensions */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
