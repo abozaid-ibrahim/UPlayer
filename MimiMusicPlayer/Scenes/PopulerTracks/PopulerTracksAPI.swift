@@ -9,6 +9,7 @@
 import Foundation
 enum PopulerTracksAPI {
     case populer(page: Page)
+    case search(for: String)
 }
 
 extension PopulerTracksAPI: RequestBuilder {
@@ -16,6 +17,8 @@ extension PopulerTracksAPI: RequestBuilder {
         switch self {
         case .populer:
             return "feed/"
+        case .search:
+            return "search/"
         }
     }
 
@@ -29,6 +32,10 @@ extension PopulerTracksAPI: RequestBuilder {
             return ["count": page.countPerPage,
                     "type": "popular",
                     "page": page.currentPage]
+        case let .search(text):
+            return ["t": text,
+                    "page": "1",
+                    "count": "20"]
         }
     }
 }

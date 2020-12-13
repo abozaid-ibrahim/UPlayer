@@ -27,6 +27,7 @@ final class PopulerTracksController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         bindToViewModel()
+        setupSearchBar()
         viewModel.loadData()
     }
 }
@@ -50,7 +51,13 @@ private extension PopulerTracksController {
                 self.tableView.reloadData()
             })
             .disposed(by: disposeBag)
-
+        viewModel.searchResults
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { [unowned self] in
+                self.tracks = $0
+                self.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
         viewModel.observer.error
             .asDriver(onErrorJustReturn: "")
             .drive(onNext: { [unowned self] in self.show(error: $0) })
@@ -64,6 +71,30 @@ private extension PopulerTracksController {
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { [unowned self] in self.tableView.isLoading($0) })
             .disposed(by: disposeBag)
+    }
+
+    func setupSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.isTranslucent = false
+//        viewModel.isLoading.subscribe { [weak searchController] isLoading in
+//            searchController?.searchBar.isLoading = isLoading
+//        }
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
+    }
+}
+
+extension PopulerTracksController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard searchController.isActive else {
+            viewModel.searchCanceled()
+            return
+        }
+        viewModel.search.accept(searchController.searchBar.text)
     }
 }
 

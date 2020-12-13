@@ -41,6 +41,7 @@ extension RequestBuilder {
                                  cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData,
                                  timeoutInterval: 30)
         request.httpMethod = method.rawValue
+        print(request)
         return request
     }
 

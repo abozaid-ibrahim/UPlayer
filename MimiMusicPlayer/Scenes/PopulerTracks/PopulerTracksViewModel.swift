@@ -10,7 +10,7 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-protocol PopulerTracksViewModelType {
+protocol PopulerTracksViewModelType: SearchViewModelType {
     var observer: Observer { get }
     func loadData()
     func songsOf(user: PopulerTrack) -> [Song]
@@ -18,24 +18,27 @@ protocol PopulerTracksViewModelType {
 }
 
 final class PopulerTracksViewModel: PopulerTracksViewModelType {
-    func user(of trackId: String) -> Artist? {
-        return allSongsListCache
-            .filter { $0.userID == trackId }
-            .first?.user
-    }
-
     let observer = Observer()
     private var scheduler: SchedulerType
-    private let disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     private let page = Page()
     private let dataLoader: ApiClient
     private var allSongsListCache: [Song] = []
+    let searchResults: BehaviorRelay<[PopulerTrack]> = .init(value: [])
+    let search: BehaviorRelay<String?> = .init(value: nil)
 
     init(with dataLoader: ApiClient = HTTPClient(),
          scheduler: SchedulerType = SerialDispatchQueueScheduler(qos: .default)) {
         self.dataLoader = dataLoader
         self.scheduler = scheduler
         subscribeForUIInputs()
+        subscribeForSearch(dataLoader: dataLoader)
+    }
+
+    func user(of trackId: String) -> Artist? {
+        return allSongsListCache
+            .filter { $0.userID == trackId }
+            .first?.user
     }
 
     func loadData() {
@@ -50,6 +53,10 @@ final class PopulerTracksViewModel: PopulerTracksViewModelType {
             }, onCompleted: { [unowned self] in
                 self.observer.isLoading.accept(false)
             }).disposed(by: disposeBag)
+    }
+
+    func searchCanceled() {
+        updateUI(allSongsListCache)
     }
 
     func songsOf(user: PopulerTrack) -> [Song] {
