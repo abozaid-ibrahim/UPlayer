@@ -33,14 +33,14 @@ if git.commits.any? { |c| c.message.include?('fixup!') || c.message.include?('sq
 end
 
 #check if the commit is not empty and is well formatted by respected the pattern of Meero (Angular repo style)
-first_branch_name_token = actual_branch_name.split("/").first
-last_branch_name_token = actual_branch_name.split("/").last
-expected_commit_name = first_branch_name_token + "(" + last_branch_name_token + ")" + ": "
-if git.commits.any? { |c| c.message =~ /#{Regexp.escape(expected_commit_name)}.+/ }
-    message "👨‍💻 The commit name respects the pattern category(description):[SPACE] short description ✅"
-else
-    fail "⚠️ The commit name must respect category(description):[SPACE] short description #{expected_commit_name} 💥 "
-end
+#first_branch_name_token = actual_branch_name.split("/").first
+#last_branch_name_token = actual_branch_name.split("/").last
+#expected_commit_name = first_branch_name_token + "(" + last_branch_name_token + ")" + ": "
+#if git.commits.any? { |c| c.message =~ /#{Regexp.escape(expected_commit_name)}.+/ }
+#    message "👨‍💻 The commit name respects the pattern category(description):[SPACE] short description ✅"
+#else
+#    fail "⚠️ The commit name must respect category(description):[SPACE] short description #{expected_commit_name} 💥 "
+#end
 
 # ------------------------------------------------------------------------------
 # Cocoa pod changes.
