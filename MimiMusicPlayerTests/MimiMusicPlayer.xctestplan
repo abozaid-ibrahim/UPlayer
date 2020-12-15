@@ -34,7 +34,6 @@
       "identifier" : "6C0ADE02256D99B800522733",
       "name" : "MimiMusicPlayer"
     },
-    "testExecutionOrdering" : "random",
     "threadSanitizerEnabled" : true
   },
   "testTargets" : [
