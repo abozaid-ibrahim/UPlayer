@@ -23,6 +23,8 @@ jobs:
           
 #      - name: Setup Cocoapods Binary
 #        run: gem install cocoapods-binary
+      - name: Bundle Install
+        run: bundle install
         
       - name: Run code validation
         run: bundle exec danger
