@@ -4,8 +4,8 @@
 #pr_number = github.pr_json["number"]
 #pr_url = github.pr_json["_links"]["html"]["href"]
 
-if github.pr_title.include?("WIP") || github.pr_title.include?("wip") || github.pr_labels.include? "DO NOT MERGE"
-    warn "🚧 PR is classed as Work in Progress, this should not be merged."
+if github.pr_title.include?("WIP") || github.pr_labels.include?("DO NOT MERGE")
+    warn("🚧 PR is classed as Work in Progress, this should not be merged.")
 end
 warn("🚧 Big PR") if git.lines_of_code > 500
 warn("🚧 Please, provide a description to your PR") if github.pr_body.empty?
@@ -63,5 +63,4 @@ swiftlint.lint_files inline_mode: true
 # ------------------------------------------------------------------------------
 
 #slack.notify(channel: '#notification')
-message("👨‍💻 "#{github.pr_author} Good job on cleaning the code ✅") if git.deletions > git.insertions
-
+message("👨‍💻 #{github.pr_author} Good job on cleaning the code ✅") if git.deletions > git.insertions
