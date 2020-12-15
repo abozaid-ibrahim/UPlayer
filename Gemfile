@@ -8,4 +8,4 @@ gem "danger"
 gem "danger-swiftlint"
 gem "fastlane"
 gem "xcode-install"
-
+gem "cocoapods-binary"
