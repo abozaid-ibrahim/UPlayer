@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UITableView {
+public extension UITableView {
     func isLoading(_ loading: Bool) {
         (tableFooterView as? ActivityIndicatorView)?.set(isLoading: loading)
         sizeToFit(loading)

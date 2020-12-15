@@ -10,10 +10,10 @@ import Foundation
 import RxCocoa
 import UIKit
 
-extension UIViewController {
-    var minimumVelocityToHide: CGFloat { 1500 }
-    var minimumScreenRatioToHide: CGFloat { 0.5 }
-    var animationDuration: TimeInterval { 0.2 }
+public extension UIViewController {
+    private var minimumVelocityToHide: CGFloat { 1500 }
+    private var minimumScreenRatioToHide: CGFloat { 0.5 }
+    private var animationDuration: TimeInterval { 0.2 }
 
     func enableSwipeToHide() {
         view.isUserInteractionEnabled = true
@@ -21,7 +21,7 @@ extension UIViewController {
         view.addGestureRecognizer(panGesture)
     }
 
-    @objc func onPan(_ panGesture: UIPanGestureRecognizer) {
+    @objc private func onPan(_ panGesture: UIPanGestureRecognizer) {
         func slideViewVerticallyTo(_ y: CGFloat) {
             view.frame.origin = CGPoint(x: 0, y: y)
         }
