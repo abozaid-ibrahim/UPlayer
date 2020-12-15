@@ -17,7 +17,7 @@ end
 # Code check.
 # ------------------------------------------------------------------------------
 
-duplicate_localizable_strings.check_localizable_duplicates
+#duplicate_localizable_strings.check_localizable_duplicates
 
 # ------------------------------------------------------------------------------
 # Git checks.
