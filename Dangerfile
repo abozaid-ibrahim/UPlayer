@@ -25,7 +25,7 @@ end
 
 # Make sure the commit message is formatted properly
 # Rules: https://github.com/jonallured/danger-commit_lint#usage
-commit_lint.check warn: :all
+#commit_lint.check warn: :all
 
 # Prevent merging PRs with commits intended to be rebased
 if git.commits.any? { |c| c.message.include?('fixup!') || c.message.include?('squash!') }
