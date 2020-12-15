@@ -1,13 +1,67 @@
-# Sometimes it's a README fix, or something like that - which isn't relevant for
-# including in a project's CHANGELOG for example
-declared_trivial = github.pr_title.include? "#trivial"
+# ------------------------------------------------------------------------------
+# Check pull request data
+# ------------------------------------------------------------------------------
+#pr_number = github.pr_json["number"]
+#pr_url = github.pr_json["_links"]["html"]["href"]
 
-# Make it more obvious that a PR is a work in progress and shouldn't be merged yet
-warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
+if github.pr_title.include?("WIP") || github.pr_title.include?("wip") || github.pr_labels.include? "DO NOT MERGE"
+    warn "🚧 PR is classed as Work in Progress, this should not be merged."
+end
+warn("🚧 Big PR") if git.lines_of_code > 500
+warn("🚧 Please, provide a description to your PR") if github.pr_body.empty?
+if git.modified_files.empty? && git.added_files.empty? && git.deleted_files.empty?
+  fail "⚠️ This PR has no changes at all."
+end
 
-# Warn when there is a big PR
-warn("Big PR") if git.lines_of_code > 500
+# ------------------------------------------------------------------------------
+# Code check.
+# ------------------------------------------------------------------------------
 
-# Don't let testing shortcuts get into master by accident
-fail("fdescribe left in tests") if `grep -r fdescribe specs/ `.length > 1
-fail("fit left in tests") if `grep -r fit specs/ `.length > 1
+duplicate_localizable_strings.check_localizable_duplicates
+
+# ------------------------------------------------------------------------------
+# Git checks.
+# ------------------------------------------------------------------------------
+
+# Make sure the commit message is formatted properly
+# Rules: https://github.com/jonallured/danger-commit_lint#usage
+commit_lint.check warn: :all
+
+# Prevent merging PRs with commits intended to be rebased
+if git.commits.any? { |c| c.message.include?('fixup!') || c.message.include?('squash!') }
+  fail('⚠️ This PR contains commits marked as squash or fixup. Please perform an interactive rebase to apply the changes.')
+end
+
+#check if the commit is not empty and is well formatted by respected the pattern of Meero (Angular repo style)
+first_branch_name_token = actual_branch_name.split("/").first
+last_branch_name_token = actual_branch_name.split("/").last
+expected_commit_name = first_branch_name_token + "(" + last_branch_name_token + ")" + ": "
+if git.commits.any? { |c| c.message =~ /#{Regexp.escape(expected_commit_name)}.+/ }
+    message "👨‍💻 The commit name respects the pattern category(description):[SPACE] short description ✅"
+else
+    fail "⚠️ The commit name must respect category(description):[SPACE] short description #{expected_commit_name} 💥 "
+end
+
+# ------------------------------------------------------------------------------
+# Cocoa pod changes.
+# ------------------------------------------------------------------------------
+
+podfile_updated = !git.modified_files.grep(/Podfile/).empty?
+if podfile_updated
+  warn "🚧 The podfile was updated, don't forget to execute a pod update"
+end
+
+# ------------------------------------------------------------------------------
+# Swiftlint.
+# ------------------------------------------------------------------------------
+swiftlint.config_file = './app/.swiftlint.yml'
+swiftlint.lint_all_files = true
+swiftlint.verbose = true
+swiftlint.lint_files inline_mode: true
+# ------------------------------------------------------------------------------
+# Slack.
+# ------------------------------------------------------------------------------
+
+#slack.notify(channel: '#notification')
+message("👨‍💻 "#{github.pr_author} Good job on cleaning the code ✅") if git.deletions > git.insertions
+
