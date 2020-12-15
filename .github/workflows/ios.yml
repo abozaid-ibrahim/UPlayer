@@ -21,8 +21,8 @@ jobs:
           echo $default | cat >default
           echo Using default scheme: $default
           
-      - name: Setup Cocoapods Binary
-        run: gem install cocoapods-binary
+#      - name: Setup Cocoapods Binary
+#        run: gem install cocoapods-binary
         
       - name: Run code validation
         run: bundle exec danger
