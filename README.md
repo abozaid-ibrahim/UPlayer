@@ -15,7 +15,7 @@ MVP music player consumes HearThisAt API to show the popular tracks
  </p>
 
 ## Getting Started
-- If this is your first time encountering swift/ios development, please follow [the instructions](https://developer.apple.com/support/xcode/) to set up Xcode and Swift on your Mac.
+- If this is your first time encountering swift/ios development, please follow [the instructions](https://developer.apple.com/support/xcode/) to set up XCode and Swift on your Mac.
 - To set up cocoa pods for dependency management, make use of [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started)
 
 ## Setup Configs
@@ -43,7 +43,7 @@ PRODUCT_BUNDLE_IDENTIFIER = abozaid.MimiMusicPlayer
 * [Command(cmd)] + R - Run app
 
 ## Architecture
-This application uses the Model-View-ViewModel (referred to as MVVM) UI architecture,
+This application uses the Model-View-ViewModel (referred to as MVVM) UI architecture.
 
 ## Folders Structure
 * SupportingFiles: Group app shared files, like app delegate, assets, info.plist, ...etc
@@ -87,3 +87,4 @@ This application uses the Model-View-ViewModel (referred to as MVVM) UI architec
 ## Useful links
 - [How to build a sound wave](https://deda9.medium.com/lets-learn-how-to-play-a-song-on-ios-like-soundcloud-do-77643a90d449)
 - [CocoaPods binary](https://github.com/leavez/cocoapods-binary)
+-[ Danger](https://danger.systems/swift/)
