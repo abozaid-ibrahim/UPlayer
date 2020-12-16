@@ -70,6 +70,8 @@ This application uses the Model-View-ViewModel (referred to as MVVM) UI architec
 - [x] Enable audio player full screen page by swipe up.
 - [x] Add CD pipelines using github actions.
 - [x] Create app test plan
+- [x] Integerate with danger.
+- [ ] Add search feature.
 - [ ] Cach the audio and json response
 - [ ] Auto play next audio file in the list.
 - [ ] Reach 100% code coverage.
@@ -77,14 +79,8 @@ This application uses the Model-View-ViewModel (referred to as MVVM) UI architec
 - [ ] Play music in background
 - [ ] Add xcconfig
 - [ ] Move modules into framework.
-- [ ] Add search feature.
-- [ ] Integerate with danger.
-
-## UX
-- Swipe the audio player full screen down to show up the mini player bar
-- Click on mini player view to show the full-screen player
 
 ## Useful links
 - [How to build a sound wave](https://deda9.medium.com/lets-learn-how-to-play-a-song-on-ios-like-soundcloud-do-77643a90d449)
 - [CocoaPods binary](https://github.com/leavez/cocoapods-binary)
--[ Danger](https://danger.systems/swift/)
+- [ Danger](https://danger.systems/swift/)
