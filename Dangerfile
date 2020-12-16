@@ -13,7 +13,7 @@ if git.modified_files.empty? && git.added_files.empty? && git.deleted_files.empt
   fail "⚠️ This PR has no changes at all."
 end
 
-has_milestone = gitlab.mr_json["milestone"] != nil
+has_milestone = github.pr_json["milestone"] != nil
 warn("⚠️ This MR does not refer to an existing milestone", sticky: true) unless has_milestone
 
 
