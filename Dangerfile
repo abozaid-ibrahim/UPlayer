@@ -13,11 +13,23 @@ if git.modified_files.empty? && git.added_files.empty? && git.deleted_files.empt
   fail "⚠️ This PR has no changes at all."
 end
 
+has_milestone = gitlab.mr_json["milestone"] != nil
+warn("⚠️ This MR does not refer to an existing milestone", sticky: true) unless has_milestone
+
+
+# Local Configurations
+
+view_extensions = ['.xib', '.storyboard', 'View.swift', 'Button.swift']
+has_view_changes = git.modified_files.any? { |file| view_extensions.any? { |ext| file.end_with? ext }}
+pr_has_screenshot = github.pr_body =~ /https?:\/\/\S*\.(png|jpg|jpeg|gif){1}/
+warn("View files were changed. Maybe you want to add a screenshot to your PR.") if has_view_changes and !pr_has_screenshot
+
+
 # ------------------------------------------------------------------------------
 # Code check.
 # ------------------------------------------------------------------------------
 
-#duplicate_localizable_strings.check_localizable_duplicates
+duplicate_localizable_strings.check_localizable_duplicates
 
 # ------------------------------------------------------------------------------
 # Git checks.
@@ -25,7 +37,7 @@ end
 
 # Make sure the commit message is formatted properly
 # Rules: https://github.com/jonallured/danger-commit_lint#usage
-#commit_lint.check warn: :all
+commit_lint.check warn: :all
 
 # Prevent merging PRs with commits intended to be rebased
 if git.commits.any? { |c| c.message.include?('fixup!') || c.message.include?('squash!') }
@@ -63,4 +75,4 @@ swiftlint.lint_files inline_mode: true
 # ------------------------------------------------------------------------------
 
 #slack.notify(channel: '#notification')
-message("👨‍💻 #{github.pr_author} Good job on cleaning the code ✅") if git.deletions > git.insertions
+message("👨‍💻 #{github.pr_author} Good job on cleaning the code ✅✅✅") if git.deletions > git.insertions
