@@ -1,4 +1,4 @@
-#plugin 'cocoapods-binary'
+plugin 'cocoapods-binary'
 platform :ios, '11.0'
 
 target 'MimiMusicPlayer' do

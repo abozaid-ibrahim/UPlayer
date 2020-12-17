@@ -330,10 +330,8 @@
 		6C45F423256E04A200BA27A8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				6CB425AD258B4DCE00DADCED /* UI */,
 				6CCB0A34257432E50012EA73 /* AudioPlayer */,
-				6CCB15FC256DA2AA002C556F /* ActivityIndicatorView.swift */,
-				6CD1E46F25732E790023C788 /* DurationLabel.swift */,
-				6C9601AA257FADDD0095DBA8 /* DurationFromatter.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -348,9 +346,19 @@
 			path = MiniPlayerView;
 			sourceTree = "<group>";
 		};
+		6CB425AD258B4DCE00DADCED /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6CCB15FC256DA2AA002C556F /* ActivityIndicatorView.swift */,
+				6CD1E46F25732E790023C788 /* DurationLabel.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		6CCB0A34257432E50012EA73 /* AudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				6C9601AA257FADDD0095DBA8 /* DurationFromatter.swift */,
 				6CD1E47725732E790023C788 /* SongPlusesGenerator.swift */,
 				6C6697B525740BFA00182C04 /* AudioPlayer.swift */,
 				6CD1E46B25732E790023C788 /* SongWave.swift */,
