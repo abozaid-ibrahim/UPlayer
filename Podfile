@@ -1,7 +1,6 @@
 plugin 'cocoapods-binary'
-source 'https://github.com/abuzeid-ibrahim/DevPods.git'
 platform :ios, '11.0'
-
+debug = false
 target 'MimiMusicPlayer' do
   use_frameworks!
   # all_binary!
@@ -10,7 +9,11 @@ target 'MimiMusicPlayer' do
   pod 'RxCocoa', :binary => true
   pod 'SwiftLint', :binary => true
   pod 'Kingfisher', :binary => true
-  pod 'DevExtensions', :path => '../DevPods'
+  if debug
+    pod 'DevExtensions', :path => '../DevPods'
+  else
+    pod 'DevExtensions', :git => "https://github.com/abuzeid-ibrahim/DevPods.git"
+  end
   target 'MimiMusicPlayerTests' do
     inherit! :search_paths
     pod 'RxTest'
