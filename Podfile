@@ -8,7 +8,7 @@ target 'MimiMusicPlayer' do
   pod 'RxSwift', :binary => true
   pod 'RxCocoa', :binary => true
   pod 'SwiftLint', :binary => true
-  pod 'Kingfisher', :binary => true
+  pod 'Kingfisher', :binary => false
   if debug
     pod 'DevExtensions', :path => '../DevPods'
   else
