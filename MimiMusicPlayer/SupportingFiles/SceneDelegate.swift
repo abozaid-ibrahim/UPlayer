@@ -17,8 +17,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = PlayerContainerController()
-        window?.makeKeyAndVisible()
+        AppNavigator.shared.set(window: window!)
     }
 
     func application(_ application: UIApplication,

@@ -3,12 +3,12 @@ platform :ios, '11.0'
 debug = false
 target 'MimiMusicPlayer' do
   use_frameworks!
-  # all_binary!
+  all_binary! if debug
   
-  pod 'RxSwift', :binary => true
-  pod 'RxCocoa', :binary => true
-  pod 'SwiftLint', :binary => true
-  pod 'Kingfisher', :binary => false
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'SwiftLint'
+  pod 'Kingfisher'#, :binary => false
   if debug
     pod 'DevExtensions', :path => '../DevPods'
   else

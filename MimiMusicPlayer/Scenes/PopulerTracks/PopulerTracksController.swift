@@ -81,8 +81,7 @@ extension PopulerTracksController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let songs = viewModel.songsOf(user: tracks[indexPath.row])
         guard let artist = viewModel.user(of: tracks[indexPath.row].userId) else { return }
-        let songsController = SongsListController(with: SongsViewModel(with: artist, and: songs))
-        navigationController?.pushViewController(songsController, animated: true)
+        AppNavigator.shared.push(.songsList(for: artist, and: songs))
     }
 }
 
