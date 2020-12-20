@@ -19,7 +19,6 @@
         },
         "mainThreadCheckerEnabled" : false,
         "mallocScribbleEnabled" : true,
-        "nsZombieEnabled" : true,
         "testExecutionOrdering" : "alphabetical",
         "threadSanitizerEnabled" : false
       }
