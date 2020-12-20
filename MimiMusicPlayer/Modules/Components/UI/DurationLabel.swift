@@ -4,6 +4,7 @@
 //
 
 import UIKit.UIView
+import DevExtensions
 
 final class DurationLabel: UIView {
     @IBOutlet private var elapsedTimeLabel: UILabel!

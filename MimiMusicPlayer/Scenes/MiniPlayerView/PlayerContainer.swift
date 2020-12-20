@@ -36,6 +36,7 @@ final class PlayerContainerController: UIViewController {
 private extension PlayerContainerController {
     func addPopulerTracksController() {
         let navigationController = UINavigationController(rootViewController: PopulerTracksController())
+        AppNavigator.shared.setRootNavigation(root: navigationController)
         addChild(navigationController)
         stack.addArrangedSubview(navigationController.view)
         navigationController.navigationBar.isTranslucent = false

@@ -9,6 +9,7 @@
 import RxCocoa
 import RxSwift
 import UIKit
+
 final class SongsListController: UIViewController {
     private let tableView = UITableView()
     private let disposeBag = DisposeBag()
@@ -35,15 +36,16 @@ final class SongsListController: UIViewController {
         setupTableView()
         bindToViewModel()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = false
-
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
-
     }
 }
 

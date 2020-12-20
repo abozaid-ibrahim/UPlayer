@@ -19,7 +19,6 @@
         },
         "mainThreadCheckerEnabled" : false,
         "mallocScribbleEnabled" : true,
-        "nsZombieEnabled" : true,
         "testExecutionOrdering" : "alphabetical",
         "threadSanitizerEnabled" : false
       }
@@ -38,7 +37,6 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:MimiMusicPlayer.xcodeproj",
         "identifier" : "6C0ADE18256D99BA00522733",

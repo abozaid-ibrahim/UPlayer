@@ -59,14 +59,8 @@ private extension PlayerView {
     func setupFullScreen(_ song: Song, _ pulses: [Float]) {
         var songWithPulses = song
         songWithPulses.pulses = pulses
-        fullScreenView = FullScreenPlayerController(with: songWithPulses, player: player)
-        guard let controller = fullScreenView else {
-            return
-        }
-        controller.modalPresentationStyle = .overCurrentContext
-        present(controller, animated: true, completion: {
-            self.view.isHidden = false
-        })
+        AppNavigator.shared.presentModally(.fullScreenPlayer(song: songWithPulses, player: player),
+                                           onComplete: { [weak self] in self?.view.isHidden = false })
     }
 
     @objc func enableFullScreenMode(sender: Any? = nil) {
