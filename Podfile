@@ -8,12 +8,13 @@ target 'MimiMusicPlayer' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SwiftLint'
-  pod 'Kingfisher'#, :binary => false
+  pod 'Kingfisher'
   if debug
     pod 'DevExtensions', :path => '../DevPods'
   else
     pod 'DevExtensions', :git => "https://github.com/abuzeid-ibrahim/DevPods.git"
   end
+  
   target 'MimiMusicPlayerTests' do
     inherit! :search_paths
     pod 'RxTest'

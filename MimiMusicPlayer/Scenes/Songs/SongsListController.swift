@@ -10,7 +10,9 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-final class SongsListController: UIViewController {
+final class SongsListController: UIViewController, Searchable {
+    let searchModel = RemoteSearcher()
+
     private let tableView = UITableView()
     private let disposeBag = DisposeBag()
     private let viewModel: SongsViewModelType
@@ -24,6 +26,7 @@ final class SongsListController: UIViewController {
         view.addSubview(tableView)
         tableView.accessibilityIdentifier = "SongsTable"
         tableView.setConstrainsEqualToParentEdges()
+        setupSearchBar()
     }
 
     @available(*, unavailable)

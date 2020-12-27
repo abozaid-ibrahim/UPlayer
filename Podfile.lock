@@ -1,8 +1,8 @@
 PODS:
-  - DevExtensions (0.1.21)
-  - Kingfisher (5.15.7):
-    - Kingfisher/Core (= 5.15.7)
-  - Kingfisher/Core (5.15.7)
+  - DevExtensions (0.0.2)
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -11,7 +11,7 @@ PODS:
   - RxSwift (5.1.1)
   - RxTest (5.1.1):
     - RxSwift (~> 5)
-  - SwiftLint (0.40.0)
+  - SwiftLint (0.42.0)
 
 DEPENDENCIES:
   - DevExtensions (from `https://github.com/abuzeid-ibrahim/DevPods.git`)
@@ -36,18 +36,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DevExtensions:
-    :commit: 3a58310635c2260e359a05b65600ba864a8fdfae
+    :commit: a533af9518b20175119a60f24c44954b33eb1ed7
     :git: https://github.com/abuzeid-ibrahim/DevPods.git
 
 SPEC CHECKSUMS:
-  DevExtensions: 806ffe001cecec32c45aa9bc62f493b7d5feaafb
-  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
+  DevExtensions: 089bc1281e77ee5bb1bc07a942b716cfad9ab5dd
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   RxTest: 711632d5644dffbeb62c936a521b5b008a1e1faa
-  SwiftLint: 4154893c73a4c52d6240195507eb7a3e3c64087e
+  SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
 
-PODFILE CHECKSUM: 50ae2c019c172ae860a9741aebafe019253aaff3
+PODFILE CHECKSUM: 30cff72c6337316ddac0e4b93b66f9a750f605e0
 
 COCOAPODS: 1.9.3
