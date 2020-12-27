@@ -14,14 +14,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow()
-        if #available(iOS 13.0, *) {
-            // setup done in scene delegate
-        } else {
-            window?.rootViewController = PlayerContainerController()
-            window?.makeKeyAndVisible()
-        }
+        setRootController()
         return true
+    }
+
+    private func setRootController() {
+        if #available(iOS 13.0, *) { return }
+        window = UIWindow()
+        AppNavigator.shared.set(window: window)
     }
 
     // MARK: UISceneSession Lifecycle

@@ -14,8 +14,7 @@ final class AppNavigator {
     private(set) var navigationController: UINavigationController?
     private init() {}
     func set(window: UIWindow?) {
-        let navigationController = UINavigationController(rootViewController: Destination.populerTracks.controller)
-        window?.rootViewController = navigationController
+        window?.rootViewController = Destination.populerTracks.controller
         window?.makeKeyAndVisible()
     }
 
@@ -27,6 +26,7 @@ final class AppNavigator {
         navigationController?.pushViewController(dest.controller, animated: true)
     }
 
+    @discardableResult
     func presentModally(_ dest: Destination, onComplete: (() -> Void)?) -> UIViewController? {
         let controller = dest.controller
         controller.modalPresentationStyle = .overCurrentContext

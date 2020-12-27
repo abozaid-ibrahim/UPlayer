@@ -17,7 +17,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        AppNavigator.shared.set(window: window!)
+        AppNavigator.shared.set(window: window)
     }
 
     func application(_ application: UIApplication,

@@ -9,25 +9,26 @@
 import Foundation
 import RxCocoa
 import RxSwift
-protocol Searchable: UIViewController, UISearchResultsUpdating {
+
+protocol Searchable {
     var searchModel: RemoteSearcher { get }
+    var disposeBag: DisposeBag { get }
 }
 
-extension Searchable {
+extension Searchable where Self: UIViewController {
     func setupSearchBar() {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
+        searchController.rx.willDismiss
+            .subscribe(onNext: { [weak self] in
+                self?.searchModel.searchCanceled()
+            }).disposed(by: disposeBag)
+        searchController.searchBar.rx.text
+            .bind { [unowned self] in self.searchModel.search.accept($0) }
+            .disposed(by: disposeBag)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.isTranslucent = false
         navigationItem.searchController = searchController
-    }
-
-    func updateSearchResults(for searchController: UISearchController) {
-        guard searchController.isActive else {
-            searchModel.searchCanceled()
-            return
-        }
-        searchModel.search.accept(searchController.searchBar.text)
+        searchModel.subscribeForSearch(dataLoader: HTTPClient())
     }
 }

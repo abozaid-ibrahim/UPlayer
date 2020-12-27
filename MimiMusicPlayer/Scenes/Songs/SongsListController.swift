@@ -11,11 +11,10 @@ import RxSwift
 import UIKit
 
 final class SongsListController: UIViewController, Searchable {
-    let searchModel = RemoteSearcher()
-
     private let tableView = UITableView()
-    private let disposeBag = DisposeBag()
     private let viewModel: SongsViewModelType
+    let disposeBag = DisposeBag()
+    let searchModel = RemoteSearcher()
     init(with viewModel: SongsViewModelType) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -26,7 +25,6 @@ final class SongsListController: UIViewController, Searchable {
         view.addSubview(tableView)
         tableView.accessibilityIdentifier = "SongsTable"
         tableView.setConstrainsEqualToParentEdges()
-        setupSearchBar()
     }
 
     @available(*, unavailable)
@@ -38,6 +36,7 @@ final class SongsListController: UIViewController, Searchable {
         super.viewDidLoad()
         setupTableView()
         bindToViewModel()
+        setupSearchBar()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -64,7 +63,7 @@ private extension SongsListController {
     }
 
     func bindToViewModel() {
-        viewModel.songsList
+        Observable.combineLatest(viewModel.songsList, searchModel.searchResults) { $0 + $1 }
             .bind(to: tableView.rx
                 .items(cellIdentifier: SongTableCell.identifier,
                        cellType: SongTableCell.self)) { _, model, cell in
