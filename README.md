@@ -1,7 +1,7 @@
-# MimiMusicPlayer
+# UPlayer
 </p>
  <p align="center">
-<img src="https://img.shields.io/github/workflow/status/abuzeid-ibrahim/MimiMusicPlayer/iOS%20starter%20workflow/master">
+<img src="https://img.shields.io/github/workflow/status/abozaid-ibrahim/UPlayer/iOS%20starter%20workflow/master">
 <a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift"/></a>
 <img src="https://img.shields.io/badge/Platform-iOS%2011.0+-lightgrey.svg" alt="Platform: iOS">
 <img src="https://img.shields.io/badge/XCode-11.5%2B-lightgrey">
@@ -11,7 +11,7 @@
 MVP music player consumes HearThisAt API to show the popular tracks
  
  <p align="center">
- <img src="https://github.com/abuzeid-ibrahim/MimiMusicPlayer/blob/master/demo.gif" width="50%">
+ <img src="https://github.com/abozaid-ibrahim/UPlayer/blob/master/demo.gif" width="50%">
  </p>
 
 ## Getting Started
@@ -22,18 +22,18 @@ MVP music player consumes HearThisAt API to show the popular tracks
 - Checkout master branch to run the latest version
 - Open the terminal and navigate to the project root directory.
 - Make sure you have cocoa pods set up, then run: pod install
-- Open the project by double-clicking the `MimiMusicPlayer.xcworkspace` file
+- Open the project by double-clicking the `UPlayer.xcworkspace` file
 - Select the build scheme which can be found right after the stop button on the top left of the IDE
 - [Command(cmd)] + R - Run app
 ```
 // App Settings
-APP_NAME = MimiMusicPlayer
-PRODUCT_BUNDLE_IDENTIFIER = abozaid.MimiMusicPlayer
+APP_NAME = UPlayer
+PRODUCT_BUNDLE_IDENTIFIER = abozaid.UPlayer
 
 #targets:
-* MimiMusicPlayer
-* MimiMusicPlayerTests
-* MimiMusicPlayerUITests
+* UPlayer
+* UPlayerTests
+* UPlayerUITests
 
 ```
 
