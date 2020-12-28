@@ -63,7 +63,7 @@ private extension SongsListController {
     }
 
     func bindToViewModel() {
-        Observable.combineLatest(viewModel.songsList, searchModel.searchResults) { $0 + $1 }
+        Observable.combineLatest(viewModel.songsList, searchModel.searchResults) { $1.isEmpty ? $0 : $1 }
             .bind(to: tableView.rx
                 .items(cellIdentifier: SongTableCell.identifier,
                        cellType: SongTableCell.self)) { _, model, cell in
