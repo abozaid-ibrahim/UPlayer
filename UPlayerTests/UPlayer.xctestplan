@@ -1,0 +1,55 @@
+{
+  "configurations" : [
+    {
+      "id" : "BA6A93FD-7B4C-44D0-BBE2-AFD6B4503FBC",
+      "name" : "ConcurrencyConfig",
+      "options" : {
+        "addressSanitizer" : {
+          "enabled" : false
+        },
+        "undefinedBehaviorSanitizerEnabled" : true
+      }
+    },
+    {
+      "id" : "E2177217-9C25-483C-A250-EC358DC9B940",
+      "name" : "MemoryCheckingConfig",
+      "options" : {
+        "addressSanitizer" : {
+          "enabled" : true
+        },
+        "mainThreadCheckerEnabled" : false,
+        "mallocScribbleEnabled" : true,
+        "testExecutionOrdering" : "alphabetical",
+        "threadSanitizerEnabled" : false
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "addressSanitizer" : {
+      "enabled" : true
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:UPlayer.xcodeproj",
+      "identifier" : "6C0ADE02256D99B800522733",
+      "name" : "UPlayer"
+    },
+    "threadSanitizerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:UPlayer.xcodeproj",
+        "identifier" : "6C0ADE18256D99BA00522733",
+        "name" : "UPlayerTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:UPlayer.xcodeproj",
+        "identifier" : "6C0ADE23256D99BA00522733",
+        "name" : "UPlayerUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
