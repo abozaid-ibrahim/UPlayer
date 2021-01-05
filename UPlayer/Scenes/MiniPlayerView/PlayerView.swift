@@ -11,6 +11,7 @@ import AVFoundation
 import RxCocoa
 import RxSwift
 import UIKit
+import DevPlayer
 
 protocol PlayerViewType {
     func play(song: Song)
@@ -51,7 +52,7 @@ private extension PlayerView {
 
     func loadPulses(_ song: Song) {
         song.loadPulses()
-            .observeOn(MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [unowned self] in self.setupFullScreen(song, $0) })
             .disposed(by: disposeBag)
     }

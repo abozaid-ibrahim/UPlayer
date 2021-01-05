@@ -41,7 +41,7 @@ final class PopulerTracksViewModel: PopulerTracksViewModelType {
     func loadData() {
         observer.isLoading.accept(true)
         dataLoader.getData(of: PopulerTracksAPI.populer(page: page))
-            .subscribeOn(scheduler)
+            .subscribe(on: scheduler)
             .map { try JSONDecoder().decode([Song].self, from: $0) }
             .subscribe(onNext: { [unowned self] in
                 self.updateUI($0)

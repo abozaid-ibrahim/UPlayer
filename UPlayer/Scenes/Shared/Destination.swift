@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import DevPlayer
 
 enum Destination {
     case fullScreenPlayer(song: Song, player: AudioPlayerType),

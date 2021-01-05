@@ -8,11 +8,13 @@ target 'UPlayer' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SwiftLint'
-  pod 'Kingfisher'#, :binary => false
+  pod 'Kingfisher'
   if debug
     pod 'DevExtensions', :path => '../DevPods'
+    pod 'DevPlayer', :path => '../DevPods'
   else
     pod 'DevExtensions', :git => "https://github.com/abuzeid-ibrahim/DevPods.git"
+    pod 'DevPlayer', :git => "https://github.com/abuzeid-ibrahim/DevPods.git"
   end
   target 'UPlayerTests' do
     inherit! :search_paths

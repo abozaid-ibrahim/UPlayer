@@ -9,6 +9,7 @@
 import RxCocoa
 import RxSwift
 import UIKit
+import DevPlayer
 
 final class FullScreenPlayerController: UIViewController {
     @IBOutlet private var coverScrollView: UIScrollView!

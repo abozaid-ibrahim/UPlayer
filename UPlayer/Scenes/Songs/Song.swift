@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DevPlayer
 
 struct Song {
     let id: String

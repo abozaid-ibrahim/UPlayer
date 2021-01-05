@@ -7,6 +7,7 @@
 //
 import RxSwift
 import UIKit
+import DevPlayer
 
 protocol SongWaveViewDelegate: class {
     func songWaveView(didScroll percentage: CGFloat)
