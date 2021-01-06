@@ -77,8 +77,7 @@ This application uses the Model-View-ViewModel (referred to as MVVM) UI architec
 - [ ] Reach 100% code coverage.
 - [ ] Add split controller for iPad
 - [ ] Play music in background
-- [ ] Add xcconfig
-- [ ] Move modules into framework.
+- [ ] Add XCConfig
 
 ## Useful links
 - [How to build a sound wave](https://deda9.medium.com/lets-learn-how-to-play-a-song-on-ios-like-soundcloud-do-77643a90d449)
