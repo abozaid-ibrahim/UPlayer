@@ -32,7 +32,8 @@ final class PopulerTracksViewModel: PopulerTracksViewModelType {
     private var allSongsListCache: [Song] = []
 
     init(with dataLoader: ApiClient = HTTPClient(),
-         scheduler: SchedulerType = SerialDispatchQueueScheduler(qos: .default)) {
+         scheduler: SchedulerType = SerialDispatchQueueScheduler(qos: .default))
+    {
         self.dataLoader = dataLoader
         self.scheduler = scheduler
         subscribeForUIInputs()
