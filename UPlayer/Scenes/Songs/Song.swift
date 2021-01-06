@@ -6,8 +6,8 @@
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
 
-import Foundation
 import DevPlayer
+import Foundation
 
 struct Song {
     let id: String

@@ -1,4 +1,5 @@
 //
+import DevPlayer
 //  SongWaveViewController.swift
 //  UPlayer
 //
@@ -7,9 +8,8 @@
 //
 import RxSwift
 import UIKit
-import DevPlayer
 
-protocol SongWaveViewDelegate: class {
+protocol SongWaveViewDelegate: AnyObject {
     func songWaveView(didScroll percentage: CGFloat)
     func songWaveView(willBeginDragging: Bool, percentage: CGFloat)
     func songWaveView(percentage: CGFloat)
@@ -32,7 +32,7 @@ final class SongWaveViewController: UIViewController {
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("Unsupported")
     }
 
@@ -111,8 +111,8 @@ extension SongWaveViewController: UIScrollViewDelegate {
     }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView,
-                                   withVelocity velocity: CGPoint,
-                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+                                   withVelocity _: CGPoint,
+                                   targetContentOffset _: UnsafeMutablePointer<CGPoint>) {
         waveScrollView.contentOffset = scrollView.contentOffset
         let offsetPercentage = (scrollView.contentOffset.x + scrollView.contentInset.left) / scrollView.contentSize.width
         delegate?.songWaveView(didEndDragging: true, percentage: offsetPercentage)

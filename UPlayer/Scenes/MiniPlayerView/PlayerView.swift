@@ -8,10 +8,10 @@
 
 import Accelerate
 import AVFoundation
+import DevPlayer
 import RxCocoa
 import RxSwift
 import UIKit
-import DevPlayer
 
 protocol PlayerViewType {
     func play(song: Song)
@@ -30,7 +30,7 @@ final class PlayerView: UIViewController {
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("Unsupported")
     }
 
@@ -46,7 +46,7 @@ final class PlayerView: UIViewController {
 }
 
 private extension PlayerView {
-    @IBAction private func togglePlayAction(_ sender: Any) {
+    @IBAction private func togglePlayAction(_: Any) {
         player.toggle()
     }
 
@@ -64,7 +64,7 @@ private extension PlayerView {
                                            onComplete: { [weak self] in self?.view.isHidden = false })
     }
 
-    @objc func enableFullScreenMode(sender: Any? = nil) {
+    @objc func enableFullScreenMode(sender _: Any? = nil) {
         guard let controller = fullScreenView else {
             return
         }

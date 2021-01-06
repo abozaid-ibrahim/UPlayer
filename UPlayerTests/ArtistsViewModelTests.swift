@@ -6,9 +6,9 @@
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
 
-@testable import UPlayer
 import RxSwift
 import RxTest
+@testable import UPlayer
 import XCTest
 
 final class PopulerTracksViewModelTests: XCTestCase {
@@ -63,7 +63,7 @@ final class PopulerTracksViewModelTests: XCTestCase {
 }
 
 final class APISuccessMocking: ApiClient {
-    func getData(of request: RequestBuilder?) -> Observable<Data> {
+    func getData(of _: RequestBuilder?) -> Observable<Data> {
         let response = """
         [{"id":"1","user_id":"10","duration":"3782","title":"Hello", "stream_url":"https://hear.at",
         "user":{"id":"10","username":"Adele"}},
@@ -76,11 +76,11 @@ final class APISuccessMocking: ApiClient {
 }
 
 final class APIFailureMocking: ApiClient {
-    func getData(of request: RequestBuilder?) -> Observable<Data> {
+    func getData(of _: RequestBuilder?) -> Observable<Data> {
         return Observable<Data>.create { observer in
-            observer.onError(NetworkError.failedToParseData)
-            return Disposables.create()
-        }
+                observer.onError(NetworkError.failedToParseData)
+                return Disposables.create()
+            }
     }
 }
 

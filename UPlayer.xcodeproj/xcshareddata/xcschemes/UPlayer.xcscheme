@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1220"
+   LastUpgradeVersion = "1230"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -49,7 +49,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6C0ADE23256D99BA00522733"
+               BlueprintIdentifier = "6CF36FC725A4E8CD00B055D2"
                BuildableName = "UPlayerUITests.xctest"
                BlueprintName = "UPlayerUITests"
                ReferencedContainer = "container:UPlayer.xcodeproj">

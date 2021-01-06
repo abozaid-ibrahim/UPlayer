@@ -26,7 +26,8 @@ final class SongsViewHeader: UIView {
         view.layer.borderColor = UIColor.systemGray.cgColor
         view.addConstraints([
             view.heightAnchor.constraint(equalToConstant: 100),
-            view.widthAnchor.constraint(equalTo: view.heightAnchor)])
+            view.widthAnchor.constraint(equalTo: view.heightAnchor)
+        ])
         return view
     }()
 

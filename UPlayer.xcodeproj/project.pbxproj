@@ -42,6 +42,7 @@
 		6CD4F159256EE8AB007CC6CD /* PlayerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD4F158256EE8AB007CC6CD /* PlayerContainer.swift */; };
 		6CF36FCB25A4E8CD00B055D2 /* UPlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF36FCA25A4E8CD00B055D2 /* UPlayerUITests.swift */; };
 		6CF36FD925A4EA8400B055D2 /* DurationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF36FD825A4EA8400B055D2 /* DurationLabel.swift */; };
+		8420790B526A8ED416981AEE /* Pods_UPlayer_UPlayerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03660141BB5A4CA362724B7 /* Pods_UPlayer_UPlayerUITests.framework */; };
 		FA90B67408A0FFF468B10D4E /* Pods_UPlayerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A89BA0FEDC0E84DB16F213 /* Pods_UPlayerTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8420790B526A8ED416981AEE /* Pods_UPlayer_UPlayerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,9 +395,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CF36FCF25A4E8CD00B055D2 /* Build configuration list for PBXNativeTarget "UPlayerUITests" */;
 			buildPhases = (
+				0416F30429BE195FB06458A1 /* [CP] Check Pods Manifest.lock */,
 				6CF36FC425A4E8CD00B055D2 /* Sources */,
 				6CF36FC525A4E8CD00B055D2 /* Frameworks */,
 				6CF36FC625A4E8CD00B055D2 /* Resources */,
+				03E02D2924FA6F4E5DDBF0AB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -482,6 +486,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		03E02D2924FA6F4E5DDBF0AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UPlayer-UPlayerUITests/Pods-UPlayer-UPlayerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UPlayer-UPlayerUITests/Pods-UPlayer-UPlayerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UPlayer-UPlayerUITests/Pods-UPlayer-UPlayerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0416F30429BE195FB06458A1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UPlayer-UPlayerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4E503392AD33E2F4C37527B7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -864,6 +907,7 @@
 		};
 		6CF36FD025A4E8CD00B055D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5843E732E4C6D67C7300B251 /* Pods-UPlayer-UPlayerUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 475YN7ANSF;
@@ -884,6 +928,7 @@
 		};
 		6CF36FD125A4E8CD00B055D2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B051D45878DAF8FFC2F7A90 /* Pods-UPlayer-UPlayerUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 475YN7ANSF;

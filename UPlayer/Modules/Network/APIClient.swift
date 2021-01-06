@@ -17,18 +17,18 @@ final class HTTPClient: ApiClient {
     private let disposeBag = DisposeBag()
     func getData(of request: RequestBuilder?) -> Observable<Data> {
         return Observable.create { observer in
-            guard let request = request?.request else {
-                observer.onError(NetworkError.badRequest)
-                return Disposables.create()
+                guard let request = request?.request else {
+                    observer.onError(NetworkError.badRequest)
+                    return Disposables.create()
+                }
+                return URLSession.shared.rx.response(request: request)
+                    .subscribe(onNext: { response in
+                                   observer.onNext(response.data)
+                                   observer.onCompleted()
+                               },
+                               onError: { error in
+                                   observer.onError(error)
+                               })
             }
-            return URLSession.shared.rx.response(request: request)
-                .subscribe(onNext: { response in
-                               observer.onNext(response.data)
-                               observer.onCompleted()
-                           },
-                           onError: { error in
-                               observer.onError(error)
-                           })
-        }
     }
 }

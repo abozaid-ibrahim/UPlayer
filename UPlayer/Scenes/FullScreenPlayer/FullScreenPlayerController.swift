@@ -6,10 +6,10 @@
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
 
+import DevPlayer
 import RxCocoa
 import RxSwift
 import UIKit
-import DevPlayer
 
 final class FullScreenPlayerController: UIViewController {
     @IBOutlet private var coverScrollView: UIScrollView!
@@ -32,7 +32,7 @@ final class FullScreenPlayerController: UIViewController {
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("Unsupported")
     }
 
@@ -101,19 +101,19 @@ extension FullScreenPlayerController: SongWaveViewDelegate {
         durationView.updateTime(with: percentage, for: song.duration)
         updateCoverScrollView(CGFloat(percentage))
 
-        if player.state.value == .paused && blurEffectView.isHidden {
+        if player.state.value == .paused, blurEffectView.isHidden {
             player.resume(to: Double(percentage))
         }
     }
 
-    func songWaveView(willBeginDragging: Bool, percentage: CGFloat) {
+    func songWaveView(willBeginDragging: Bool, percentage _: CGFloat) {
         guard willBeginDragging else { return }
         isScrolling = true
         durationView.animate(scale: true)
         updatePlayButtonVisibility(hide: true)
     }
 
-    func songWaveView(percentage: CGFloat) {
+    func songWaveView(percentage _: CGFloat) {
         durationView.animate(scale: true)
         updatePlayButtonVisibility(hide: true)
     }
@@ -141,7 +141,7 @@ extension FullScreenPlayerController: SongWaveViewDelegate {
         player.seek(to: Double(percentage))
     }
 
-    private func updatePlayButtonVisibility(hide: Bool) {
+    private func updatePlayButtonVisibility(hide _: Bool) {
         guard !blurEffectView.isHidden else {
             return
         }

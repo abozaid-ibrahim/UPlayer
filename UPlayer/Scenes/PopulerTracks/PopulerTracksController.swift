@@ -1,4 +1,5 @@
 //
+import DevExtensions
 //  PopulerTracksController.swift
 //  UPlayer
 //
@@ -8,7 +9,6 @@
 import RxCocoa
 import RxSwift
 import UIKit
-import DevExtensions
 
 final class PopulerTracksController: UITableViewController {
     private let disposeBag = DisposeBag()
@@ -21,7 +21,7 @@ final class PopulerTracksController: UITableViewController {
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("Unsupported")
     }
 
@@ -70,7 +70,7 @@ private extension PopulerTracksController {
 }
 
 extension PopulerTracksController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return tracks.count
     }
 
@@ -80,7 +80,7 @@ extension PopulerTracksController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let songs = viewModel.songsOf(user: tracks[indexPath.row])
         guard let artist = viewModel.user(of: tracks[indexPath.row].userId) else { return }
         AppNavigator.shared.push(.songsList(for: artist, and: songs))
