@@ -14,8 +14,7 @@ final class AppNavigator {
     private(set) var navigationController: UINavigationController?
     private init() {}
     func set(window: UIWindow?) {
-        let navigationController = UINavigationController(rootViewController: Destination.populerTracks.controller)
-        window?.rootViewController = navigationController
+        window?.rootViewController = Destination.populerTracks.controller
         window?.makeKeyAndVisible()
     }
 
