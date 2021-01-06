@@ -6,6 +6,7 @@
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
 
+import DevNetwork
 import RxSwift
 import RxTest
 @testable import UPlayer
@@ -62,25 +63,31 @@ final class PopulerTracksViewModelTests: XCTestCase {
     }
 }
 
-final class APISuccessMocking: ApiClient {
-    func getData(of _: RequestBuilder?) -> Observable<Data> {
-        let response = """
+final class APISuccessMocking: ReactiveClient {
+    var jsonDecoder = JSONDecoder()
+
+    func getData<T>(of request: RequestBuilder) -> Observable<T> where T: Decodable {
+        guard let response = """
         [{"id":"1","user_id":"10","duration":"3782","title":"Hello", "stream_url":"https://hear.at",
         "user":{"id":"10","username":"Adele"}},
         {"id":"2","user_id":"20","duration":"3782","title":"Whenever", "stream_url":"https://hear.at",
         "user":{"id":"20","username":"Shakira"}}]
-        """
-        let data = response.data(using: .utf8)!
-        return Observable.of(data)
+        """.data(using: .utf8),
+            let fakeResponse = try? jsonDecoder.decode(T.self, from: response) else {
+            return Observable.empty()
+        }
+        return Observable.of(fakeResponse)
     }
 }
 
-final class APIFailureMocking: ApiClient {
-    func getData(of _: RequestBuilder?) -> Observable<Data> {
-        return Observable<Data>.create { observer in
-                observer.onError(NetworkError.failedToParseData)
-                return Disposables.create()
-            }
+final class APIFailureMocking: ReactiveClient {
+    var jsonDecoder = JSONDecoder()
+
+    func getData<T>(of request: RequestBuilder) -> Observable<T> where T: Decodable {
+        return Observable<T>.create { observer in
+            observer.onError(NetworkError.failedToParseData)
+            return Disposables.create()
+        }
     }
 }
 

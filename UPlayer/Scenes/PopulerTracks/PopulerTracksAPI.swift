@@ -6,12 +6,18 @@
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
 
+import DevNetwork
 import Foundation
+
 enum PopulerTracksAPI {
     case populer(page: Page)
 }
 
 extension PopulerTracksAPI: RequestBuilder {
+    var baseURL: String {
+        "https://api-v2.hearthis.at/"
+    }
+
     var path: String {
         switch self {
         case .populer:
@@ -26,9 +32,9 @@ extension PopulerTracksAPI: RequestBuilder {
     var parameters: [String: Any] {
         switch self {
         case let .populer(page):
-            return ["count": page.countPerPage,
+            return ["count": page.size,
                     "type": "popular",
-                    "page": page.currentPage]
+                    "page": page.size]
         }
     }
 }

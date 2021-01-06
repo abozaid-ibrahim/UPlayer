@@ -1,5 +1,10 @@
 PODS:
   - DevExtensions (0.0.2)
+  - DevNetwork/Core (0.0.21)
+  - DevNetwork/Rx (0.0.21):
+    - DevNetwork/Core
+    - RxCocoa (= 6.0.0)
+    - RxSwift (= 6.0.0)
   - DevPlayer (0.0.1):
     - RxCocoa (= 6.0.0)
     - RxSwift (= 6.0.0)
@@ -16,6 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - DevExtensions (from `../DevPods`)
+  - DevNetwork/Rx (from `../DevPods`)
   - DevPlayer (from `../DevPods`)
   - Kingfisher
   - RxCocoa
@@ -35,11 +41,14 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   DevExtensions:
     :path: "../DevPods"
+  DevNetwork:
+    :path: "../DevPods"
   DevPlayer:
     :path: "../DevPods"
 
 SPEC CHECKSUMS:
   DevExtensions: 089bc1281e77ee5bb1bc07a942b716cfad9ab5dd
+  DevNetwork: 424ff8f12dbb1b0e73c23c183f5182851638881d
   DevPlayer: e3637a112ab42044161344760261cc574530a28d
   Kingfisher: adde87a4f74f6a3845395769354efff593581740
   RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
@@ -48,6 +57,6 @@ SPEC CHECKSUMS:
   RxTest: ddef4052e63cb116f5b73510488c3113c37c62e5
   SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
 
-PODFILE CHECKSUM: e0d748b1f845c8a5d69a0825d2e5798ca951ea7b
+PODFILE CHECKSUM: 08529cd8a1d7a209306837336c76cb7426d6fdd6
 
 COCOAPODS: 1.9.3

@@ -9,6 +9,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import DevNetwork
 
 protocol PopulerTracksViewModelType {
     var observer: Observer { get }
@@ -28,10 +29,10 @@ final class PopulerTracksViewModel: PopulerTracksViewModelType {
     private var scheduler: SchedulerType
     private let disposeBag = DisposeBag()
     private let page = Page()
-    private let dataLoader: ApiClient
+    private let dataLoader: ReactiveClient
     private var allSongsListCache: [Song] = []
 
-    init(with dataLoader: ApiClient = HTTPClient(),
+    init(with dataLoader: ReactiveClient = HTTPRxClient(),
          scheduler: SchedulerType = SerialDispatchQueueScheduler(qos: .default)) {
         self.dataLoader = dataLoader
         self.scheduler = scheduler
@@ -42,7 +43,6 @@ final class PopulerTracksViewModel: PopulerTracksViewModelType {
         observer.isLoading.accept(true)
         dataLoader.getData(of: PopulerTracksAPI.populer(page: page))
             .subscribe(on: scheduler)
-            .map { try JSONDecoder().decode([Song].self, from: $0) }
             .subscribe(onNext: { [unowned self] in
                 self.updateUI($0)
             }, onError: { [unowned self] in

@@ -28,7 +28,6 @@ extension Song {
     func loadPulses() -> Observable<[Float]> {
         guard let url = waveformData else { return Observable.empty() }
         return URLSession.shared.rx.data(request: .init(url: url))
-            .map { try JSONDecoder().decode([Float].self, from: $0) }
-            .compactMap { $0.map { $0 / 500 }}
+            .compactMap { $0.map { Float($0) / 500 }}
     }
 }
