@@ -3,8 +3,8 @@
 //
 //
 
-import UIKit.UIView
 import DevPlayer
+import UIKit.UIView
 
 public final class DurationLabel: UIView {
     @IBOutlet private var elapsedTimeLabel: UILabel!
@@ -50,9 +50,10 @@ public final class DurationLabel: UIView {
 public extension UIColor {
     static var whiteColor: UIColor {
         if #available(iOS 13, *) {
-            return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                UITraitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
-            }
+            return UIColor
+                { (UITraitCollection: UITraitCollection) -> UIColor in
+                    UITraitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
+                }
         } else {
             return UIColor.white
         }
@@ -60,9 +61,10 @@ public extension UIColor {
 
     static var blackColor: UIColor {
         if #available(iOS 13, *) {
-            return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                UITraitCollection.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
-            }
+            return UIColor
+                { (UITraitCollection: UITraitCollection) -> UIColor in
+                    UITraitCollection.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
+                }
         } else {
             return UIColor.black
         }

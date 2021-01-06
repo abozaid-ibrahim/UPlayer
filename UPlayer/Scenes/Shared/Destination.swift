@@ -6,14 +6,14 @@
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
 
+import DevPlayer
 import Foundation
 import UIKit
-import DevPlayer
 
 enum Destination {
     case fullScreenPlayer(song: Song, player: AudioPlayerType),
-         songsList(for: Artist, and: [Song]),
-         populerTracks
+        songsList(for: Artist, and: [Song]),
+        populerTracks
 
     var controller: UIViewController {
         switch self {

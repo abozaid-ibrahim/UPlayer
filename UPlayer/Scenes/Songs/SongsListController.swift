@@ -27,7 +27,7 @@ final class SongsListController: UIViewController {
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("Unsupported")
     }
 
@@ -64,9 +64,10 @@ private extension SongsListController {
         viewModel.songsList
             .bind(to: tableView.rx
                 .items(cellIdentifier: SongTableCell.identifier,
-                       cellType: SongTableCell.self)) { _, model, cell in
-                cell.setData(for: model)
-            }.disposed(by: disposeBag)
+                       cellType: SongTableCell.self))
+        { _, model, cell in
+            cell.setData(for: model)
+        }.disposed(by: disposeBag)
 
         tableView.rx.modelSelected(Song.self)
             .subscribe(onNext: { [unowned self] in
