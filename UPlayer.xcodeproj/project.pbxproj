@@ -242,6 +242,7 @@
 			children = (
 				6C0ADE3C256D9A9700522733 /* PopulerTracksController.swift */,
 				6C0ADE63256D9E3A00522733 /* PopulerTracksViewModel.swift */,
+				6C9601B2257FAEFA0095DBA8 /* PopulerTrack.swift */,
 				6CCB15F2256DA065002C556F /* Artist.swift */,
 				6CCB15F7256DA188002C556F /* PopulerTracksAPI.swift */,
 				6C0ADE69256DC4F400522733 /* Observer.swift */,
@@ -256,7 +257,6 @@
 				6C0ADE73256DFC6F00522733 /* SongsViewModel.swift */,
 				6C8E3A20256FEF7800BEA7C4 /* Song.swift */,
 				6CB8915B2572EF6A004B7989 /* SongsHeaderView.swift */,
-				6C9601B2257FAEFA0095DBA8 /* PopulerTrack.swift */,
 			);
 			path = Songs;
 			sourceTree = "<group>";

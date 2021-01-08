@@ -15,6 +15,7 @@ import UIKit
 
 protocol PlayerViewType {
     func play(song: Song)
+    func showFullScreenPlayer(for song: Song)
 }
 
 final class PlayerView: UIViewController {
@@ -50,18 +51,10 @@ private extension PlayerView {
         player.toggle()
     }
 
-    func loadPulses(_ song: Song) {
-        song.loadPulses()
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [unowned self] in self.setupFullScreen(song, $0) })
-            .disposed(by: disposeBag)
-    }
-
-    func setupFullScreen(_ song: Song, _ pulses: [Float]) {
-        var songWithPulses = song
-        songWithPulses.pulses = pulses
-        AppNavigator.shared.presentModally(.fullScreenPlayer(song: songWithPulses, player: player),
-                                           onComplete: { [weak self] in self?.view.isHidden = false })
+    func setupFullScreen(_ song: Song) {
+        AppNavigator.shared
+            .presentModally(.fullScreenPlayer(song: song, player: player),
+                            onComplete: { [weak self] in self?.view.isHidden = false })
     }
 
     @objc func enableFullScreenMode(sender _: Any? = nil) {
@@ -77,6 +70,9 @@ extension PlayerView: PlayerViewType {
         player.play.accept((url: song.streamURL, duration: song.duration))
         artistLabel.text = song.user?.username
         songLable.text = song.title
-        loadPulses(song)
+    }
+
+    func showFullScreenPlayer(for song: Song) {
+        setupFullScreen(song)
     }
 }

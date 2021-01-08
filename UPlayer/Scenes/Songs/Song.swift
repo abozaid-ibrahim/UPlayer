@@ -12,7 +12,7 @@ import Foundation
 struct Song {
     let id: String
     let userID: String
-    private let durationString: String
+    let durationString: String
     let streamURL: URL
     let genre: String?
     let title: String?
@@ -27,15 +27,6 @@ extension Song {
     var duration: Double { Double(durationString) ?? 0 }
     var durationDisplay: String {
         DurationFromatter().display(duration: duration)
-    }
-
-    var uiUserModel: PopulerTrack? {
-        return PopulerTrack(id: id,
-                            userId: userID,
-                            title: title,
-                            duration: durationDisplay,
-                            username: user?.username,
-                            avatar: thumb)
     }
 }
 

@@ -11,9 +11,9 @@ import Foundation
 import UIKit
 
 enum Destination {
-    case fullScreenPlayer(song: Song, player: AudioPlayerType),
-        songsList(for: Artist, and: [Song]),
-        populerTracks
+    case fullScreenPlayer(song: Song, player: AudioPlayerType)
+    case songsList(for: Artist, and: [Song])
+    case populerTracks
 
     var controller: UIViewController {
         switch self {

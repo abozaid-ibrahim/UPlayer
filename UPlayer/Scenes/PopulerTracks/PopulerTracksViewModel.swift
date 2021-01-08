@@ -6,10 +6,10 @@
 //  Copyright © 2020 abuzeid. All rights reserved.
 //
 
+import DevNetwork
 import Foundation
 import RxCocoa
 import RxSwift
-import DevNetwork
 
 protocol PopulerTracksViewModelType {
     var observer: Observer { get }
@@ -19,12 +19,6 @@ protocol PopulerTracksViewModelType {
 }
 
 final class PopulerTracksViewModel: PopulerTracksViewModelType {
-    func user(of trackId: String) -> Artist? {
-        return allSongsListCache
-            .filter { $0.userID == trackId }
-            .first?.user
-    }
-
     let observer = Observer()
     private var scheduler: SchedulerType
     private let disposeBag = DisposeBag()
@@ -55,13 +49,19 @@ final class PopulerTracksViewModel: PopulerTracksViewModelType {
     func songsOf(user: PopulerTrack) -> [Song] {
         return allSongsListCache.filter { $0.userID == user.userId }
     }
+
+    func user(of trackId: String) -> Artist? {
+        return allSongsListCache
+            .filter { $0.userID == trackId }
+            .first?.user
+    }
 }
 
 private extension PopulerTracksViewModel {
     func updateUI(_ response: [Song]) {
         allSongsListCache.append(contentsOf: response)
         page.newPageFetched()
-        observer.artistsList.accept(response.compactMap { $0.uiUserModel })
+        observer.artistsList.accept(response.compactMap { PopulerTrack(from: $0) })
     }
 
     func subscribeForUIInputs() {

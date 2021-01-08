@@ -17,6 +17,17 @@ struct PopulerTrack {
     let avatar: URL?
 }
 
+extension PopulerTrack {
+    init(from song: Song) {
+        id = song.id
+        userId = song.userID
+        title = song.title
+        duration = song.durationDisplay
+        username = song.user?.username
+        avatar = song.thumb
+    }
+}
+
 extension PopulerTrack: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.id == rhs.id

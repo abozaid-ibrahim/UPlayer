@@ -1,6 +1,6 @@
 plugin 'cocoapods-binary'
 platform :ios, '11.0'
-debug = true
+debug = false
 target 'UPlayer' do
   use_frameworks!
   # all_binary! if debug

@@ -65,8 +65,8 @@ private extension SongsListController {
             .bind(to: tableView.rx
                 .items(cellIdentifier: SongTableCell.identifier,
                        cellType: SongTableCell.self)) { _, model, cell in
-            cell.setData(for: model)
-        }.disposed(by: disposeBag)
+                cell.setData(for: model)
+            }.disposed(by: disposeBag)
 
         tableView.rx.modelSelected(Song.self)
             .subscribe(onNext: { [unowned self] in
@@ -76,5 +76,8 @@ private extension SongsListController {
 
     func play(_ song: Song) {
         PlayerView.shared.play(song: song)
+        viewModel.loadPulses(of: song)
+            .subscribe(onNext: { PlayerView.shared.showFullScreenPlayer(for: $0) })
+            .disposed(by: disposeBag)
     }
 }
